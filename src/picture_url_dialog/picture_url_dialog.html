@@ -1,0 +1,48 @@
+<!--
+@file Picture URL dialog content
+@copyright Digital Living Software Corp. 2014-2016
+-->
+
+<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog"
+           layout="column" md-theme="{{theme}}">
+
+    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">
+        <div class="pip-header bm16"  layout="row" layout-align="start center">
+            <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"
+                        aria-label="{{ ::'CANCEL' | translate }}">
+                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>
+            </md-button>
+            <h3 class="text-title m0">
+                {{ ::'PICTURE_FROM_WEBLINK' | translate}}
+            </h3>
+        </div>
+
+        <div class="pip-content">
+            <md-input-container md-no-float class="w-stretch text-subhead1">
+                <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: 'LINK_PICTURE' | translate}}"/>
+            </md-input-container>
+
+            <div class="w-stretch"
+                 ng-hide="invalid"
+                 layout="row" layout-align="center center">
+                <img id="url_image"/>
+            </div>
+
+            <div class="pip-no-images" ng-show="invalid"
+                 layout="row" layout-align="center center">
+                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>
+            </div>
+
+        </div>
+    </md-dialog-content>
+    <div class="pip-footer">
+        <md-button ng-click="onCancelClick()" aria-label="{{ ::'CANCEL' | translate }}">
+            {{ ::'CANCEL' | translate }}
+        </md-button>
+
+        <md-button class="md-accent" ng-click="onAddClick()" ng-disabled="invalid"
+                   aria-label="{{ ::'ADD' | translate }}">
+            {{ ::'ADD' | translate }}
+        </md-button>
+    </div>
+</md-dialog>

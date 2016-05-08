@@ -1,0 +1,41 @@
+ <!--
+@file Add image directive content
+@copyright Digital Living Software Corp. 2014-2015
+-->
+
+<md-menu>
+        <ng-transclude class="pip-add-image-open-button" ng-click="ngDisabled() ? '' : $mdOpenMenu()"></ng-transclude>
+        <md-menu-content width="4">
+            <md-menu-item>
+                <md-button layout="row" layout-align="start center" accept="image/*"
+                           ng-keydown="onKeyDown($event)" ng-multiple="isMulti()"
+                           ng-file-select ng-file-change="onFileChange($files)" ng-click="hideMenu()" ng-file-drop>
+
+                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:folder"></md-icon>
+                    <!--<span class="icon-folder text-headline text-grey tp8 rm24-flex"></span>-->
+                    <span class="text-grey">{{::'FILE' | translate}}</span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button layout="row" layout-align="start center" ng-click="onWebLinkClick()">
+                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon>
+                    <!--<span class="icon-weblink text-headline text-grey tp8 rm24-flex"></span>-->
+                    <span class="text-grey">{{::'WEB_LINK' | translate}}</span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button layout="row" layout-align="start center" ng-click="onCameraClick()">
+                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:camera"></md-icon>
+                    <!--<span class="icon-camera text-headline text-grey tp8 rm24-flex"></span>-->
+                    <span class="text-grey">{{::'CAMERA' | translate}}</span>
+                </md-button>
+            </md-menu-item>
+            <md-menu-item>
+                <md-button layout="row" layout-align="start center" ng-click="onGalleryClick()">
+                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:images"></md-icon>
+                    <!--<span class="icon-images text-headline text-grey tp8 rm24-flex"></span>-->
+                    <span class="text-grey">{{::'IMAGE_GALLERY' | translate}}</span>
+                </md-button>
+            </md-menu-item>
+        </md-menu-content>
+    </md-menu>

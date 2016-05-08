@@ -1,0 +1,85 @@
+<md-dialog class="pip-dialog pip-gallery-search-dialog pip-picture-dialog"
+           layout="column"  md-theme="{{theme}}">
+    <md-progress-linear
+            ng-show="transaction.busy()" md-mode="indeterminate">
+    </md-progress-linear>
+
+    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll" layout="row" flex  >
+        <div layout="column" layout-align="start start" flex>
+            <div class="pip-header w-stretch" layout="column" layout-align="start start">
+                <h3 class="w-stretch text-title m0 bp8">
+                    <md-button  class="md-icon-button m0"
+                                ng-click="onCancelClick()"
+                                aria-label="{{ ::'CANCEL' | translate }}">
+                        <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>
+                    </md-button>
+                    {{::'IMAGE_GALLERY' | translate}}
+                </h3>
+                <div class="w-stretch divider-bottom " layout="row" layout="start center">
+                    <input class="no-divider rm8 text-subhead1" flex
+                           ng-disabled="transaction.busy()"
+                           ng-model="$search" ng-keypress="onKeyPress($event)"
+                           placeholder="{{::'SEARCH_PICTURES' | translate}}"
+                           type="text" tabindex="1">
+
+                    <md-button class="md-icon-button md-icon-button-square p0 pip-search-button md-primary"
+                               ng-click="onSearchClick()"
+                               ng-hide="optionDefault"
+                               tabindex="-1" aria-label="SEARCH">
+                        <md-icon class="text-opacity md-primary" md-svg-icon="icons:search-square "></md-icon>
+                    </md-button>
+                </div>
+            </div>
+            <div class="pip-content" flex
+                 ng-show="$images.length > 0">
+                <div class="pip-image-container"
+                     ng-click="onImageClick(image)"
+                     ng-repeat="image in $images track by $index"
+                     ng-class="{'checked': image.checked}"
+                     tabindex="{{ $index + 2 }}">
+
+                    <pip-picture pip-src="image.thumbnail"
+                                 pip-default-icon="icon-images"
+                                 pip-rebind="true">
+                    </pip-picture>
+                    <div class="pip-checked-cover"></div>
+                    <div class="pip-checkbox-backdrop">
+                        <md-checkbox md-no-ink
+                                     ng-model="image.checked"
+                                     ng-click="image.checked = !image.checked"
+                                     aria-label="CHECKED">
+                        </md-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="pip-no-images w-stretch" layout="column" layout-align="center center" flex
+                 ng-show="$images.length == 0">
+                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>
+            </div>
+        </div>
+    </md-dialog-content>
+    <div class="pip-footer">
+        <md-button  ng-click="onCancelClick()"
+                    ng-hide="transaction.busy()"
+                    aria-label="{{ ::'CANCEL' | translate }}"
+                    tabindex="{{ $images.length + 3 }}">
+                <span class="text-grey">
+                    {{ ::'CANCEL' | translate }}
+                </span>
+        </md-button>
+        <md-button ng-if="transaction.busy()" ng-click="onStopSearchClick()" class="md-raised md-warn m0"
+                   tabindex="5" aria-label="ABORT"
+                   pip-test="button-cancel">
+            {{::'CANCEL' | translate}}
+        </md-button>
+        <md-button  class="md-accent"
+                    ng-hide="transaction.busy()"
+                    ng-disabled="addButtonDisabled()"
+                    ng-click="onAddClick()"
+                    aria-label="{{ ::'ADD' | translate }}"
+                    tabindex="{{ $images.length + 4 }}">
+
+            {{ ::'ADD' | translate }}
+        </md-button>
+    </div>
+</md-dialog>

@@ -1,0 +1,53 @@
+<!--
+@file Camera dialog content
+@copyright Digital Living Software Corp. 2014-2015
+-->
+
+<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}">
+    <div class="pip-header"  layout="row" layout-align="start center">
+        <md-button  ng-click="onCancelClick()" class="md-icon-button"
+                    aria-label="{{ ::'CANCEL' | translate }}">
+            <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>
+        </md-button>
+        <h3 class="m0 text-title">{{ ::'TAKE_PICTURE' | translate }}</h3>
+    </div>
+
+    <div class="pip-body">
+        <div class="camera-stream" ng-hide="webCamError"></div>
+        <div class="camera-error"
+             ng-show="webCamError"
+             layout="row" layout-align="center center">
+            <span>{{ ::'WEB_CAM_ERROR' | translate }}</span>
+        </div>
+    </div>
+
+    <div class="pip-footer">
+        <div class="w48">
+            <md-button ng-click="onResetPicture()"
+                       ng-hide="!$freeze || webCamError"
+                       class="md-icon-button"
+                       ng-disabled="transaction.busy()"
+                       aria-label="{{ ::'REMOVE_PICTURE' | translate }}">
+                <md-icon class="text-grey" md-svg-icon="icons:refresh"></md-icon>
+            </md-button>
+        </div>
+        <div flex></div>
+        <div class="w48">
+            <md-button ng-click="onTakePictureClick()"
+                       ng-hide="webCamError"
+                       class="md-icon-button"
+                       aria-label="{{ ::'TAKE_PICTURE' | translate }}">
+                <md-icon class="text-grey icon-button" md-svg-icon="icons:{{$freeze ? 'check' : 'camera'}}"></md-icon>
+            </md-button>
+
+        </div>
+        <div flex></div>
+        <div class="w48">
+            <md-button  ng-click="onCancelClick()" class="md-icon-button"
+                        aria-label="{{ ::'CANCEL' | translate }}">
+                <md-icon class="text-grey" md-svg-icon="icons:cross"></md-icon>
+            </md-button>
+        </div>
+    </div>
+
+</md-dialog>

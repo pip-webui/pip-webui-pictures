@@ -1,0 +1,170 @@
+// @file CSS styles for avatar controls
+// @copyright Digital Living Software Corp. 2014-2015
+
+.pip-avatar {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  outline: none!important;
+
+  & > md-icon {
+    display: block;
+    position: relative;
+  }
+
+  & > div {
+    position: absolute;
+    display: none;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    //background-color: @color-window;
+
+    & > span {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -0.5em;
+      margin-left: -0.5em;
+      width: 1em;
+      height: 1em;
+      line-height: 1em;
+      font-size: 74px;
+      color: #c9c9c9; // нужна переменная
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.pip-avatar(@size, @font-size){
+  margin: 0px;
+  padding: 0px;
+  width: @size;
+  height: @size;
+
+  md-icon {
+    width: @size;
+    height: @size;
+  }
+
+  md-icon.default_icon {
+    width: @font-size;
+    height: @font-size;
+  }
+
+}
+
+.pip-avatar { .pip-avatar(80px, 48px) }
+
+.pip-avatar-color(@color) {
+  > div {
+    background-color: @color!important;
+  }
+}
+
+.pip-avatar-color-0 { .pip-avatar-color(@color-0); }
+.pip-avatar-color-1 { .pip-avatar-color(@color-1); }
+.pip-avatar-color-2 { .pip-avatar-color(@color-2); }
+.pip-avatar-color-3 { .pip-avatar-color(@color-3); }
+.pip-avatar-color-4 { .pip-avatar-color(@color-4); }
+.pip-avatar-color-5 { .pip-avatar-color(@color-5); }
+.pip-avatar-color-6 { .pip-avatar-color(@color-6); }
+.pip-avatar-color-7 { .pip-avatar-color(@color-7); }
+.pip-avatar-color-8 { .pip-avatar-color(@color-8); }
+.pip-avatar-color-9 { .pip-avatar-color(@color-9); }
+.pip-avatar-color-10 { .pip-avatar-color(@color-10); }
+.pip-avatar-color-11 { .pip-avatar-color(@color-11); }
+.pip-avatar-color-12 { .pip-avatar-color(@color-12); }
+.pip-avatar-color-13 { .pip-avatar-color(@color-13); }
+.pip-avatar-color-14 { .pip-avatar-color(@color-14); }
+.pip-avatar-color-15 { .pip-avatar-color(@color-15); }
+
+.pip-face-x(@size, @fontSize) {
+  .circle(@size);
+  text-align: center;
+
+  img {
+    border-radius: 50%;
+    width: auto; //@size;
+    height: auto;
+  }
+
+  md-icon {
+    border-radius: 50%;
+    position: relative;
+    width: @size;
+    height: @size;
+    vertical-align: top!important;
+    margin: 0px!important;
+    padding: 0px!important;
+
+    svg {
+      border-radius: 50%;
+    }
+  }
+
+  // todo remove when svg icon updated
+  div {
+    border-radius: 50%;
+
+    md-icon.default_icon {
+      width: @fontSize;
+      height: @fontSize;
+      margin-top: (@size - @fontSize)/2!important;
+      fill: white;
+      font-size: @fontSize;//112px;
+      font-family: arial;
+    }
+  }
+}
+
+.pip-face-xxl { .pip-face-x(180px, 112px); }
+.pip-face-xl { .pip-face-x(100px, 50px); }
+.pip-face-lg { .pip-face-x(80px, 48px); }
+.pip-face-md { .pip-face-x(64px, 38px); }
+.pip-face { .pip-face-x(40px, 24px); }
+.pip-face-sm-md { .pip-face-x(56px, 24px); }
+.pip-face-sm { .pip-face-x(30px, 18px); }
+
+
+.pip-sface-x(@size, @fontSize) {
+  width: @size!important;
+  height: @size!important;
+  text-align: center;
+
+  img {
+    width: auto; //@size;
+    height: auto;
+  }
+
+  md-icon {
+    position: relative;
+    width: @size;
+    height: @size;
+    vertical-align: top!important;
+    margin: 0px!important;
+    padding: 0px!important;
+  }
+
+  // todo remove when svg icon updated
+  div {
+    md-icon.default_icon {
+      width: @fontSize;
+      height: @fontSize;
+      margin-top: (@size - @fontSize)/2!important;
+      fill: white;
+      font-size: @fontSize;
+      font-family: arial;
+    }
+  }
+}
+
+.pip-sface-xxl { .pip-sface-x(180px, 112px); }
+.pip-sface-xl { .pip-sface-x(100px, 50px); }
+.pip-sface-lg { .pip-sface-x(80px, 48px); }
+.pip-sface-md { .pip-sface-x(64px, 38px); }
+.pip-sface { .pip-sface-x(40px, 24px); }
+.pip-sface-sm { .pip-sface-x(30px, 18px); }

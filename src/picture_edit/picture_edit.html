@@ -1,0 +1,33 @@
+<div class="pip-picture-upload pip-picture-drop md-focused"
+	 ng-keydown="onKeyDown($event)"
+ 	 tabindex="{{ ngDisabled() || control.uploading ? -1 : 0 }}"
+	 pip-add-image
+	 pip-changed="readItemLocally(url, file)"
+	 ng-disabled="ngDisabled()"
+	 pip-multi="false">
+
+	<div class="pip-default-icon" ng-show="empty()">
+		<md-icon  class="pip-picture-icon" md-svg-icon="icons:{{icon}}"></md-icon>
+	</div>
+	<div class="pip-default-text" ng-show="empty()">
+		<span>{{text | translate}}</span>
+	</div>
+
+	<img class="pip-picture-image"
+		 ng-src="{{control.url}}"
+		 ng-show="!empty()"
+		 ng-class="{ 'pip-image-new': isUpdated(), 'cursor-default' : ngDisabled() || control.uploading }"
+ 		 ui-event="{ error: 'onImageError($event)', load: 'onImageLoad($event)' }">
+
+	<md-button class="md-icon-button"
+			   ng-click="onDeleteClick($event)"
+			   tabindex="-1" aria-label="delete"
+			   ng-hide="empty() || ngDisabled()"
+			   ng-disabled="ngDisabled() || control.uploading">
+		<md-icon  md-svg-icon="icons:cross"></md-icon>
+	</md-button>
+
+	<md-progress-linear ng-show="control.uploading"
+						ng-value="control.progress">
+	</md-progress-linear>
+</div>
