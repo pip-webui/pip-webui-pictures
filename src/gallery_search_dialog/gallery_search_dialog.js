@@ -124,7 +124,7 @@
                     if (image.checked) {
                         images.push(image);
                     } else {
-                        _.remove(images, 'url', image.url);
+                        _.remove(images, {url: image.url});
                     }
                 } else {
                     if (image.checked) {
