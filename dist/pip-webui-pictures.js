@@ -1,29 +1,3 @@
-/**
- * @file Registration of pictures WebUI controls
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipPictures', [        
-        'pipAddImage',
-        'pipAvatar',
-        'pipAvatarEdit',
-        'pipPicture',
-        'pipPictureEdit',
-        'pipCollage',
-        'pipPictureListEdit',        
-        'pipCameraDialog',        
-        'pipPictureUrlDialog'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipPictures.Templates');
@@ -396,6 +370,32 @@ module.run(['$templateCache', function($templateCache) {
     '</md-dialog>');
 }]);
 })();
+
+/**
+ * @file Registration of pictures WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipPictures', [        
+        'pipAddImage',
+        'pipAvatar',
+        'pipAvatarEdit',
+        'pipPicture',
+        'pipPictureEdit',
+        'pipCollage',
+        'pipPictureListEdit',        
+        'pipCameraDialog',        
+        'pipPictureUrlDialog'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Add image control
@@ -1635,7 +1635,7 @@ module.run(['$templateCache', function($templateCache) {
                     if (image.checked) {
                         images.push(image);
                     } else {
-                        _.remove(images, 'url', image.url);
+                        _.remove(images, {url: image.url});
                     }
                 } else {
                     if (image.checked) {
@@ -2383,13 +2383,13 @@ module.run(['$templateCache', function($templateCache) {
                 //pipImageUtils.addHttpHeaders();
                 $http['delete'](deleteItemUrl(item))
                 .success(function (data) {
-                    _.remove(control.items, 'pin', item.pin);
+                    _.remove(control.items, {pin: item.pin});
                     callback();
                 })
                 .error(function (data, status) {
                     // Todo: perform a better processing
                     if (data == null) {
-                        _.remove(control.items, 'pin', item.pin);
+                        _.remove(control.items, {pin: item.pin});
                     } else {
                         item.uploaded = false;
                         item.uploading = false;
@@ -2500,7 +2500,7 @@ module.run(['$templateCache', function($templateCache) {
 
             function onDeleteClick(item) {
                 if (item.state == 'added' || item.state == 'copied') {
-                    _.remove($scope.control.items, 'pin', item.pin);
+                    _.remove($scope.control.items, {pin: item.pin});
                 } else {
                     item.state = 'deleted';
                 }
@@ -2512,7 +2512,7 @@ module.run(['$templateCache', function($templateCache) {
                 if (item) {
                     if ($event.keyCode == 46 || $event.keyCode == 8) {
                         if (item.state == 'added') {
-                            _.remove($scope.control.items, 'pin', item.pin);
+                            _.remove($scope.control.items, {pin: item.pin});
                         } else {
                             item.state = 'deleted';
                         }
