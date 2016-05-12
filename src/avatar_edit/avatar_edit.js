@@ -278,7 +278,6 @@
                 $scope.control.file = file;
                 $scope.control.url = url;
                 $scope.control.state = 'changed';
-                console.log('readItemLocally', url, file);
                 $scope.onChange();
             };
 
