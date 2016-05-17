@@ -4,20 +4,44 @@
     'use strict';
 
     var content = [
-        { title: 'Avatar', state: 'avatar', url: '/avatar', controller: 'AvatarController', templateUrl: 'avatars.html' },
-        { title: 'Collage', state: 'collage', url: '/collage', controller: 'CollageController', templateUrl: 'collage.html' },
-        { title: 'Collage Resizing', state: 'collage_resize', url: '/collage_resize', controller: 'CollageResizeController', templateUrl: 'collage_resize.html' },
-        { title: 'Picture', state: 'picture', url: '/picture', controller: 'PictureController', templateUrl: 'picture.html' },
-        { title: 'Picture List', state: 'pictures', url: '/pictures', controller: 'PicturesController', templateUrl: 'pictures.html' }
+        {title: 'Avatar', state: 'avatar', url: '/avatar', controller: 'AvatarController', templateUrl: 'avatars.html'},
+        {
+            title: 'Collage',
+            state: 'collage',
+            url: '/collage',
+            controller: 'CollageController',
+            templateUrl: 'collage.html'
+        },
+        {
+            title: 'Collage Resizing',
+            state: 'collage_resize',
+            url: '/collage_resize',
+            controller: 'CollageResizeController',
+            templateUrl: 'collage_resize.html'
+        },
+        {
+            title: 'Picture',
+            state: 'picture',
+            url: '/picture',
+            controller: 'PictureController',
+            templateUrl: 'picture.html'
+        },
+        {
+            title: 'Picture List',
+            state: 'pictures',
+            url: '/pictures',
+            controller: 'PicturesController',
+            templateUrl: 'pictures.html'
+        }
     ];
 
-    var thisModule = angular.module('appPictures', 
+    var thisModule = angular.module('appPictures',
         [
             // 3rd Party Modules
             'ui.router', 'ui.utils', 'ngResource', 'ngAria', 'ngCookies', 'ngSanitize', 'ngMessages',
             'ngMaterial', 'wu.masonry', 'LocalStorageModule', 'angularFileUpload', 'ngAnimate',
             // Modules from WebUI Framework
-			'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipPictures',
+            'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipPictures',
             // testing data modules (have some data for example)
             'pipWebuiTests',
             // Sample Application Modules
@@ -59,7 +83,7 @@
 
             $urlRouterProvider.otherwise('/avatar');
 
-        } 
+        }
     );
 
     thisModule.controller('AppController',
@@ -88,7 +112,7 @@
 
 
             // Update page after language changed
-            $rootScope.$on('languageChanged', function(event) {
+            $rootScope.$on('languageChanged', function (event) {
                 console.log('Reloading...');
                 console.log($state.current);
                 console.log($state.params);
@@ -97,7 +121,7 @@
             });
 
             // Update page after theme changed
-            $rootScope.$on('themeChanged', function(event) {
+            $rootScope.$on('themeChanged', function (event) {
                 $state.reload();
             });
 
@@ -136,7 +160,7 @@
                         email: $scope.sampleAccount.email,
                         password: $scope.sampleAccount.password
                     },
-                    function(user) {
+                    function (user) {
                         $rootScope.$party = {
                             id: user.id,
                             name: user.name
@@ -147,7 +171,7 @@
                         pipTheme.setCurrentTheme($rootScope.$theme);
                         pipToasts.showNotification('Signed in as ' + user.name, ['ok'])
                     },
-                    function(err) {
+                    function (err) {
                         $rootScope.$routing = false;
                         pipToasts.showError('Failed to signed in');
                     }
