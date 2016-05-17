@@ -4,7 +4,13 @@
     'use strict';
 
     var content = [
-        {title: 'Avatar', state: 'avatar', url: '/avatar', controller: 'AvatarController', templateUrl: 'avatars.html'},
+        {
+            title: 'Avatar',
+            state: 'avatar',
+            url: '/avatar',
+            controller: 'AvatarController',
+            templateUrl: 'avatars.html'
+        },
         {
             title: 'Collage',
             state: 'collage',
