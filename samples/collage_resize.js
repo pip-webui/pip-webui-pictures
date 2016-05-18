@@ -6,7 +6,7 @@
     var thisModule = angular.module('appPictures.CollageResize', []);
 
     thisModule.controller('CollageResizeController',
-        function($scope) {
+        function ($scope) {
 
             $scope.collage = {
                 size: 2,
@@ -16,37 +16,37 @@
             };
 
             $scope.collageSet = [
-                { id: 1, name: '1 Picture'},
-                { id: 2, name: '2 Pictures'},
-                { id: 3, name: '3 Pictures'},
-                { id: 4, name: '4 Pictures'},
-                { id: 5, name: '5 Pictures'},
-                { id: 6, name: '6 Pictures'},
-                { id: 7, name: '7 Pictures'},
-                { id: 8, name: '8 Pictures'},
-                { id: 9, name: '9 Pictures single'},
-                { id: 10, name: '10 Pictures multiple'}
+                {id: 1, name: '1 Picture'},
+                {id: 2, name: '2 Pictures'},
+                {id: 3, name: '3 Pictures'},
+                {id: 4, name: '4 Pictures'},
+                {id: 5, name: '5 Pictures'},
+                {id: 6, name: '6 Pictures'},
+                {id: 7, name: '7 Pictures'},
+                {id: 8, name: '8 Pictures'},
+                {id: 9, name: '9 Pictures single'},
+                {id: 10, name: '10 Pictures multiple'}
             ];
 
             $scope.collageVariant = [
-                { id: 1, name: 'Variant 1'},
-                { id: 2, name: 'Variant 2'},
-                { id: 3, name: 'Variant 3'},
-                { id: 4, name: 'Variant 4'}
+                {id: 1, name: 'Variant 1'},
+                {id: 2, name: 'Variant 2'},
+                {id: 3, name: 'Variant 3'},
+                {id: 4, name: 'Variant 4'}
             ];
 
             $scope.blockSizes = [
-                { id: 0, name: 'width 250'},
-                { id: 1, name: 'width 350'},
-                { id: 2, name: 'width 450'},
-                { id: 3, name: 'width 600'}
+                {id: 0, name: 'width 250'},
+                {id: 1, name: 'width 350'},
+                {id: 2, name: 'width 450'},
+                {id: 3, name: 'width 600'}
             ];
 
             $scope.blockStyles = [
-                {'width':'250px'},
-                {'width':'350px'},
-                {'width':'450px'},
-                {'width':'600px'}
+                {'width': '250px'},
+                {'width': '350px'},
+                {'width': '450px'},
+                {'width': '600px'}
             ]
 
             $scope.srcs_1 = ['images/square.jpg'];

@@ -56,7 +56,7 @@
         ]
     );
 
-    thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider, $mdThemingProvider) {
+    thisModule.config(function (pipTranslateProvider, $stateProvider, $urlRouterProvider, $mdIconProvider) {
 
             $mdIconProvider.iconSet('icons', 'images/icons.svg', 512);
 
