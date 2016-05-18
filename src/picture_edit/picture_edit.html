@@ -1,10 +1,12 @@
 <div class="pip-picture-upload pip-picture-drop md-focused"
 	 ng-keydown="onKeyDown($event)"
  	 tabindex="{{ ngDisabled() || control.uploading ? -1 : 0 }}"
-	 pip-add-image
 	 pip-changed="readItemLocally(url, file)"
 	 ng-disabled="ngDisabled()"
-	 pip-multi="false">
+	 pip-multi="false"
+	 ng-focus="onFocus()"
+	 ng-blur="onBlur()"
+	 pip-add-image>
 
 	<div class="pip-default-icon" ng-show="empty()">
 		<md-icon  class="pip-picture-icon" md-svg-icon="icons:{{icon}}"></md-icon>

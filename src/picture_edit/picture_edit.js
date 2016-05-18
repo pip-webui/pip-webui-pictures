@@ -76,6 +76,8 @@
             $scope.onImageError = onImageError;
             $scope.onImageLoad = onImageLoad;
             $scope.onChange = onChange;
+            $scope.onBlur = onBlur;
+            $scope.onFocus = onFocus;
 
             // Also optimization to avoid watch if it is unnecessary
             if (pipUtils.toBoolean($attrs.pipRebind)) {
@@ -88,16 +90,17 @@
                 $input.attr('disabled', $scope.control.disabled);
             });
 
-            // Add paste listener
-            $element.children('.pip-picture-upload').focus(function () {
-                pipPicturePaste.addPasteListener(function (item) {
-                    $scope.readItemLocally(item.url, item.file);
-                });
-            });
+            //// Add paste listener
+            //$element.children('.pip-picture-upload').focus(function () {
+            //    console.log('addPasteListener');
+            //    pipPicturePaste.addPasteListener(function (item) {
+            //        $scope.readItemLocally(item.url, item.file);
+            //    });
+            //});
 
-            $element.children('.pip-picture-upload').blur(function () {
-                pipPicturePaste.removePasteListener();
-            });
+            //$element.children('.pip-picture-upload').blur(function () {
+            //    pipPicturePaste.removePasteListener();
+            //});
 
             // Add class
             $element.addClass('pip-picture-edit');
@@ -141,6 +144,16 @@
                     url = $scope.control.url,
                     name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0];
                 return fileUrl + '?name=' + name + '&url=' + url;
+            };
+
+            function onFocus() {
+                pipPicturePaste.addPasteListener(function (item) {
+                    $scope.readItemLocally(item.url, item.file);
+                });
+            };
+
+            function onBlur () {
+                pipPicturePaste.removePasteListener();
             };
 
             function savePicture(successCallback, errorCallback) {
