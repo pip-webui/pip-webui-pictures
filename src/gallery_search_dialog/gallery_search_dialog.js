@@ -16,11 +16,13 @@
     thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'IMAGE_GALLERY': 'Add from image gallery',
-            'SEARCH_PICTURES': 'Search for pictures...'
+            'SEARCH_PICTURES': 'Search for pictures...',
+            'IMAGE_START_SEARCH': 'Images will appear here once you start searching'
         });
         pipTranslateProvider.translations('ru', {
             'IMAGE_GALLERY': 'Добавить из галереи изображений',
-            'SEARCH_PICTURES': 'Поиск изображений...'
+            'SEARCH_PICTURES': 'Поиск изображений...',
+            'IMAGE_START_SEARCH': 'Картинки появятся после начала поиска'
         });
     });
 
