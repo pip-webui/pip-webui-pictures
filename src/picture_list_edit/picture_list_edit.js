@@ -76,7 +76,9 @@
             $scope.onImageError = onImageError;
             $scope.onImageLoad = onImageLoad;
             $scope.onChange = onChange;
-
+            $scope.onBlur = onBlur;
+            $scope.onFocus = onFocus;
+            
             // Watch for changes
             if ($scope.pipRebind) {
                 $scope.$watch(
@@ -90,15 +92,15 @@
                 );
             }
 
-            // Add paste listeners
-            $element.find('.pip-picture-upload').focus(function () {
-                pipPicturePaste.addPasteListener(function (item) {
-                    $scope.readItemLocally(item.url, item.file);
-                });
-            });
-            $element.find('.pip-picture-upload').blur(function () {
-                pipPicturePaste.removePasteListener();
-            });
+            // // Add paste listeners
+            // $element.find('.pip-picture-upload').focus(function () {
+            //     pipPicturePaste.addPasteListener(function (item) {
+            //         $scope.readItemLocally(item.url, item.file);
+            //     });
+            // });
+            // $element.find('.pip-picture-upload').blur(function () {
+            //     pipPicturePaste.removePasteListener();
+            // });
 
             // Add class
             $element.addClass('pip-picture-list-edit');
@@ -126,6 +128,16 @@
 
             function onImageError($event, item) {
                 item.error = true;
+            };
+            
+            function onFocus(a) {
+                pipPicturePaste.addPasteListener(function (item) {
+                    $scope.readItemLocally(item.url, item.file);
+                });
+            };
+
+            function onBlur () {
+                pipPicturePaste.removePasteListener();
             };
 
             function getItems() {

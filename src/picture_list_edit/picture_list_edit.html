@@ -31,6 +31,8 @@
 
 	<button class="pip-picture-upload pip-picture-drop pip-focusable"
 			pip-add-image
+		    ng-focus="onFocus()"
+	        ng-blur="onBlur()"
 			pip-changed="readItemLocally(url, file)"
 			ng-disabled="ngDisabled() || control.uploading">
 
