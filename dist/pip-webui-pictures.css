@@ -815,7 +815,7 @@
 @media (max-width: 768px) {
   md-dialog.pip-gallery-search-dialog.pip-picture-dialog {
     width: 380px !important;
-    min-width: 380px !important;
+    min-width: 350px !important;
   }
 }
 .pip-gallery-search-dialog .pip-no-images {
