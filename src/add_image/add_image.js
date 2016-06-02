@@ -12,16 +12,16 @@
 
     thisModule.config(function(pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'IMAGE_GALLERY': 'Image gallery',
-            'FILE' : 'File',
-            'WEB_LINK' : 'Web link',
-            'CAMERA' : 'Camera'
+            'FILE' : 'Upload pictures',
+            'WEB_LINK' : 'Use web link',
+            'CAMERA' : 'Take photo',
+            'IMAGE_GALLERY': 'Use image library',
         });
         pipTranslateProvider.translations('ru', {
-            'IMAGE_GALLERY': 'Галерея изображений',
-            'FILE' : 'Файл',
-            'WEB_LINK' : 'Веб ссылка',
-            'CAMERA' : 'Камера'
+            'FILE' : 'Загрузить картинку',
+            'WEB_LINK' : 'Вставить веб ссылка',
+            'CAMERA' : 'Использовать камеру',
+            'IMAGE_GALLERY': 'Открыть галерею изображений'
         });
     });
 
