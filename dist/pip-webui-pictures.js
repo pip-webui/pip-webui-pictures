@@ -1819,7 +1819,7 @@ module.run(['$templateCache', function($templateCache) {
  * @todo
  * - Improve samples in sampler app
  */
- 
+
 /* global angular */
 
 (function () {
@@ -1850,10 +1850,9 @@ module.run(['$templateCache', function($templateCache) {
                     pipReset: '&',
                     pipPictureId: '=',
                     pipAddedPicture: '='
-
                 },
                 templateUrl: 'picture_edit/picture_edit.html',
-                controller: 'pipPictureEditController' 
+                controller: 'pipPictureEditController'
             };
         }
     );
@@ -1867,7 +1866,7 @@ module.run(['$templateCache', function($templateCache) {
                 serverUrl = pipRest.serverUrl(),
                 fileUrl = serverUrl + "/api/parties/" + $rootScope.$party.id + "/files";
 
-            $scope.text = $attrs.pipDefaultText || 'PICTURE_EDIT_TEXT'; 
+            $scope.text = $attrs.pipDefaultText || 'PICTURE_EDIT_TEXT';
             $scope.icon = $attrs.pipDefaultIcon || 'picture-no-border';
             $scope.pictureStartState = pipUtils.toBoolean($scope.pipAddedPicture) ? 'copied' : 'original';
 
@@ -1955,7 +1954,7 @@ module.run(['$templateCache', function($templateCache) {
             };
 
             function saveItemUrl() {
-                var 
+                var
                     url = $scope.control.url,
                     name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0];
                 return fileUrl + '?name=' + name + '&url=' + url;
@@ -1978,7 +1977,7 @@ module.run(['$templateCache', function($templateCache) {
 
                 if ($scope.control.file !== null) {
                     var fileReader = new FileReader();
-                        
+
                     fileReader.onload = function (e) {
                         control.uploading = true;
                 //        pipImageUtils.addHttpHeaders();
@@ -2055,14 +2054,14 @@ module.run(['$templateCache', function($templateCache) {
                 // Process changes of the image
                 if ($scope.control.state == 'changed') {
                     savePicture(successCallback, errorCallback);
-                } 
+                }
                 // Process deletion of the image
                 else if ($scope.control.state == 'deleted') {
                     deletePicture(successCallback, errorCallback);
                 }
-                // Process if no changes were made 
+                // Process if no changes were made
                 else {
-                    if (successCallback) successCallback();                            
+                    if (successCallback) successCallback();
                 }
             };
 
@@ -2143,7 +2142,7 @@ module.run(['$templateCache', function($templateCache) {
 
         }]
     );
-    
+
 })();
 
 
