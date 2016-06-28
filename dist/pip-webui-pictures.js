@@ -1,3 +1,29 @@
+/**
+ * @file Registration of pictures WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipPictures', [        
+        'pipAddImage',
+        'pipAvatar',
+        'pipAvatarEdit',
+        'pipPicture',
+        'pipPictureEdit',
+        'pipCollage',
+        'pipPictureListEdit',        
+        'pipCameraDialog',        
+        'pipPictureUrlDialog'
+    ]);
+    
+})();
+
+
+
 (function(module) {
 try {
   module = angular.module('pipPictures.Templates');
@@ -376,32 +402,6 @@ module.run(['$templateCache', function($templateCache) {
     '</md-dialog>');
 }]);
 })();
-
-/**
- * @file Registration of pictures WebUI controls
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipPictures', [        
-        'pipAddImage',
-        'pipAvatar',
-        'pipAvatarEdit',
-        'pipPicture',
-        'pipPictureEdit',
-        'pipCollage',
-        'pipPictureListEdit',        
-        'pipCameraDialog',        
-        'pipPictureUrlDialog'
-    ]);
-    
-})();
-
-
 
 /**
  * @file Add image control
@@ -1100,7 +1100,7 @@ module.run(['$templateCache', function($templateCache) {
     var thisModule = angular.module('pipCameraDialog',
         ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
 
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
             'TAKE_PICTURE': 'Take a picture',
             'WEB_CAM_ERROR': 'Webcam is missing or was not found'
@@ -1135,33 +1135,59 @@ module.run(['$templateCache', function($templateCache) {
         ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog) {
 
             $scope.theme = $rootScope.$theme;
-            Webcam.init();
+            if (Webcam) {
+                console.log('webcam');
+                Webcam.init();
 
-            setTimeout(function () {
-                Webcam.attach('.camera-stream');
-            },0);
+                setTimeout(function () {
+                    Webcam.attach('.camera-stream');
+                }, 0);
 
-            Webcam.on('error', function (err) {
-                $scope.webCamError = true;
-                console.error(err);
-            });
+                Webcam.on('error', function (err) {
+                    $scope.webCamError = true;
+                    console.error(err);
+                });
 
-            Webcam.set({
-                width: 400,
-                height: 300,
+                Webcam.set({
+                    width: 400,
+                    height: 300,
 
-                dest_width: 400,
-                dest_height: 300,
+                    dest_width: 400,
+                    dest_height: 300,
 
-                crop_width: 400,
-                crop_height: 300,
+                    crop_width: 400,
+                    crop_height: 300,
 
-                image_format: 'jpeg',
-                jpeg_quality: 90
-            });
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
 
-            //Webcam.setSWFLocation('../../../dist/webcam.swf');
-            Webcam.setSWFLocation('webcam.swf');
+                //Webcam.setSWFLocation('../../../dist/webcam.swf');
+                Webcam.setSWFLocation('webcam.swf');
+
+            } else {
+                console.log('camera');
+                navigator.camera.getPicture(onSuccess, onFail,
+                    {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        correctOrientation: true,
+                        quality: 75,
+                        targetWidth: 200,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        encodingType: Camera.EncodingType.PNG,
+                        saveToPhotoAlbum: false
+                    });
+            }
+            function onSuccess(imageData) {
+                $scope.picture = "data:image/png;base64," + imageData;
+                $scope.$apply();
+                $mdDialog.hide(imageData);
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+
+            }
 
             $scope.$freeze = false;
 
@@ -1173,7 +1199,7 @@ module.run(['$templateCache', function($templateCache) {
 
             function onTakePictureClick() {
                 if ($scope.$freeze) {
-                    Webcam.snap(function(dataUri) {
+                    Webcam.snap(function (dataUri) {
                         $scope.$freeze = false;
                         $mdDialog.hide(dataUri);
                     });
