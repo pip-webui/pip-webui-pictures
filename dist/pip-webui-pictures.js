@@ -1180,8 +1180,7 @@ module.run(['$templateCache', function($templateCache) {
             }
             function onSuccess(imageData) {
                 $scope.picture = "data:image/png;base64," + imageData;
-                $scope.$apply();
-                $mdDialog.hide(imageData);
+                $mdDialog.hide($scope.picture);
             }
 
             function onFail(message) {
@@ -1198,14 +1197,16 @@ module.run(['$templateCache', function($templateCache) {
             return;
 
             function onTakePictureClick() {
-                if ($scope.$freeze) {
-                    Webcam.snap(function (dataUri) {
-                        $scope.$freeze = false;
-                        $mdDialog.hide(dataUri);
-                    });
-                } else {
-                    $scope.$freeze = true;
-                    Webcam.freeze();
+                if (Webcam) {
+                    if ($scope.$freeze) {
+                        Webcam.snap(function (dataUri) {
+                            $scope.$freeze = false;
+                            $mdDialog.hide(dataUri);
+                        });
+                    } else {
+                        $scope.$freeze = true;
+                        Webcam.freeze();
+                    }
                 }
             };
 
