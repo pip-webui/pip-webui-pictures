@@ -100,9 +100,9 @@ module.run(['$templateCache', function($templateCache) {
     '    </div>\n' +
     '\n' +
     '    <div class="pip-body">\n' +
-    '        <div class="camera-stream" ng-hide="webCamError"></div>\n' +
+    '        <div class="camera-stream" ng-hide="webCamError || browser == \'android\'"></div>\n' +
     '        <div class="camera-error"\n' +
-    '             ng-show="webCamError"\n' +
+    '             ng-show="webCamError || browser == \'android\'"\n' +
     '             layout="row" layout-align="center center">\n' +
     '            <span>{{ ::\'WEB_CAM_ERROR\' | translate }}</span>\n' +
     '        </div>\n' +
@@ -497,6 +497,7 @@ module.run(['$templateCache', function($templateCache) {
             }
 
             function addImages(images) {
+
                 if (images === undefined) return;
 
                 if (Array.isArray(images)) {
@@ -556,7 +557,8 @@ module.run(['$templateCache', function($templateCache) {
 
             function onCameraClick () {
                 pipCameraDialog.show(function (result) {
-                    var blob = dataURItoBlob(result);
+                  var blob = dataURItoBlob(result);
+
                     blob.name = 'camera';
                     addImages({url: result, file: blob});
                 });
@@ -955,7 +957,7 @@ module.run(['$templateCache', function($templateCache) {
                 } else {
                      var url = saveItemUrl();
                      control.uploading = true;
- 
+
                      $http['post'](url)
                          .success(function (response) {
                              control.reset();
@@ -965,7 +967,7 @@ module.run(['$templateCache', function($templateCache) {
                          .error(function (error) {
                              control.uploading = false;
                              control.upload = false;
- 
+
                              if (errorCallback) errorCallback(error);
                              else console.error(error);
                          });
@@ -1180,15 +1182,14 @@ module.run(['$templateCache', function($templateCache) {
                         correctOrientation: true,
                         quality: 75,
                         targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL,
-                        saveToPhotoAlbum: false
+                        destinationType: Camera.DestinationType.DATA_URL
                     });
             }
 
 
             function onSuccess(imageData) {
-                var picture = "data:image/jpeg;base64," +imageData;
-                alert('ok'+ picture);
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
                 $mdDialog.hide(picture);
             }
 

@@ -211,7 +211,7 @@
                 } else {
                      var url = saveItemUrl();
                      control.uploading = true;
- 
+
                      $http['post'](url)
                          .success(function (response) {
                              control.reset();
@@ -221,7 +221,7 @@
                          .error(function (error) {
                              control.uploading = false;
                              control.upload = false;
- 
+
                              if (errorCallback) errorCallback(error);
                              else console.error(error);
                          });

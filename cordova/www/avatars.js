@@ -38,6 +38,7 @@
             };
 
             $scope.isReseting = function() {
+
                 return $scope.isReset;
             };
 
@@ -53,12 +54,11 @@
             };
 
             $scope.onPictureCreated = function ($event) {
-                console.log('Picture created');
                 $scope.picture = $event.sender;
             };
 
             $scope.onPictureChanged = function ($control) {
-                console.log('Picture changed');
+
             };
 
             $scope.onSaveClick = function () {
@@ -97,10 +97,11 @@
             };
 
             $scope.onPictureChanged = function ($control) {
-                console.log('Picture changed');
+
             };
 
             $scope.onSaveClick = function () {
+
                 $scope.picture.save(
                     // Success callback
                     function () {

@@ -14,9 +14,9 @@
     </div>
 
     <div class="pip-body">
-        <div class="camera-stream" ng-hide="webCamError"></div>
+        <div class="camera-stream" ng-hide="webCamError || browser == 'android'"></div>
         <div class="camera-error"
-             ng-show="webCamError"
+             ng-show="webCamError || browser == 'android'"
              layout="row" layout-align="center center">
             <span>{{ ::'WEB_CAM_ERROR' | translate }}</span>
         </div>

@@ -62,6 +62,7 @@
             };
 
             $scope.onSaveClick = function () {
+                alert($scope.picture);
                 $scope.picture.save(
                     // Success callback
                     function () {

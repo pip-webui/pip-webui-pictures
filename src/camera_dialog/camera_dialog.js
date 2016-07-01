@@ -92,15 +92,14 @@
                         correctOrientation: true,
                         quality: 75,
                         targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL,
-                        saveToPhotoAlbum: false
+                        destinationType: Camera.DestinationType.DATA_URL
                     });
             }
 
 
             function onSuccess(imageData) {
-                var picture = "data:image/jpeg;base64," +imageData;
-                alert('ok'+ picture);
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
                 $mdDialog.hide(picture);
             }
 

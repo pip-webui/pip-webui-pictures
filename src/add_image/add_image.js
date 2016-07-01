@@ -91,6 +91,7 @@
             }
 
             function addImages(images) {
+
                 if (images === undefined) return;
 
                 if (Array.isArray(images)) {
@@ -150,7 +151,8 @@
 
             function onCameraClick () {
                 pipCameraDialog.show(function (result) {
-                    var blob = dataURItoBlob(result);
+                  var blob = dataURItoBlob(result);
+
                     blob.name = 'camera';
                     addImages({url: result, file: blob});
                 });
