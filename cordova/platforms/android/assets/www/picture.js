@@ -8,7 +8,6 @@
     thisModule.controller('PictureController',
         function($scope, $rootScope) {
             $scope.picture = null;
-
             // picIds
             // "56324968830c5b1b16bfaae5", "56324968830c5b1b16bfaae6", "561f61475be02089631a6d29",
             // "56027b4c04dea5ea7f3409be",

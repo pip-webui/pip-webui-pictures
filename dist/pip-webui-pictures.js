@@ -89,7 +89,8 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2015\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}"\n' +
+    '           ng-show=" browser != \'android\'">\n' +
     '    <div class="pip-header"  layout="row" layout-align="start center">\n' +
     '        <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
     '                    aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
@@ -1121,6 +1122,7 @@ module.run(['$templateCache', function($templateCache) {
                         controller: 'pipCameraController'
                     }).then(function (result) {
                         Webcam.reset();
+                        console.log(result);
                         if (successCallback) {
                             successCallback(result);
                         }
@@ -1132,10 +1134,11 @@ module.run(['$templateCache', function($templateCache) {
         }]);
 
     thisModule.controller('pipCameraController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog) {
-
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
+            $scope.browser = pipUtils.getBrowser().os;
             $scope.theme = $rootScope.$theme;
-            if (Webcam) {
+
+            if ($scope.browser !== 'android') {
                 console.log('webcam');
                 Webcam.init();
 
@@ -1166,7 +1169,11 @@ module.run(['$templateCache', function($templateCache) {
                 Webcam.setSWFLocation('webcam.swf');
 
             } else {
-                console.log('camera');
+                document.addEventListener("deviceready",onDeviceReady,false);
+
+            }
+            // todo add logic in callbacks
+            function onDeviceReady() {
                 navigator.camera.getPicture(onSuccess, onFail,
                     {
                         sourceType: Camera.PictureSourceType.CAMERA,
@@ -1174,18 +1181,20 @@ module.run(['$templateCache', function($templateCache) {
                         quality: 75,
                         targetWidth: 200,
                         destinationType: Camera.DestinationType.DATA_URL,
-                        encodingType: Camera.EncodingType.PNG,
                         saveToPhotoAlbum: false
                     });
             }
+
+
             function onSuccess(imageData) {
-                $scope.picture = "data:image/png;base64," + imageData;
-                $mdDialog.hide($scope.picture);
+                var picture = "data:image/jpeg;base64," +imageData;
+                alert('ok'+ picture);
+                $mdDialog.hide(picture);
             }
 
             function onFail(message) {
                 alert('Failed because: ' + message);
-
+                $mdDialog.hide();
             }
 
             $scope.$freeze = false;

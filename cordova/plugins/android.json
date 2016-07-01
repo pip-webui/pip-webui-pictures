@@ -7,9 +7,16 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.picturies.pip"
+        },
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.picturies.pip"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.picturies.pip"
+        }
+    }
 }

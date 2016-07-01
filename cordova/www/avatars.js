@@ -7,8 +7,9 @@
     var thisModule = angular.module('appPictures.Avatar', []);
 
     thisModule.controller('AvatarController',
-        function($scope, $rootScope) {
+        function($scope, $rootScope, pipUtils) {
 
+            $scope.browser = pipUtils.getBrowser().os;
             $scope.avatars = [
                 {
                     id: '56184c24c98f6e504a8965d9',

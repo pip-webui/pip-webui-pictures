@@ -3,7 +3,8 @@
 @copyright Digital Living Software Corp. 2014-2015
 -->
 
-<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}">
+<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}"
+           ng-show=" browser != 'android'">
     <div class="pip-header"  layout="row" layout-align="start center">
         <md-button  ng-click="onCancelClick()" class="md-icon-button"
                     aria-label="{{ ::'CANCEL' | translate }}">
