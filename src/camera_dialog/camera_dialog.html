@@ -4,7 +4,8 @@
 -->
 
 <md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}"
-           ng-show=" browser != 'android'">
+           ng-show="browser != 'android'"
+        ng-class="{'pip-android-dialog': browser == 'android' || !browser}">
     <div class="pip-header"  layout="row" layout-align="start center">
         <md-button  ng-click="onCancelClick()" class="md-icon-button"
                     aria-label="{{ ::'CANCEL' | translate }}">

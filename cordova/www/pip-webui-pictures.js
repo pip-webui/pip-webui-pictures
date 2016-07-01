@@ -90,7 +90,8 @@ module.run(['$templateCache', function($templateCache) {
     '-->\n' +
     '\n' +
     '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}"\n' +
-    '           ng-show=" browser != \'android\'">\n' +
+    '           ng-show="browser != \'android\'"\n' +
+    '        ng-class="{\'pip-android-dialog\': browser == \'android\' || !browser}">\n' +
     '    <div class="pip-header"  layout="row" layout-align="start center">\n' +
     '        <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
     '                    aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
