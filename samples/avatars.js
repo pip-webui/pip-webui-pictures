@@ -1,13 +1,10 @@
-/* global angular */
-/* global angular */
-
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appPictures.Avatar', []);
 
     thisModule.controller('AvatarController',
-        function($scope, $rootScope, pipUtils) {
+        function ($scope, $rootScope, pipUtils) {
 
             $scope.browser = pipUtils.getBrowser().os;
             $scope.avatars = [
@@ -28,16 +25,16 @@
 
             $scope.isReset = true;
 
-            $scope.onDisableReset = function() {
+            $scope.onDisableReset = function () {
                 $scope.isReset = !$scope.isReset;
             };
 
-            $scope.onChangeID = function() {
-                if ($scope.avatar1.id == '53b63780bf898e927e49325b') $scope.avatar1.id = '56184c24c98f6e504a8965d9';
-                else $scope.avatar1.id='56184c24c98f6e504a8965d9';
+            $scope.onChangeID = function () {
+                $scope.avatar1.id = $scope.avatar1.id === '53b63780bf898e927e49325b'
+                    ? '56184c24c98f6e504a8965d9' : '56184c24c98f6e504a8965d9';
             };
 
-            $scope.isReseting = function() {
+            $scope.isReseting = function () {
                 return $scope.isReset;
             };
 
@@ -48,31 +45,30 @@
             $scope.pictureEditId = '56324b11830c5b1b16bfaae8';
             $scope.pictureEditDisabled = false;
 
-            $scope.newAvatars = function() {
-                $scope.avatarIndex = $scope.avatarIndex == 0 ? 1: 0;
+            $scope.newAvatars = function () {
+                $scope.avatarIndex = $scope.avatarIndex === 0 ? 1 : 0;
             };
 
             $scope.onPictureCreated = function ($event) {
-                console.log('Picture created');
+                console.log('Picture created'); // eslint-disable-line
                 $scope.picture = $event.sender;
             };
 
             $scope.onPictureChanged = function ($control) {
-                console.log('Picture changed');
+                console.log('Picture changed'); // eslint-disable-line
             };
 
             $scope.onSaveClick = function () {
-                alert($scope.picture);
                 $scope.picture.save(
                     // Success callback
                     function () {
-                        console.log('Picture saved');
+                        console.log('Picture saved'); // eslint-disable-line
 
                         $rootScope.$broadcast('pipPartyAvatarUpdated');
                     },
                     // Error callback
                     function (error) {
-                        console.error(error);
+                        console.error(error); // eslint-disable-line
                     }
                 );
             };
@@ -80,76 +76,72 @@
             $scope.onResetClick = function () {
                 $scope.picture.reset();
             };
-
-            console.log('$rootScope', $rootScope);
         }
     );
 
     thisModule.controller('partyAvatarController',
-        function($scope, $rootScope) {
+        function ($scope, $rootScope) {
             $scope.picture = null;
 
             $scope.pictureEditId = '56324b11830c5b1b16bfaae8';
             $scope.pictureEditDisabled = false;
 
             $scope.onPictureCreated = function ($event) {
-                console.log('Picture created');
+                console.log('Picture created'); // eslint-disable-line
                 $scope.picture = $event.sender;
             };
 
             $scope.onPictureChanged = function ($control) {
-                console.log('Picture changed');
+                console.log('Picture changed'); // eslint-disable-line
             };
 
             $scope.onSaveClick = function () {
                 $scope.picture.save(
                     // Success callback
                     function () {
-                        console.log('Picture saved');
+                        console.log('Picture saved'); // eslint-disable-line
                         $rootScope.$broadcast('pipPartyAvatarUpdated');
                     },
                     // Error callback
                     function (error) {
-                        console.error(error);
+                        console.error(error); // eslint-disable-line
                     }
                 );
             };
 
             $scope.onResetClick = function () {
-                console.log('Picture reset');
+                console.log('Picture reset'); // eslint-disable-line
                 $scope.picture.reset();
             };
-
-            console.log('$rootScope', $rootScope);
         }
     );
 
     thisModule.controller('entityAvatarController',
-        function($scope, $rootScope) {
+        function ($scope, $rootScope) {
             $scope.picture = null;
 
             $scope.pictureEditId = '56324b11830c5b1b16bfaae8';
             $scope.pictureEditDisabled = false;
 
             $scope.onPictureCreated = function ($event) {
-                console.log('Picture created');
+                console.log('Picture created'); // eslint-disable-line
                 $scope.picture = $event.sender;
             };
 
             $scope.onPictureChanged = function ($control) {
-                console.log('Picture changed');
+                console.log('Picture changed'); // eslint-disable-line
             };
 
             $scope.onSaveClick = function () {
                 $scope.picture.save(
                     // Success callback
                     function () {
-                        console.log('Picture saved');
+                        console.log('Picture saved'); // eslint-disable-line
                         $rootScope.$broadcast('pipPartyAvatarUpdated');
                     },
                     // Error callback
                     function (error) {
-                        console.error(error);
+                        console.error(error); // eslint-disable-line
                     }
                 );
             };
@@ -157,10 +149,8 @@
             $scope.onResetClick = function () {
                 $scope.picture.reset();
             };
-
-            console.log('$rootScope', $rootScope);
         }
     );
 
-})();
+})(window.angular);
 

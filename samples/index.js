@@ -1,6 +1,5 @@
-/* global angular */
 
-(function () {
+(function (angular) {
     'use strict';
 
     var thisModule = angular.module('appPictures',
@@ -66,7 +65,7 @@
 
             pipAppBar.showMenuNavIcon();
             pipAppBar.showLanguage();
-            pipAppBar.showTitleText('CONTROLS');
+            pipAppBar.showTitleText('PICTURE_CONTROLS');
 
             $scope.onNavigationSelect = function (stateName) {
                 if ($state.current.name !== stateName) {
@@ -87,5 +86,4 @@
 
         }
     );
-
-})();
+})(window.angular);

@@ -1,260 +1,180 @@
+<h2 class="text-title tm0 bm24">Avatar {{ 'SAMPLE' | translate }}</h2>
+<h3 class="text-subhead2">Party and entity avatar {{ 'EDIT' | translate }}</h3>
+<pip-avatar-edit
+        pip-party-id="avatar1.id"
+        pip-created="onPictureCreated($event)"
+        pip-changed="onPictureChanged($control)"
+        pip-default-text="Change avatar"
+        pip-reset="isReseting()"
+        ng-disabled="pictureDisabled">
+</pip-avatar-edit>
 
+<p class="text-body1 tm16 bm16">id: <strong>{{avatar1.id}}</strong>
+    - reseting: <strong>{{isReseting()}}</strong>
+    - disabled: <strong>{{pictureDisabled}}</strong>
+</p>
 
-    <div layout="column" flex ng-controller="partyAvatarController">
-        {{browser}}
-        <h2 class="m16">Party Avatar Edit</h2>
-        <pip-avatar-edit
-                pip-party-id="avatar1.id"
-                pip-created="onPictureCreated($event)"
-                pip-changed="onPictureChanged($control)"
-                pip-default-text="Change avatar"
-                pip-reset="isReseting()"
-                ng-disabled="pictureDisabled">
-        </pip-avatar-edit>
-        <div class="tm16">id: {{avatar1.id}} - reseting: {{isReseting()}} - disabled: {{pictureDisabled}}</div>
-        <div layout="row" layout-align="start center" class="h48">
-            <md-button ng-click="onSaveClick()">Save</md-button>
-            <md-button ng-click="onChangeID()">Change ID</md-button>
-            <md-button ng-click="onDisableReset()">
-                <span ng-if="isReset">Disable Reset</span>
-                <span ng-if="!isReset">Enable Reset</span>
-            </md-button>
-            <md-button ng-click="pictureDisabled = !pictureDisabled">Enable/Disable</md-button>
-        </div>
+<div layout="row" layout-align="start center" class="h48">
+    <md-button ng-click="onSaveClick()" class="lm0">{{ 'SAVE' | translate }}</md-button>
+    <md-button ng-click="onDisableReset()">
+        <span ng-if="isReset">{{ 'DISABLE_RESET' | translate }}</span>
+        <span ng-if="!isReset">{{ 'ENABLE_RESET' | translate }}</span>
+    </md-button>
+    <md-button ng-click="pictureDisabled = !pictureDisabled">{{ 'ENABLE_DISABLE' | translate }}</md-button>
+</div>
+
+<h3 class="text-subhead2">Avatars</h3>
+<div>
+    <p class="text-body2 tm16 bm16">{{ 'AVATARS_FOR_USER_WITH_IMAGES' | translate }}</p>
+    <div class="avatar-section">
+        <pip-avatar class="pip-face-sm"
+                    pip-rebind="true"
+                    pip-rebind-avatar="true"
+                    pip-party-id="avatars[avatarIndex].id"
+                    pip-party-name="avatars[avatarIndex].name">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face"
+                    pip-rebind="true"
+                    pip-party-id="avatars[avatarIndex].id"
+                    pip-party-name="avatars[avatarIndex].name">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face-md"
+                    pip-rebind="true"
+                    pip-party-id="avatars[avatarIndex].id"
+                    pip-party-name="avatars[avatarIndex].name">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face-lg"
+                    pip-rebind="true"
+                    pip-party-id="avatars[avatarIndex].id"
+                    pip-party-name="avatars[avatarIndex].name">
+        </pip-avatar>
+    </div>
+    <md-button ng-click="newAvatars()" class="lm0">
+        {{ 'UPDATE_AVATAR' | translate }}
+    </md-button>
+
+    <p class="text-body2 tm16 bm16">{{ 'AVATARS_FOR_USERS_WITHOUT_IMAGES' | translate }}</p>
+
+    <div class="avatar-section">
+        <pip-avatar class="pip-face-lg" pip-party-id="'53b63780bf898e927e49325b'" pip-party-name="'Bill'">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face-md" pip-party-id="'x54a769fd3abccf9647abb7de'" pip-party-name="'John'">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face" pip-party-id="$user.id" pip-party-name="'Victor'">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face-lg" pip-party-id="$user.id" pip-party-name="'Victor'">
+        </pip-avatar>
+
+        <pip-avatar class="pip-face-sm" pip-party-id="'a54a769fd3abccf9647abb7de'" pip-party-name="'Emilio'">
+        </pip-avatar>
     </div>
 
-    <div layout="column" flex ng-controller="entityAvatarController">
-        <h2 class="m16">Entity(Goal) Avatar Edit</h2>
-        <pip-avatar-edit
-                pip-party-id="$user.id"
-                pip-id="'56184c24c98f6e504a8965de'"
-                pip-entity-type="'goal'"
-                pip-created="onPictureCreated($event)" pip-changed="onPictureChanged($control)"
-                pip-default-text="Change avatar" ng-disabled="pictureDisabled">
-        </pip-avatar-edit>
-        <div >
-            <md-button ng-click="onSaveClick()">Save</md-button>
-            <md-button ng-click="onResetClick()">Reset</md-button>
-            <md-button ng-click="pictureDisabled = !pictureDisabled">Enable/Disable</md-button>
-        </div>
-        <h2 class="m16">Avatars</h2>
-        <div>
-            <h4>Avatar for User with image</h4>
-            <div class="avatar-section">
-                <pip-avatar class="pip-face-sm"
-                            pip-rebind="true"
-                            pip-rebind-avatar="true"
-                            pip-party-id="avatars[avatarIndex].id"
-                            pip-party-name="avatars[avatarIndex].name">
-                </pip-avatar>
+    <p class="text-body2 tm16 bm16">{{ 'AVATARS_FOR_ENTITIES_WITHOUT_IMAGES' | translate }}</p>
 
-                <pip-avatar class="pip-face"
-                            pip-rebind="true"
-                            pip-party-id="avatars[avatarIndex].id"
-                            pip-party-name="avatars[avatarIndex].name">
-                </pip-avatar>
+    <div class="avatar-section">
+        <pip-avatar pip-rebind="true"
+                    pip-id="'5660d088cc1eaf174ec793f7'"
+                    pip-party-id="'55f28f064b0c570c4b1f138d'"
+                    pip-entity-type="'goal'"
+                    class="pip-face-sm">
+        </pip-avatar>
 
-                <pip-avatar class="pip-face-md"
-                            pip-rebind="true"
-                            pip-party-id="avatars[avatarIndex].id"
-                            pip-party-name="avatars[avatarIndex].name">
-                </pip-avatar>
+        <pip-avatar pip-rebind="true"
+                    pip-id="'5660d088cc1eaf174ec793f7'"
+                    pip-party-id="'55f28f064b0c570c4b1f138d'"
+                    pip-entity-type="'goal'"
+                    class="pip-face">
+        </pip-avatar>
 
-                <pip-avatar class="pip-face-lg"
-                            pip-rebind="true"
-                            pip-party-id="avatars[avatarIndex].id"
-                            pip-party-name="avatars[avatarIndex].name">
-                </pip-avatar>
-            </div>
-            <div class="m16">
-                <md-button ng-click="newAvatars()">
-                    Load New Avatar
-                </md-button>
-            </div>
+        <pip-avatar pip-rebind="true"
+                    pip-id="'5660d088cc1eaf174ec793f7'"
+                    pip-party-id="'55f28f064b0c570c4b1f138d'"
+                    pip-entity-type="'goal'"
+                    class="pip-face-md">
+        </pip-avatar>
 
-
-            <h4>Avatar for User without image</h4>
-            <div class="avatar-section">
-                <pip-avatar class="pip-face-lg" pip-party-id="'53b63780bf898e927e49325b'"  pip-party-name="'Bill'">
-                </pip-avatar>
-
-                <pip-avatar class="pip-face-md"  pip-party-id="'x54a769fd3abccf9647abb7de'"  pip-party-name="'John'">
-                </pip-avatar>
-
-                <pip-avatar class="pip-face"  pip-party-id="$user.id"  pip-party-name="'Victor'">
-                </pip-avatar>
-
-                <pip-avatar class="pip-face-lg"  pip-party-id="$user.id"  pip-party-name="'Victor'">
-                </pip-avatar>
-
-                <pip-avatar class="pip-face-sm"  pip-party-id="'a54a769fd3abccf9647abb7de'"  pip-party-name="'Emilio'">
-                </pip-avatar>
-            </div>
-
-
-
-            <h4>Avatar for Goal without image</h4>
-            <div class="avatar-section">
-                <pip-avatar pip-rebind="true"
-                            pip-id="'5660d088cc1eaf174ec793f7'"
-                            pip-party-id="'55f28f064b0c570c4b1f138d'"
-                            pip-entity-type="'goal'"
-                            class="pip-face-sm">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'5660d088cc1eaf174ec793f7'"
-                            pip-party-id="'55f28f064b0c570c4b1f138d'"
-                            pip-entity-type="'goal'"
-                            class="pip-face">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'5660d088cc1eaf174ec793f7'"
-                            pip-party-id="'55f28f064b0c570c4b1f138d'"
-                            pip-entity-type="'goal'"
-                            class="pip-face-md">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'5660d088cc1eaf174ec793f7'"
-                            pip-party-id="'55f28f064b0c570c4b1f138d'"
-                            pip-entity-type="'goal'"
-                            class="pip-face-lg">
-                </pip-avatar>
-            </div>
-
-            <h4>Avatar for Entity with image</h4>
-            <div class="avatar-section">
-                <pip-avatar pip-rebind="true"
-                            pip-id="'566ff4e8cc1eaf174ec7958c'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'goal'"
-                            class="pip-face-sm">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'566ff4e8cc1eaf174ec7958c'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'goal'"
-                            class="pip-face">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'566ff4e8cc1eaf174ec7958c'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'goal'"
-                            class="pip-face-md">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'566ff4e8cc1eaf174ec7958c'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'goal'"
-                            class="pip-face-lg">
-                </pip-avatar>
-            </div>
-
-            <h4>Avatar for Vision or Event</h4>
-            <div class="avatar-section">
-                <pip-avatar pip-rebind="true"
-                            pip-id="'567864f57b887c9461d8409a'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'vision'"
-                            class="pip-face-sm">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'567865427b887c9461d8409d'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'event'"
-                            class="pip-face">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'567864f57b887c9461d8409a'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'vision'"
-                            class="pip-face-md">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'567865427b887c9461d8409d'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'event'"
-                            class="pip-face-lg">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'56c5ec34328978a77b34445d'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'note'"
-                            class="pip-face-md">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'56c5ec34328978a77b34445d'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'note'"
-                            class="pip-face-lg">
-                </pip-avatar>
-            </div>
-
-            <h4>Avatar Gigant</h4>
-            <div>
-                <pip-avatar class="pip-sface-xxl" pip-party-id="'55f1ee67880929ec46ec394c'"
-                            pip-party-name="'Зайка'">
-                </pip-avatar>
-                <pip-avatar class="pip-sface-xxl" pip-party-id="$user.id"
-                            pip-party-name="'Зайка'">
-                </pip-avatar>
-
-                <pip-avatar class="pip-sface-xxl"  pip-party-id="'a54a769fd3abccf9647abb7de'"  pip-party-name="'Emilio'">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'5660d088cc1eaf174ec793f7'"
-                            pip-party-id="'55f28f064b0c570c4b1f138d'"
-                            pip-entity-type="'goal'"
-                            class="pip-sface-xxl">
-                </pip-avatar>
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'566ff4e8cc1eaf174ec7958c'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'goal'"
-                            class="pip-sface-xxl">
-                </pip-avatar>
-
-
-                <pip-avatar pip-rebind="true"
-                            pip-id="'567865427b887c9461d8409d'"
-                            pip-party-id="'56184c24c98f6e504a8965d9'"
-                            pip-entity-type="'event'"
-                            class="pip-sface-xxl">
-                </pip-avatar>
-            </div>
-            <h4>Avatar without party_name and wrong userId</h4>
-            <div class="avatar-section">
-                <pip-avatar pip-party-id="'x' + $user.id"  pip-party-name="''">
-                </pip-avatar>
-            </div>
-
-            <h4>Avatar without userId</h4>
-            <div class="avatar-section">
-                <pip-avatar pip-party-id="''"  pip-party-name="'Alex'">
-                </pip-avatar>
-            </div>
-
-            <h4>Avatar without custom section</h4>
-            <div class="custom-avatar-section" md-ink-ripple  tabindex="0">
-                <div style="position: relative; margin-top: 10px; margin-left:10px;">
-                    <pip-avatar class="pip-face-lg" pip-party-id="'53b63780bf898e927e49325b'"  pip-party-name="'Bill'" style="position: absolute">
-                    </pip-avatar>
-                </div>
-            </div>
-
-        </div>
+        <pip-avatar pip-rebind="true"
+                    pip-id="'5660d088cc1eaf174ec793f7'"
+                    pip-party-id="'55f28f064b0c570c4b1f138d'"
+                    pip-entity-type="'goal'"
+                    class="pip-face-lg">
+        </pip-avatar>
     </div>
+
+    <p class="text-body2 tm16 bm16">{{ 'AVATARS_FOR_ENTITIES_WITH_IMAGES' | translate }}</p>
+
+    <div class="avatar-section">
+        <pip-avatar pip-rebind="true"
+                    pip-id="'566ff4e8cc1eaf174ec7958c'"
+                    pip-party-id="'56184c24c98f6e504a8965d9'"
+                    pip-entity-type="'goal'"
+                    class="pip-face-sm">
+        </pip-avatar>
+
+        <pip-avatar pip-rebind="true"
+                    pip-id="'566ff4e8cc1eaf174ec7958c'"
+                    pip-party-id="'56184c24c98f6e504a8965d9'"
+                    pip-entity-type="'goal'"
+                    class="pip-face">
+        </pip-avatar>
+
+        <pip-avatar pip-rebind="true"
+                    pip-id="'566ff4e8cc1eaf174ec7958c'"
+                    pip-party-id="'56184c24c98f6e504a8965d9'"
+                    pip-entity-type="'goal'"
+                    class="pip-face-md">
+        </pip-avatar>
+
+        <pip-avatar pip-rebind="true"
+                    pip-id="'566ff4e8cc1eaf174ec7958c'"
+                    pip-party-id="'56184c24c98f6e504a8965d9'"
+                    pip-entity-type="'goal'"
+                    class="pip-face-lg">
+        </pip-avatar>
+    </div>
+
+    <h3 class="text-subhead2">{{ 'AVATAR_GIANT' | translate }}</h3>
+
+    <div>
+        <pip-avatar class="pip-sface-xxl" pip-party-id="'55f1ee67880929ec46ec394c'"
+                    pip-party-name="'Зайка'">
+        </pip-avatar>
+        <pip-avatar class="pip-sface-xxl" pip-party-id="$user.id"
+                    pip-party-name="'Зайка'">
+        </pip-avatar>
+
+        <pip-avatar class="pip-sface-xxl" pip-party-id="'a54a769fd3abccf9647abb7de'" pip-party-name="'Emilio'">
+        </pip-avatar>
+
+        <pip-avatar pip-rebind="true"
+                    pip-id="'5660d088cc1eaf174ec793f7'"
+                    pip-party-id="'55f28f064b0c570c4b1f138d'"
+                    pip-entity-type="'goal'"
+                    class="pip-sface-xxl">
+        </pip-avatar>
+
+        <pip-avatar pip-rebind="true"
+                    pip-id="'566ff4e8cc1eaf174ec7958c'"
+                    pip-party-id="'56184c24c98f6e504a8965d9'"
+                    pip-entity-type="'goal'"
+                    class="pip-sface-xxl">
+        </pip-avatar>
+
+        <pip-avatar pip-rebind="true"
+                    pip-id="'567865427b887c9461d8409d'"
+                    pip-party-id="'56184c24c98f6e504a8965d9'"
+                    pip-entity-type="'event'"
+                    class="pip-sface-xxl">
+        </pip-avatar>
+    </div>
+
+</div>
+
 
 
