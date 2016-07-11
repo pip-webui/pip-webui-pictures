@@ -1,8 +1,7 @@
-<div ng-if="$party">
 
-    <md-card layout="column" flex>
+
         <h2 class="m16">Picture Edit</h2>
-        <md-card-content >
+
             <div class="app-picture">
                 picture enabled/disabled: {{pictureDisabled}} - pictureId: {{pictureEditId}}
                 <pip-picture-edit
@@ -14,32 +13,21 @@
                         ng-disabled="pictureDisabled">
                 </pip-picture-edit>
             </div>
-        </md-card-content>
 
-        <md-card-actions >
             <md-button ng-click="onSaveClick()">Save</md-button>
             <md-button ng-click="onResetClick()">Reset</md-button>
             <md-button ng-click="pictureDisabled = !pictureDisabled">Enable/Disable</md-button>
-        </md-card-actions>
-    </md-card>
 
-    <md-card layout="column" flex>
+
+
         <h2 class="m16">Picture By Id</h2>
-        <md-card-content >
+
             <div class="app-picture">
                 <div>
                     <pip-picture class="image-square"  pip-picture-id="'56790b4c60958daa664fd8c7'"></pip-picture>
                 </div>
             </div>
-        </md-card-content>
 
-        <md-card-actions >
-        </md-card-actions>
-    </md-card>
-
-    <md-card layout="column" flex>
-        <h2 class="m16">Picture By Src</h2>
-        <md-card-content >
             <div class="app-picture">
                 <div>
                     <h2>Square Images</h2>
@@ -95,10 +83,5 @@
                     <pip-picture class="image-vertical" pip-src="'images/small-horizontal.jpg'"></pip-picture>
                 </div>
             </div>
-        </md-card-content>
 
-        <md-card-actions >
-        </md-card-actions>
-    </md-card>
 
-</div>
