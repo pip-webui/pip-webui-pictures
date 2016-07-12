@@ -3,11 +3,11 @@
     'use strict';
 
     var thisModule = angular.module('appPictures.Picture', []);
-
+    
     thisModule.controller('PictureController',
-        function ($scope, $rootScope) {
+        function ($scope) {
             $scope.picture = null;
-
+            $scope.partyId = '56184c24c98f6e504a8965d9';
             $scope.pictureEditId = '56790b4c60958daa664fd8c7';
             $scope.pictureEditDisabled = false;
 
@@ -16,7 +16,7 @@
                 $scope.picture = $event.sender;
             };
 
-            $scope.onPictureChanged = function ($control) {
+            $scope.onPictureChanged = function () {
                 console.log('Picture changed'); // eslint-disable-line
             };
 
@@ -41,8 +41,6 @@
             $scope.isPictureDisabled = function () {
                 return $scope.pictureEditDisabled;
             };
-
-            console.log('$rootScope', $rootScope); // eslint-disable-line
         }
     );
 

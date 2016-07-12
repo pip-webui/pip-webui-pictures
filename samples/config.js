@@ -36,13 +36,13 @@
                     controller: 'CollageResizeController',
                     templateUrl: 'collage_resize.html'
                 },
-                {
+                /* {
                     title: 'Picture',
                     state: 'picture',
                     url: '/picture',
                     controller: 'PictureController',
                     templateUrl: 'picture.html'
-                },
+                }, */
                 {
                     title: 'Picture List',
                     state: 'pictures',

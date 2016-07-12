@@ -1,8 +1,6 @@
 /**
  * @file Picture control
  * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
  */
 
 /* global angular */
@@ -10,22 +8,22 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipPictureEdit", ['ui.event', 'angularFileUpload', 'pipRest', 'pipPicturePaste',
+    var thisModule = angular.module('pipPictureEdit', ['ui.event', 'angularFileUpload', 'pipRest', 'pipPicturePaste',
         'pipTranslate', 'pipPictures.Templates']);
 
-    thisModule.config(function(pipTranslateProvider) {
+    thisModule.config(function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'ERROR_WRONG_IMAGE_FILE':'Incorrect image file. Please, choose another one',
-            'PICTURE_EDIT_TEXT': 'Click here to upload a picture'
+            ERROR_WRONG_IMAGE_FILE: 'Incorrect image file. Please, choose another one',
+            PICTURE_EDIT_TEXT: 'Click here to upload a picture'
         });
         pipTranslateProvider.translations('ru', {
-            'ERROR_WRONG_IMAGE_FILE': 'Неправильный файл с изображением. Выберете другой файл',
-            'PICTURE_EDIT_TEXT': 'Нажмите сюда для загрузки картинки'
+            ERROR_WRONG_IMAGE_FILE: 'Неправильный файл с изображением. Выберете другой файл',
+            PICTURE_EDIT_TEXT: 'Нажмите сюда для загрузки картинки'
         });
     });
 
     thisModule.directive('pipPictureEdit',
-        function() {
+        function () {
             return {
                 restrict: 'EA',
                 scope: {
@@ -34,6 +32,7 @@
                     pipChanged: '&',
                     pipReset: '&',
                     pipPictureId: '=',
+                    pipPartyId: '=',
                     pipAddedPicture: '='
                 },
                 templateUrl: 'picture_edit/picture_edit.html',
@@ -43,13 +42,13 @@
     );
 
     thisModule.controller('pipPictureEditController',
-        function($scope, $element, $attrs, $http, $upload, $timeout, $rootScope, $parse, pipRest, pipPicturePaste,
-                 pipImageUtils, pipUtils) {
+        function ($scope, $element, $attrs, $http, $upload, $timeout, $rootScope, $parse, pipRest, pipPicturePaste,
+                  pipImageUtils, pipUtils) {
             var
                 $control = $element.children('.pip-picture-upload'),
                 $input = $control.children('input[type=file]'),
                 serverUrl = pipRest.serverUrl(),
-                fileUrl = serverUrl + "/api/parties/" + $rootScope.$party.id + "/files";
+                fileUrl = serverUrl + '/api/parties/' + $scope.pipPartyId + '/files';
 
             $scope.text = $attrs.pipDefaultText || 'PICTURE_EDIT_TEXT';
             $scope.icon = $attrs.pipDefaultIcon || 'picture-no-border';
@@ -80,12 +79,12 @@
 
             // Also optimization to avoid watch if it is unnecessary
             if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch('pipPictureId', function(newValue) {
-                        $scope.control.reset();
+                $scope.$watch('pipPictureId', function (newValue) {
+                    $scope.control.reset();
                 });
             }
 
-            $scope.$watch($scope.ngDisabled, function(newValue) {
+            $scope.$watch($scope.ngDisabled, function (newValue) {
                 $input.attr('disabled', $scope.control.disabled);
             });
 
@@ -110,12 +109,12 @@
             // Execute callback
             if ($scope.pipCreated) {
                 $scope.pipCreated({
-                    $event: { sender: $scope.control },
+                    $event: {sender: $scope.control},
                     $control: $scope.control
                 });
             }
 
-            return ;
+            return;
 
             function resetImage(afterDeleting) {
                 $scope.control.progress = 0;
@@ -151,7 +150,7 @@
                 });
             };
 
-            function onBlur () {
+            function onBlur() {
                 pipPicturePaste.removePasteListener();
             };
 
@@ -165,31 +164,31 @@
 
                     fileReader.onload = function (e) {
                         control.uploading = true;
-                //        pipImageUtils.addHttpHeaders();
+                        //        pipImageUtils.addHttpHeaders();
                         var upload = $upload.http({
-                                url: fileUrl + '?name=' + file.name,
-                                headers: { 'Content-Type': file.type },
-                                data: e.target.result
-                            })
+                            url: fileUrl + '?name=' + file.name,
+                            headers: {'Content-Type': file.type},
+                            data: e.target.result
+                        })
                             .then(
-                            function (response) {
-                                $scope.pipPictureId = response.data.id;
-                                control.reset();
-                                if (successCallback) successCallback(response);
-                            },
-                            function (error) {
-                                control.uploading = false;
-                                control.upload = false;
-                                control.progress = 0;
+                                function (response) {
+                                    $scope.pipPictureId = response.data.id;
+                                    control.reset();
+                                    if (successCallback) successCallback(response);
+                                },
+                                function (error) {
+                                    control.uploading = false;
+                                    control.upload = false;
+                                    control.progress = 0;
 
-                                if (errorCallback) errorCallback(error);
-                                else console.error(error);
-                            },
-                            function (e) {
-                                // Math.min is to fix IE which reports 200% sometimes
-                                control.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
-                            }
-                        );
+                                    if (errorCallback) errorCallback(error);
+                                    else console.error(error);
+                                },
+                                function (e) {
+                                    // Math.min is to fix IE which reports 200% sometimes
+                                    control.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
+                                }
+                            );
                     };
 
                     fileReader.readAsArrayBuffer(file);
@@ -197,7 +196,7 @@
                     var url = saveItemUrl();
                     control.uploading = true;
 
-     //               pipImageUtils.addHttpHeaders();
+                    //               pipImageUtils.addHttpHeaders();
                     $http['post'](url)
                         .success(function (response) {
                             $scope.pipPictureId = response.id;
@@ -219,20 +218,20 @@
             function deletePicture(successCallback, errorCallback) {
                 var control = $scope.control;
                 $http['delete'](fileUrl + '/' + $scope.pipPictureId)
-                .success(function (data) {
-                    $scope.pipPictureId = null;
-                    control.reset(true);
+                    .success(function (data) {
+                        $scope.pipPictureId = null;
+                        control.reset(true);
 
-                    if (successCallback) successCallback();
-                })
-                .error(function (error) {
-                    control.uploading = false;
-                    control.upload = false;
-                    control.progress = 0;
+                        if (successCallback) successCallback();
+                    })
+                    .error(function (error) {
+                        control.uploading = false;
+                        control.upload = false;
+                        control.progress = 0;
 
-                    if (errorCallback) errorCallback(error);
-                    else console.error(error);
-                });
+                        if (errorCallback) errorCallback(error);
+                        else console.error(error);
+                    });
             };
 
             function saveImage(successCallback, errorCallback) {
@@ -282,7 +281,7 @@
             function onKeyDown($event) {
                 if ($event.keyCode == 13 || $event.keyCode == 32) {
                     // !! Avoid clash with $apply()
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $control.trigger('click');
                     }, 0);
                 } else if ($event.keyCode == 46 || $event.keyCode == 8) {
@@ -299,7 +298,7 @@
 
             // Clean up url to remove broken icon
             function onImageError($event) {
-                $scope.$apply(function() {
+                $scope.$apply(function () {
                     $scope.control.url = '';
 
                     var image = $($event.target);
@@ -319,7 +318,7 @@
             function onChange() {
                 if ($scope.pipChanged) {
                     $scope.pipChanged({
-                        $event: { sender: $scope.control },
+                        $event: {sender: $scope.control},
                         $control: $scope.control
                     });
                 }

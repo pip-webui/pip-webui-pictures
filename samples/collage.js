@@ -4,6 +4,39 @@
 
     var thisModule = angular.module('appPictures.Collage', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            COLLAGE_WITH_LOCAL_PICTURES: 'Collage with local pictures',
+            ONE_PICTURE: '1 picture',
+            TWO_PICTURES: '2 pictures',
+            THREE_PICTURES: '3 pictures',
+            FOUR_PICTURES: '4 pictures',
+            FIVE_PICTURES: '5 pictures',
+            SIX_PICTURES: '6 pictures',
+            SEVEN_PICTURES: '7 pictures',
+            EIGHT_PICTURES: '8 pictures',
+            EIGHTEEN_PICTURES: '18 pictures',
+            NINE_PICTURES_SINGLE_SEGMENT: '9 pictures single segment',
+            TEN_PICTURES_MULTIPLY_SEGMENT: '10 pictures multiply segment',
+            COLLAGE_WITH_PICTURES_FROM_SERVER: 'Collage with pictures from server'
+        });
+        pipTranslateProvider.translations('ru', {
+            COLLAGE_WITH_LOCAL_PICTURES: 'Коллаж с локальными изображениями',
+            ONE_PICTURE: '1 изображение',
+            TWO_PICTURES: '2 изображение',
+            THREE_PICTURES: '3 изображения',
+            FOUR_PICTURES: '4 изображения',
+            FIVE_PICTURES: '5 изображений',
+            SIX_PICTURES: '6 изображений',
+            SEVEN_PICTURES: '7 изображений',
+            EIGHT_PICTURES: '8 изображений',
+            EIGHTEEN_PICTURES: '18 изображений',
+            NINE_PICTURES_SINGLE_SEGMENT: '9 изображений одним элементов',
+            TEN_PICTURES_MULTIPLY_SEGMENT: '10 изображений многими элемеентами',
+            COLLAGE_WITH_PICTURES_FROM_SERVER: 'Коллаж с изображениями с сервера'
+        });
+    });
+
     thisModule.controller('CollageController',
         function ($scope) {
             $scope.srcs_1 = ['images/square.jpg'];

@@ -3,6 +3,38 @@
 
     var thisModule = angular.module('appPictures.Avatar', []);
 
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            PARTY_ENTITY_AVATAR_EDIT: 'Party and entity avatar edit control',
+            RESET: 'Reset',
+            DISABLED: 'Disabled',
+            DISABLE_RESET: 'Disable reset',
+            ENABLE_RESET: 'Enable reset',
+            ENABLE_DISABLE: 'Enable/disable',
+            AVATARS_FOR_USER_WITH_IMAGES: 'Avatars for users with images',
+            UPDATE_AVATAR: 'Update avatar',
+            AVATARS_FOR_USERS_WITHOUT_IMAGES: 'Avatars for users without images',
+            AVATARS_FOR_ENTITIES_WITHOUT_IMAGES: 'Avatars for entities without images',
+            AVATARS_FOR_ENTITIES_WITH_IMAGES: 'Avatars for entities with images',
+            AVATAR_GIANT: 'Giant avatar'
+        });
+        pipTranslateProvider.translations('ru', {
+            EDIT: 'изменить',
+            PARTY_ENTITY_AVATAR_EDIT: 'Контрол изменения аватара пользователя или сущности',
+            RESET: 'Сброс',
+            DISABLED: 'Отключен',
+            DISABLE_RESET: 'Отключить сброс',
+            ENABLE_RESET: 'Включить сброс',
+            ENABLE_DISABLE: 'Включить/отключить контрол',
+            AVATARS_FOR_USER_WITH_IMAGES: 'Аватары пользователей с изображением',
+            UPDATE_AVATAR: 'Обновить аватар',
+            AVATARS_FOR_USERS_WITHOUT_IMAGES: 'Аватары пользователей без изображений',
+            AVATARS_FOR_ENTITIES_WITHOUT_IMAGES: 'Аватары сущностей без изображений',
+            AVATARS_FOR_ENTITIES_WITH_IMAGES: 'Аватары сущностей с изображением',
+            AVATAR_GIANT: 'Большие аватары'
+        });
+    });
+
     thisModule.controller('AvatarController',
         function ($scope, $rootScope, pipUtils) {
 

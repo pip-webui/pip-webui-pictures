@@ -1,37 +1,45 @@
+<h2 class="text-title tm0 bm24">{{ 'PICTURE_LIST_EDIT' | translate }}</h2>
+<p class="text-body1 tm16 bm16">
+    <strong>ids</strong>: {{ pictureIds }}
+</p>
+<div class="tm24">
+    <pip-picture-list-edit pip-picture-ids="pictureIds"
+                           pip-created="onPictureListCreated($event)"
+                           pip-default-text="CLICK_HERE_OR_DRAG_FILES"
+                           ng-disabled="pictureListDisabled">
+    </pip-picture-list-edit>
+</div>
 
-	<div layout="column" flex>
-		<h2 class="m16">Picture List Edit</h2>
-		<div>
-			PictureIds: {{ pictureIds }}
-		</div>
-		<div class="tm24">
-			<pip-picture-list-edit pip-picture-ids="pictureIds"
-								   pip-created="onPictureListCreated($event)"
-								   pip-default-text="Click here or drag files to upload"
-								   ng-disabled="pictureListDisabled">
-			</pip-picture-list-edit>
-		</div>
-	</div>
-	<div class="h64" layout="row" layout-align="start center">
-		<md-button ng-click="onSaveListClick()">Save</md-button>
-		<md-button ng-click="onResetListClick()">Reset</md-button>
-		<md-button ng-click="pictureListDisabled = !pictureListDisabled">Enable/Disable</md-button>
-	</div>
-	<div class="divider"></div>
-	<div layout="column" flex>
-		<h2 class="m16">Copied content</h2>
-		<div>
-			PictureIds: {{ pictureIds }}
-		</div>
-		<div class="tm24">
-			<pip-picture-list-edit pip-picture-ids="pictureContentIds"
-								   pip-created="onPictureContentCreated($event)"
-								   pip-default-text="Click here or drag files to upload"
-								   pip-added-picture="true"
-								   ng-disabled="false">
-			</pip-picture-list-edit>
-		</div>
-	</div>
-	<div class="h64" layout="row" layout-align="start center">
-		<md-button ng-click="onSaveContentClick()">Save</md-button>
-	</div>
+<div>
+    <md-button class="lm0" ng-click="onSaveListClick()">{{ 'SAVE' | translate }}</md-button>
+    <md-button ng-click="onResetListClick()">{{ 'RESET' | translate }}</md-button>
+    <md-button ng-click="pictureListDisabled = !pictureListDisabled">{{ 'ENABLE_DISABLE' | translate }}</md-button>
+</div>
+
+<h3 class="text-subhead2">{{:: 'CODE' | translate}}</h3>
+<pre class="text-body1 color-window-bg p16">
+            &lt;<strong>pip-picture-list-edit</strong>  pip-picture-ids="pictureIds"
+                           pip-created="onPictureListCreated($event)"
+                           pip-default-text="{{ 'CLICK_HERE_OR_DRAG_FILES' | translate }}"
+                           ng-disabled="pictureListDisabled"&gt;
+            &lt;/<strong>pip-picture-list-edit</strong>&gt;
+</pre>
+
+<md-divider class="tm8"></md-divider>
+
+<h3 class="text-subhead2">{{ 'COPIED_CONTENT' | translate }}</h3>
+<p class="text-body1 tm16 bm16">
+    <strong>ids</strong>: {{ pictureIds }}
+</p>
+<div class="tm24">
+    <pip-picture-list-edit pip-picture-ids="pictureContentIds"
+                           pip-created="onPictureContentCreated($event)"
+                           pip-default-text="Click here or drag files to upload"
+                           pip-added-picture="true"
+                           ng-disabled="false">
+    </pip-picture-list-edit>
+</div>
+
+<div >
+    <md-button class="lm0" ng-click="onSaveContentClick()">{{ 'SAVE' | translate }}</md-button>
+</div>

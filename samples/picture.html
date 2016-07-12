@@ -1,87 +1,32 @@
 
+<h2 class="text-title tm0 bm24">{{ 'PICTURE_SAMPLE' | translate }}</h2>
 
-        <h2 class="m16">Picture Edit</h2>
+<h3 class="text-subhead2">{{ 'PICTURE_EDIT' | translate }} </h3>
 
-            <div class="app-picture">
-                picture enabled/disabled: {{pictureDisabled}} - pictureId: {{pictureEditId}}
-                <pip-picture-edit
-                        pip-picture-id="pictureEditId"
-                        pip-created="onPictureCreated($event)"
-                        pip-changed="onPictureChanged($control)"
-                        pip-rebind="true"
-                        pip-default-text="Change Picture"
-                        ng-disabled="pictureDisabled">
-                </pip-picture-edit>
-            </div>
+<div class="app-picture">
+    <strong>{{ 'PICTURE_ENABLE_DISABLE' | translate }}</strong>: {{pictureDisabled}};
+    <strong>id</strong>: {{pictureEditId}}
+    <pip-picture-edit
+            pip-picture-id="pictureEditId"
+            pip-party-id="partyId"
+            pip-created="onPictureCreated($event)"
+            pip-changed="onPictureChanged($control)"
+            pip-rebind="true"
+            pip-default-text="Change Picture"
+            ng-disabled="pictureDisabled">
+    </pip-picture-edit>
+</div>
 
-            <md-button ng-click="onSaveClick()">Save</md-button>
-            <md-button ng-click="onResetClick()">Reset</md-button>
-            <md-button ng-click="pictureDisabled = !pictureDisabled">Enable/Disable</md-button>
+<md-button ng-click="onSaveClick()">{{ 'SAVE' | translate }}</md-button>
+<md-button ng-click="onResetClick()">{{ 'RESET' | translate }}</md-button>
+<md-button ng-click="pictureDisabled = !pictureDisabled">{{ 'ENABLE_DISABLE' | translate }}</md-button>
 
+<h3 class="text-subhead2">{{ 'PICTURE_BY_ID' | translate }} </h3>
 
-
-        <h2 class="m16">Picture By Id</h2>
-
-            <div class="app-picture">
-                <div>
-                    <pip-picture class="image-square"  pip-picture-id="'56790b4c60958daa664fd8c7'"></pip-picture>
-                </div>
-            </div>
-
-            <div class="app-picture">
-                <div>
-                    <h2>Square Images</h2>
-
-                    <pip-picture class="image-square" pip-src="'images/square.jpg'"></pip-picture>
-                    <pip-picture class="image-square" pip-src="'images/vertical.jpg'"></pip-picture>
-                    <pip-picture class="image-square" pip-src="'images/horizontal.jpg'"></pip-picture>
-                    <pip-picture class="image-square" pip-src="'images/nonexisting.jpg'"
-                                 pip-default-icon="image"></pip-picture>
-                </div>
-
-                <div>
-                    <h2>Vertical Images</h2>
-
-                    <pip-picture class="image-vertical" pip-src="'images/square.jpg'"></pip-picture>
-                    <pip-picture class="image-vertical" pip-src="'images/vertical.jpg'"></pip-picture>
-                    <pip-picture class="image-vertical" pip-src="'images/horizontal.jpg'"></pip-picture>
-                    <pip-picture class="image-vertical" pip-src="'images/nonexisting.jpg'"
-                                 pip-default-icon="image"></pip-picture>
-                </div>
-
-                <div>
-                    <h2>Horizontal Images</h2>
-
-                    <pip-picture class="image-horizontal" pip-src="'images/square.jpg'"></pip-picture>
-                    <pip-picture class="image-horizontal" pip-src="'images/vertical.jpg'"></pip-picture>
-                    <pip-picture class="image-horizontal" pip-src="'images/horizontal.jpg'"></pip-picture>
-                    <pip-picture class="image-horizontal" pip-src="'images/nonexisting.jpg'"
-                                 pip-default-icon="image"></pip-picture>
-                </div>
-
-                <div>
-                    <h2>Square Small Images</h2>
-
-                    <pip-picture class="image-square" pip-src="'images/small-square.jpg'"></pip-picture>
-                    <pip-picture class="image-square" pip-src="'images/small-vertical.jpg'"></pip-picture>
-                    <pip-picture class="image-square" pip-src="'images/small-horizontal.jpg'"></pip-picture>
-                </div>
-
-                <div>
-                    <h2>Horizontal Small Images</h2>
-
-                    <pip-picture class="image-horizontal" pip-src="'images/small-square.jpg'"></pip-picture>
-                    <pip-picture class="image-horizontal" pip-src="'images/small-vertical.jpg'"></pip-picture>
-                    <pip-picture class="image-horizontal" pip-src="'images/small-horizontal.jpg'"></pip-picture>
-                </div>
-
-                <div>
-                    <h2>Vertical Small Images</h2>
-
-                    <pip-picture class="image-vertical" pip-src="'images/small-square.jpg'"></pip-picture>
-                    <pip-picture class="image-vertical" pip-src="'images/small-vertical.jpg'"></pip-picture>
-                    <pip-picture class="image-vertical" pip-src="'images/small-horizontal.jpg'"></pip-picture>
-                </div>
-            </div>
+<div class="app-picture">
+    <div>
+        <pip-picture class="image-square" pip-picture-id="pictureEditId"></pip-picture>
+    </div>
+</div>
 
 

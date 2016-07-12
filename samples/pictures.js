@@ -1,8 +1,22 @@
-
 (function (angular) {
     'use strict';
 
     var thisModule = angular.module('appPictures.Pictures', []);
+
+    thisModule.config(function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            PICTURE_LIST_EDIT: 'Picture list edit',
+            SAVE: 'Save',
+            CLICK_HERE_OR_DRAG_FILES: 'Click here or drag files',
+            COPIED_CONTENT: 'Copied content'
+        });
+        pipTranslateProvider.translations('ru', {
+            PICTURE_LIST_EDIT: 'Контрол для редактрования списка изображений',
+            SAVE: 'Сохранить',
+            CLICK_HERE_OR_DRAG_FILES: 'Нажмите сюда или перетащите файл',
+            COPIED_CONTENT: 'Скопированный контент'
+        });
+    });
 
     thisModule.controller('PicturesController',
         function ($scope) {
@@ -28,7 +42,7 @@
             $scope.onResetListClick = function () {
                 $scope.pictureList.reset();
             };
-            
+
             $scope.pictureContentIds = [
                 '56790b4960958daa664fd8c2',
                 '56790b4960958daa664fd8c1',
