@@ -19,22 +19,25 @@
                     title: 'Avatar',
                     state: 'avatar',
                     url: '/avatar',
+                    auth: false,
                     controller: 'AvatarController',
-                    templateUrl: 'avatars.html'
+                    templateUrl: 'avatars_sample/avatars.html'
                 },
                 {
                     title: 'Collage',
                     state: 'collage',
                     url: '/collage',
+                    auth: false,
                     controller: 'CollageController',
-                    templateUrl: 'collage.html'
+                    templateUrl: 'collage_sample/collage.html'
                 },
                 {
                     title: 'Collage Resizing',
                     state: 'collage_resize',
                     url: '/collage_resize',
+                    auth: false,
                     controller: 'CollageResizeController',
-                    templateUrl: 'collage_resize.html'
+                    templateUrl: 'collage_resizing_sample/collage_resize.html'
                 },
                 /* {
                     title: 'Picture',
@@ -47,8 +50,9 @@
                     title: 'Picture List',
                     state: 'pictures',
                     url: '/pictures',
+                    auth: false,
                     controller: 'PicturesController',
-                    templateUrl: 'pictures.html'
+                    templateUrl: 'pictures_sample/pictures.html'
                 }
                 ], contentItem, i;
 
@@ -75,22 +79,16 @@
                 $stateProvider.state(contentItem.state, contentItem);
             }
 
-            $urlRouterProvider.otherwise(function ($injector, $location) {
-                if ($location.$$path === '') {
-                    return '/signin';
-                }
-
-                return '/avatar';
-            });
+            $urlRouterProvider.otherwise('/avatar');
 
             // Configure navigation menu
             pipSideNavProvider.sections([
                 {
                     links: [{title: 'PICTURE_CONTROLS', url: '/avatar'}]
-                },
+                }/*,
                 {
                     links: [{title: 'SIGNOUT', url: '/signout'}]
-                }
+                }*/
             ]);
         }
     );
