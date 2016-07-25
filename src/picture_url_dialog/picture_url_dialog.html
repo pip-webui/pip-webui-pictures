@@ -3,11 +3,11 @@
 @copyright Digital Living Software Corp. 2014-2016
 -->
 
-<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog"
-           layout="column" md-theme="{{theme}}">
+<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog layout-column"
+           md-theme="{{theme}}">
 
     <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">
-        <div class="pip-header bm16"  layout="row" layout-align="start center">
+        <div class="pip-header bm16 layout-row layout-align-start-center">
             <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"
                         aria-label="{{ ::'CANCEL' | translate }}">
                 <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>
@@ -22,14 +22,12 @@
                 <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: 'LINK_PICTURE' | translate}}"/>
             </md-input-container>
 
-            <div class="w-stretch"
-                 ng-hide="invalid"
-                 layout="row" layout-align="center center">
+            <div class="w-stretch layout-row layout-align-center-center"
+                 ng-hide="invalid">
                 <img id="url_image"/>
             </div>
 
-            <div class="pip-no-images" ng-show="invalid"
-                 layout="row" layout-align="center center">
+            <div class="pip-no-images layout-row layout-align-center-center" ng-show="invalid">
                 <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>
             </div>
 

@@ -1,12 +1,12 @@
-<md-dialog class="pip-dialog pip-gallery-search-dialog pip-picture-dialog"
-           layout="column"  md-theme="{{theme}}">
+<md-dialog class="pip-dialog pip-gallery-search-dialog pip-picture-dialog layout-column"
+           md-theme="{{theme}}">
     <md-progress-linear
             ng-show="transaction.busy()" md-mode="indeterminate">
     </md-progress-linear>
 
-    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll" layout="row" flex  >
-        <div layout="column" layout-align="start start" flex>
-            <div class="pip-header w-stretch" layout="column" layout-align="start start">
+    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll flex layout-row">
+        <div class="layout-column layout-align-start-start flex">
+            <div class="pip-header w-stretch layout-column layout-align-start-start">
                 <h3 class="w-stretch text-title m0 bp8">
                     <md-button  class="md-icon-button m0"
                                 ng-click="onCancelClick()"
@@ -15,8 +15,8 @@
                     </md-button>
                     {{::'IMAGE_GALLERY' | translate}}
                 </h3>
-                <div class="w-stretch divider-bottom " layout="row" layout="start center">
-                    <input class="no-divider rm8 text-subhead1" flex
+                <div class="w-stretch divider-bottom layout-row layout-start-center">
+                    <input class="no-divider rm8 text-subhead1 flex"
                            ng-disabled="transaction.busy()"
                            ng-model="$search" ng-keypress="onKeyPress($event)"
                            placeholder="{{::'SEARCH_PICTURES' | translate}}"
@@ -30,7 +30,7 @@
                     </md-button>
                 </div>
             </div>
-            <div class="pip-content" flex
+            <div class="pip-content flex"
                  ng-show="$images.length > 0">
                 <div class="pip-image-container"
                      ng-click="onImageClick(image)"
@@ -52,7 +52,7 @@
                     </div>
                 </div>
             </div>
-            <div class="pip-no-images w-stretch" layout="column" layout-align="center center" flex
+            <div class="pip-no-images w-stretch layout-column layout-align-center-center flex"
                  ng-show="$images.length == 0">
                 <img src="images/add_from_image_library.svg" width="200" height="200">
                 <p class="text-secondary opacity-secondary text-center">{{'IMAGE_START_SEARCH' | translate}}</p>

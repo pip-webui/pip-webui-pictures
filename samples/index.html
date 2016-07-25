@@ -46,7 +46,7 @@
     <script src="avatars_sample/avatars.js"></script>
 </head>
 
-<body ng-app="appPictures" ng-controller="AppController" layout="column">
+<body ng-app="appPictures" ng-controller="AppController" class="layout="column"" >
 
 <pip-main class="pip-main" ng-if="!$reset">
     <pip-appbar>
@@ -55,7 +55,7 @@
     <pip-sidenav>
     </pip-sidenav>
 
-    <pip-main-body ng-cloak layout="column" class="pip-main-body" ng-if="!isEntryPage()">
+    <pip-main-body ng-cloak class="layout-column pip-main-body" ng-if="!isEntryPage()">
         <md-toolbar class="pip-appbar-ext">
         </md-toolbar>
         <pip-document class="pip-document">

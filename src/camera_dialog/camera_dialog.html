@@ -3,10 +3,10 @@
 @copyright Digital Living Software Corp. 2014-2015
 -->
 
-<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}"
+<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog layout-column" md-theme="{{theme}}"
            ng-show="browser != 'android'"
         ng-class="{'pip-android-dialog': browser == 'android' || !browser}">
-    <div class="pip-header"  layout="row" layout-align="start center">
+    <div class="pip-header" class="layout-row layout-align-start-center">
         <md-button  ng-click="onCancelClick()" class="md-icon-button"
                     aria-label="{{ ::'CANCEL' | translate }}">
             <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>
@@ -18,7 +18,7 @@
         <div class="camera-stream" ng-hide="webCamError || browser == 'android'"></div>
         <div class="camera-error"
              ng-show="webCamError || browser == 'android'"
-             layout="row" layout-align="center center">
+             class="layout-row layout-align-center-center">
             <span>{{ ::'WEB_CAM_ERROR' | translate }}</span>
         </div>
     </div>
@@ -33,7 +33,7 @@
                 <md-icon class="text-grey" md-svg-icon="icons:refresh"></md-icon>
             </md-button>
         </div>
-        <div flex></div>
+        <div class="flex"></div>
         <div class="w48">
             <md-button ng-click="onTakePictureClick()"
                        ng-hide="webCamError"
@@ -43,7 +43,7 @@
             </md-button>
 
         </div>
-        <div flex></div>
+        <div class="flex"></div>
         <div class="w48">
             <md-button  ng-click="onCancelClick()" class="md-icon-button"
                         aria-label="{{ ::'CANCEL' | translate }}">
