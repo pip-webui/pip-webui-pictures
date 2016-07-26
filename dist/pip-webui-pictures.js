@@ -41,7 +41,7 @@ module.run(['$templateCache', function($templateCache) {
     '        <ng-transclude class="pip-add-image-open-button" ng-click="ngDisabled() ? \'\' : $mdOpenMenu()"></ng-transclude>\n' +
     '        <md-menu-content width="4">\n' +
     '            <md-menu-item>\n' +
-    '                <md-button layout="row" layout-align="start center" accept="image/*"\n' +
+    '                <md-button class="layout-row layout-align-start-center" accept="image/*"\n' +
     '                           ng-keydown="onKeyDown($event)" ng-multiple="isMulti()"\n' +
     '                           ng-file-select ng-file-change="onFileChange($files)" ng-click="hideMenu()" ng-file-drop>\n' +
     '\n' +
@@ -51,21 +51,21 @@ module.run(['$templateCache', function($templateCache) {
     '                </md-button>\n' +
     '            </md-menu-item>\n' +
     '            <md-menu-item>\n' +
-    '                <md-button layout="row" layout-align="start center" ng-click="onWebLinkClick()">\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="onWebLinkClick()">\n' +
     '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon>\n' +
     '                    <!--<span class="icon-weblink text-headline text-grey tp8 rm24-flex"></span>-->\n' +
     '                    <span class="text-grey">{{::\'WEB_LINK\' | translate}}</span>\n' +
     '                </md-button>\n' +
     '            </md-menu-item>\n' +
     '            <md-menu-item>\n' +
-    '                <md-button layout="row" layout-align="start center" ng-click="onCameraClick()">\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="onCameraClick()">\n' +
     '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:camera"></md-icon>\n' +
     '                    <!--<span class="icon-camera text-headline text-grey tp8 rm24-flex"></span>-->\n' +
     '                    <span class="text-grey">{{::\'CAMERA\' | translate}}</span>\n' +
     '                </md-button>\n' +
     '            </md-menu-item>\n' +
     '            <md-menu-item>\n' +
-    '                <md-button layout="row" layout-align="start center" ng-click="onGalleryClick()">\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="onGalleryClick()">\n' +
     '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:images"></md-icon>\n' +
     '                    <!--<span class="icon-images text-headline text-grey tp8 rm24-flex"></span>-->\n' +
     '                    <span class="text-grey">{{::\'IMAGE_GALLERY\' | translate}}</span>\n' +
@@ -89,10 +89,10 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2015\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog" layout="column" md-theme="{{theme}}"\n' +
+    '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog layout-column" md-theme="{{theme}}"\n' +
     '           ng-show="browser != \'android\'"\n' +
     '        ng-class="{\'pip-android-dialog\': browser == \'android\' || !browser}">\n' +
-    '    <div class="pip-header"  layout="row" layout-align="start center">\n' +
+    '    <div class="pip-header" class="layout-row layout-align-start-center">\n' +
     '        <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
     '                    aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
     '            <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
@@ -104,7 +104,7 @@ module.run(['$templateCache', function($templateCache) {
     '        <div class="camera-stream" ng-hide="webCamError || browser == \'android\'"></div>\n' +
     '        <div class="camera-error"\n' +
     '             ng-show="webCamError || browser == \'android\'"\n' +
-    '             layout="row" layout-align="center center">\n' +
+    '             class="layout-row layout-align-center-center">\n' +
     '            <span>{{ ::\'WEB_CAM_ERROR\' | translate }}</span>\n' +
     '        </div>\n' +
     '    </div>\n' +
@@ -119,7 +119,7 @@ module.run(['$templateCache', function($templateCache) {
     '                <md-icon class="text-grey" md-svg-icon="icons:refresh"></md-icon>\n' +
     '            </md-button>\n' +
     '        </div>\n' +
-    '        <div flex></div>\n' +
+    '        <div class="flex"></div>\n' +
     '        <div class="w48">\n' +
     '            <md-button ng-click="onTakePictureClick()"\n' +
     '                       ng-hide="webCamError"\n' +
@@ -129,7 +129,7 @@ module.run(['$templateCache', function($templateCache) {
     '            </md-button>\n' +
     '\n' +
     '        </div>\n' +
-    '        <div flex></div>\n' +
+    '        <div class="flex"></div>\n' +
     '        <div class="w48">\n' +
     '            <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
     '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
@@ -150,15 +150,15 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('gallery_search_dialog/gallery_search_dialog.html',
-    '<md-dialog class="pip-dialog pip-gallery-search-dialog pip-picture-dialog"\n' +
-    '           layout="column"  md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-gallery-search-dialog pip-picture-dialog layout-column"\n' +
+    '           md-theme="{{theme}}">\n' +
     '    <md-progress-linear\n' +
     '            ng-show="transaction.busy()" md-mode="indeterminate">\n' +
     '    </md-progress-linear>\n' +
     '\n' +
-    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll" layout="row" flex  >\n' +
-    '        <div layout="column" layout-align="start start" flex>\n' +
-    '            <div class="pip-header w-stretch" layout="column" layout-align="start start">\n' +
+    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll flex layout-row">\n' +
+    '        <div class="layout-column layout-align-start-start flex">\n' +
+    '            <div class="pip-header w-stretch layout-column layout-align-start-start">\n' +
     '                <h3 class="w-stretch text-title m0 bp8">\n' +
     '                    <md-button  class="md-icon-button m0"\n' +
     '                                ng-click="onCancelClick()"\n' +
@@ -167,8 +167,8 @@ module.run(['$templateCache', function($templateCache) {
     '                    </md-button>\n' +
     '                    {{::\'IMAGE_GALLERY\' | translate}}\n' +
     '                </h3>\n' +
-    '                <div class="w-stretch divider-bottom " layout="row" layout="start center">\n' +
-    '                    <input class="no-divider rm8 text-subhead1" flex\n' +
+    '                <div class="w-stretch divider-bottom layout-row layout-start-center">\n' +
+    '                    <input class="no-divider rm8 text-subhead1 flex"\n' +
     '                           ng-disabled="transaction.busy()"\n' +
     '                           ng-model="$search" ng-keypress="onKeyPress($event)"\n' +
     '                           placeholder="{{::\'SEARCH_PICTURES\' | translate}}"\n' +
@@ -182,7 +182,7 @@ module.run(['$templateCache', function($templateCache) {
     '                    </md-button>\n' +
     '                </div>\n' +
     '            </div>\n' +
-    '            <div class="pip-content" flex\n' +
+    '            <div class="pip-content flex"\n' +
     '                 ng-show="$images.length > 0">\n' +
     '                <div class="pip-image-container"\n' +
     '                     ng-click="onImageClick(image)"\n' +
@@ -204,7 +204,7 @@ module.run(['$templateCache', function($templateCache) {
     '                    </div>\n' +
     '                </div>\n' +
     '            </div>\n' +
-    '            <div class="pip-no-images w-stretch" layout="column" layout-align="center center" flex\n' +
+    '            <div class="pip-no-images w-stretch layout-column layout-align-center-center flex"\n' +
     '                 ng-show="$images.length == 0">\n' +
     '                <img src="images/add_from_image_library.svg" width="200" height="200">\n' +
     '                <p class="text-secondary opacity-secondary text-center">{{\'IMAGE_START_SEARCH\' | translate}}</p>\n' +
@@ -359,11 +359,11 @@ module.run(['$templateCache', function($templateCache) {
     '@copyright Digital Living Software Corp. 2014-2016\n' +
     '-->\n' +
     '\n' +
-    '<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog"\n' +
-    '           layout="column" md-theme="{{theme}}">\n' +
+    '<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog layout-column"\n' +
+    '           md-theme="{{theme}}">\n' +
     '\n' +
     '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">\n' +
-    '        <div class="pip-header bm16"  layout="row" layout-align="start center">\n' +
+    '        <div class="pip-header bm16 layout-row layout-align-start-center">\n' +
     '            <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"\n' +
     '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
     '                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
@@ -378,14 +378,12 @@ module.run(['$templateCache', function($templateCache) {
     '                <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: \'LINK_PICTURE\' | translate}}"/>\n' +
     '            </md-input-container>\n' +
     '\n' +
-    '            <div class="w-stretch"\n' +
-    '                 ng-hide="invalid"\n' +
-    '                 layout="row" layout-align="center center">\n' +
+    '            <div class="w-stretch layout-row layout-align-center-center"\n' +
+    '                 ng-hide="invalid">\n' +
     '                <img id="url_image"/>\n' +
     '            </div>\n' +
     '\n' +
-    '            <div class="pip-no-images" ng-show="invalid"\n' +
-    '                 layout="row" layout-align="center center">\n' +
+    '            <div class="pip-no-images layout-row layout-align-center-center" ng-show="invalid">\n' +
     '                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>\n' +
     '            </div>\n' +
     '\n' +
@@ -1828,8 +1826,6 @@ module.run(['$templateCache', function($templateCache) {
 /**
  * @file Picture control
  * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
  */
 
 /* global angular */
@@ -1837,22 +1833,22 @@ module.run(['$templateCache', function($templateCache) {
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipPictureEdit", ['ui.event', 'angularFileUpload', 'pipRest', 'pipPicturePaste',
+    var thisModule = angular.module('pipPictureEdit', ['ui.event', 'angularFileUpload', 'pipRest', 'pipPicturePaste',
         'pipTranslate', 'pipPictures.Templates']);
 
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
-            'ERROR_WRONG_IMAGE_FILE':'Incorrect image file. Please, choose another one',
-            'PICTURE_EDIT_TEXT': 'Click here to upload a picture'
+            ERROR_WRONG_IMAGE_FILE: 'Incorrect image file. Please, choose another one',
+            PICTURE_EDIT_TEXT: 'Click here to upload a picture'
         });
         pipTranslateProvider.translations('ru', {
-            'ERROR_WRONG_IMAGE_FILE': 'Неправильный файл с изображением. Выберете другой файл',
-            'PICTURE_EDIT_TEXT': 'Нажмите сюда для загрузки картинки'
+            ERROR_WRONG_IMAGE_FILE: 'Неправильный файл с изображением. Выберете другой файл',
+            PICTURE_EDIT_TEXT: 'Нажмите сюда для загрузки картинки'
         });
     }]);
 
     thisModule.directive('pipPictureEdit',
-        function() {
+        function () {
             return {
                 restrict: 'EA',
                 scope: {
@@ -1861,6 +1857,7 @@ module.run(['$templateCache', function($templateCache) {
                     pipChanged: '&',
                     pipReset: '&',
                     pipPictureId: '=',
+                    pipPartyId: '=',
                     pipAddedPicture: '='
                 },
                 templateUrl: 'picture_edit/picture_edit.html',
@@ -1870,13 +1867,13 @@ module.run(['$templateCache', function($templateCache) {
     );
 
     thisModule.controller('pipPictureEditController',
-        ['$scope', '$element', '$attrs', '$http', '$upload', '$timeout', '$rootScope', '$parse', 'pipRest', 'pipPicturePaste', 'pipImageUtils', 'pipUtils', function($scope, $element, $attrs, $http, $upload, $timeout, $rootScope, $parse, pipRest, pipPicturePaste,
-                 pipImageUtils, pipUtils) {
+        ['$scope', '$element', '$attrs', '$http', '$upload', '$timeout', '$rootScope', '$parse', 'pipRest', 'pipPicturePaste', 'pipImageUtils', 'pipUtils', function ($scope, $element, $attrs, $http, $upload, $timeout, $rootScope, $parse, pipRest, pipPicturePaste,
+                  pipImageUtils, pipUtils) {
             var
                 $control = $element.children('.pip-picture-upload'),
                 $input = $control.children('input[type=file]'),
                 serverUrl = pipRest.serverUrl(),
-                fileUrl = serverUrl + "/api/parties/" + $rootScope.$party.id + "/files";
+                fileUrl = serverUrl + '/api/parties/' + $scope.pipPartyId + '/files';
 
             $scope.text = $attrs.pipDefaultText || 'PICTURE_EDIT_TEXT';
             $scope.icon = $attrs.pipDefaultIcon || 'picture-no-border';
@@ -1907,12 +1904,12 @@ module.run(['$templateCache', function($templateCache) {
 
             // Also optimization to avoid watch if it is unnecessary
             if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch('pipPictureId', function(newValue) {
-                        $scope.control.reset();
+                $scope.$watch('pipPictureId', function (newValue) {
+                    $scope.control.reset();
                 });
             }
 
-            $scope.$watch($scope.ngDisabled, function(newValue) {
+            $scope.$watch($scope.ngDisabled, function (newValue) {
                 $input.attr('disabled', $scope.control.disabled);
             });
 
@@ -1937,12 +1934,12 @@ module.run(['$templateCache', function($templateCache) {
             // Execute callback
             if ($scope.pipCreated) {
                 $scope.pipCreated({
-                    $event: { sender: $scope.control },
+                    $event: {sender: $scope.control},
                     $control: $scope.control
                 });
             }
 
-            return ;
+            return;
 
             function resetImage(afterDeleting) {
                 $scope.control.progress = 0;
@@ -1978,7 +1975,7 @@ module.run(['$templateCache', function($templateCache) {
                 });
             };
 
-            function onBlur () {
+            function onBlur() {
                 pipPicturePaste.removePasteListener();
             };
 
@@ -1992,31 +1989,31 @@ module.run(['$templateCache', function($templateCache) {
 
                     fileReader.onload = function (e) {
                         control.uploading = true;
-                //        pipImageUtils.addHttpHeaders();
+                        //        pipImageUtils.addHttpHeaders();
                         var upload = $upload.http({
-                                url: fileUrl + '?name=' + file.name,
-                                headers: { 'Content-Type': file.type },
-                                data: e.target.result
-                            })
+                            url: fileUrl + '?name=' + file.name,
+                            headers: {'Content-Type': file.type},
+                            data: e.target.result
+                        })
                             .then(
-                            function (response) {
-                                $scope.pipPictureId = response.data.id;
-                                control.reset();
-                                if (successCallback) successCallback(response);
-                            },
-                            function (error) {
-                                control.uploading = false;
-                                control.upload = false;
-                                control.progress = 0;
+                                function (response) {
+                                    $scope.pipPictureId = response.data.id;
+                                    control.reset();
+                                    if (successCallback) successCallback(response);
+                                },
+                                function (error) {
+                                    control.uploading = false;
+                                    control.upload = false;
+                                    control.progress = 0;
 
-                                if (errorCallback) errorCallback(error);
-                                else console.error(error);
-                            },
-                            function (e) {
-                                // Math.min is to fix IE which reports 200% sometimes
-                                control.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
-                            }
-                        );
+                                    if (errorCallback) errorCallback(error);
+                                    else console.error(error);
+                                },
+                                function (e) {
+                                    // Math.min is to fix IE which reports 200% sometimes
+                                    control.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
+                                }
+                            );
                     };
 
                     fileReader.readAsArrayBuffer(file);
@@ -2024,7 +2021,7 @@ module.run(['$templateCache', function($templateCache) {
                     var url = saveItemUrl();
                     control.uploading = true;
 
-     //               pipImageUtils.addHttpHeaders();
+                    //               pipImageUtils.addHttpHeaders();
                     $http['post'](url)
                         .success(function (response) {
                             $scope.pipPictureId = response.id;
@@ -2046,20 +2043,20 @@ module.run(['$templateCache', function($templateCache) {
             function deletePicture(successCallback, errorCallback) {
                 var control = $scope.control;
                 $http['delete'](fileUrl + '/' + $scope.pipPictureId)
-                .success(function (data) {
-                    $scope.pipPictureId = null;
-                    control.reset(true);
+                    .success(function (data) {
+                        $scope.pipPictureId = null;
+                        control.reset(true);
 
-                    if (successCallback) successCallback();
-                })
-                .error(function (error) {
-                    control.uploading = false;
-                    control.upload = false;
-                    control.progress = 0;
+                        if (successCallback) successCallback();
+                    })
+                    .error(function (error) {
+                        control.uploading = false;
+                        control.upload = false;
+                        control.progress = 0;
 
-                    if (errorCallback) errorCallback(error);
-                    else console.error(error);
-                });
+                        if (errorCallback) errorCallback(error);
+                        else console.error(error);
+                    });
             };
 
             function saveImage(successCallback, errorCallback) {
@@ -2109,7 +2106,7 @@ module.run(['$templateCache', function($templateCache) {
             function onKeyDown($event) {
                 if ($event.keyCode == 13 || $event.keyCode == 32) {
                     // !! Avoid clash with $apply()
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $control.trigger('click');
                     }, 0);
                 } else if ($event.keyCode == 46 || $event.keyCode == 8) {
@@ -2126,7 +2123,7 @@ module.run(['$templateCache', function($templateCache) {
 
             // Clean up url to remove broken icon
             function onImageError($event) {
-                $scope.$apply(function() {
+                $scope.$apply(function () {
                     $scope.control.url = '';
 
                     var image = $($event.target);
@@ -2146,7 +2143,7 @@ module.run(['$templateCache', function($templateCache) {
             function onChange() {
                 if ($scope.pipChanged) {
                     $scope.pipChanged({
-                        $event: { sender: $scope.control },
+                        $event: {sender: $scope.control},
                         $control: $scope.control
                     });
                 }
