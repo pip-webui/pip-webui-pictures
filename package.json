@@ -1,40 +1,39 @@
 {
-  "name": "pip-webui-pictures",
-  "version": "1.0.0",
-  "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
-  "description": "Pip.WebUI pictures controls for Pip.Services platform",
-  "contributors": [
-    {
-      "name": "Sergey Seroukhov",
-      "email": "seroukhov@gmail.com"
+    "name": "pip-webui-pictures",
+    "version": "1.0.0",
+    "author": "Digital Living Software Corp. <www.digitallivingsoftware.com>",
+    "description": "Pip.WebUI pictures controls for Pip.Services platform",
+    "contributors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        },
+        {
+            "name": "Anastas Fonotov",
+            "email": "anastasf@gmail.com"
+        },
+        {
+            "name": "Mark Zontak",
+            "email": "mark@zontak.me"
+        }
+    ],
+    "keywords": [
+        "pip",
+        "webui",
+        "pictures",
+        "controls"
+    ],
+    "noAnalyze": true,
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+        "build": "gulp build",
+        "lint": "gulp lint",
+        "samples": "gulp launch",
+        "test": "karma start"
     },
-    {
-      "name": "Anastas Fonotov",
-      "email": "anastasf@gmail.com"
-    },
-    {
-      "name": "Mark Zontak",
-      "email": "mark@zontak.me"
+    "dependencies": {},
+    "devDependencies": {
+        "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git"
     }
-  ],
-  "keywords": [
-    "pip",
-    "webui",
-    "pictures",
-    "controls"
-  ],
-  "noAnalyze": true,
-  "license": "Commercial",
-  "private": true,
-  "scripts": {
-    "build": "gulp build",
-    "lint": "gulp lint",
-    "samples": "gulp launch",
-    "test": "karma start"
-  },
-  "dependencies": {
-  },
-  "devDependencies": {
-    "pip-webui-tasks": "git+https://github.com/pip-webui/pip-webui-tasks.git"
-  }
 }
