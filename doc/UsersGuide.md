@@ -49,48 +49,55 @@ Register **pipPictures** module in angular module dependencies.
 angular.module('myApp',[..., 'pipPictures']);
 ```
 
+
+## <a name="picture"></a> pip-picture directive
+
 **Picture view** is the simplest control that loads from the server and visualizes a single image. 
 
 Todo: Replace the screenshot
-<a href="doc/images/img-picture-simple.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-picture-simple.png"/>
-</a>
+<img src="images/img-picture-simple.png"/>
+
+
+## <a name="picture_edit"></a> pip-picture-edit directive
 
 **Picture edit** control allows to set a single image and upload it to server.
 
-<a href="doc/images/img-picture-edit-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-picture-edit-control.png"/>
-</a>
+<img src="images/img-picture-edit-control.png"/>
+
+
+## <a name="avatar"></a> pip-avatar directive
 
 **Avatar view** control is identical to **Picture view**, the only difference is in URL on the server to upload image.
 
-<a href="doc/images/img-avatar-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-avatar-control.png"/>
-</a>
+<img src="images/img-avatar-control.png"/>
+
+
+## <a name="avatar_edit"></a> pip-avatar-edit directive
+
+
+## <a name="picture_list_edit"></a> pip-picture-list-edit directive
 
 **Picture list** control allows to upload a collection of images at once. 
 
-<a href="doc/images/img-picture-list-edit.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-picture-list-edit.png"/>
-</a>
+<img src="images/img-picture-list-edit.png"/>
+
+
+## <a name="collage"></a> pip-collage directive
 
 **Collage** control visualizes a collection of images as random collage 
 
 Todo: Show collages with different number of images
-<a href="doc/images/img-picture-collage.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-picture-collage.png"/>
-</a>
+<img src="images/img-picture-collage.png"/>
+
+
+## <a name="add_picture"></a> pip-add-picture directive
 
 **Add picture** dialog let user add image from different sources: from file, camera, web link or image library.
 
 Todo: Add screenshots for every picture dialog except file
-<a href="doc/images/img-picture-dialog.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-picture-dialog.png"/>
-</a>
+<img src="images/img-picture-dialog.png"/>
 
-<a href="doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-add-image-directive.png"/>
-</a>
+<img src="images/img-add-image-directive.png"/>
 
 
 ## <a name="issues"></a> Questions and bugs
