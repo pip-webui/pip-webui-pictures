@@ -52,52 +52,96 @@ angular.module('myApp',[..., 'pipPictures']);
 
 ## <a name="picture"></a> pip-picture directive
 
-**Picture view** is the simplest control that loads from the server and visualizes a single image. 
+**pip-picture** directive is the simplest control that loads from the server and visualizes a single image. 
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 Todo: Replace the screenshot
 <img src="images/img-picture-simple.png"/>
 
+### Attributes
+Todo: Describe all attributes for this directive 
+
 
 ## <a name="picture_edit"></a> pip-picture-edit directive
 
-**Picture edit** control allows to set a single image and upload it to server.
+**pip-picture-edit** directive allows to set a single image and upload it to server.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 <img src="images/img-picture-edit-control.png"/>
+
+### Attributes
+Todo: Describe all attributes for this directive 
 
 
 ## <a name="avatar"></a> pip-avatar directive
 
-**Avatar view** control is identical to **Picture view**, the only difference is in URL on the server to upload image.
+**pip-avatar** directive is identical to **pip-picture**. The only difference is in URL on the server to upload image.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 <img src="images/img-avatar-control.png"/>
+
+### Attributes
+Todo: Describe all attributes for this directive 
 
 
 ## <a name="avatar_edit"></a> pip-avatar-edit directive
 
+**pip-avatar-edit** directive similar to **pip-picture-edit** allows to upload a single image. The only difference is in URL on the server to upload image.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
+
+Todo: Add screenshot for this directive
+
+### Attributes
+Todo: Describe all attributes for this directive 
+
 
 ## <a name="picture_list_edit"></a> pip-picture-list-edit directive
 
-**Picture list** control allows to upload a collection of images at once. 
+**pip-picture-list** directive allows to upload a collection of images at once. 
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 <img src="images/img-picture-list-edit.png"/>
+
+### Attributes
+Todo: Describe all attributes for this directive 
 
 
 ## <a name="collage"></a> pip-collage directive
 
-**Collage** control visualizes a collection of images as random collage 
+**pip-collage** directive visualizes a collection of images as random collage 
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 Todo: Show collages with different number of images
 <img src="images/img-picture-collage.png"/>
 
+### Attributes
+Todo: Describe all attributes for this directive 
+
 
 ## <a name="add_picture"></a> pip-add-picture directive
 
-**Add picture** dialog let user add image from different sources: from file, camera, web link or image library.
+**pip-add-picture** directive lets user ability to add image from different sources: from file, camera, web link or image library.
+
+### Usage
+Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 Todo: Add screenshots for every picture dialog except file
 <img src="images/img-picture-dialog.png"/>
 
-<img src="images/img-add-image-directive.png"/>
+### Attributes
+Todo: Describe all attributes for this directive 
 
 
 ## <a name="issues"></a> Questions and bugs
