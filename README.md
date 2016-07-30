@@ -1,59 +1,6 @@
-# Pip.WebUI Pictures Controls
+# <img src="https://github.com/pip-webui/pip-webui/blob/master/doc/Logo.png" alt="Pip.WebUI Logo" style="max-width:30%"> <br/> Picture controls
 
-Pictures Control UI components is a sub-module of Pip.Services platform and can be used in applications
-based on the platform.
-
-This module provides next functionality:
-
-* Picture view control
-* Picture edit control
-* Avatar control
-* Picture list edit control
-* Collage control
-* Picture dialog
-* Add image directive
-
-In the version 1.0.0 the implementation was cleaned up and covered with unit tests.
-Implementation became fully portable across browser and devices.
-
-
-### The complete library
-
- * [https://github.com/pip-webui/pip-webui](https://github.com/pip-webui/pip-webui)
-
-## Demos
-
-[Examples Online](http://webui.pipdevs.com/pip-webui-pictures/index.html)
-
-
-## Quick links
-
-* [Module dependencies](#dependencies)
-* [Components](#components)
-  - [Picture view control](#picture_view)
-  - [Picture edit control](#picture_edit)
-  - [Avatar control](#avatar)
-  - [Picture list edit control](#picture_list_edit)
-  - [Collage control](#collage)
-  - [Picture dialog](#picture_dialog)
-  - [Add image directive](#add_image_directive)
-* [Browsers compatibility](#compatibility)
-* [Community](#community)
-* [Contributing](#contributing)
-* [Build](#build)
-* [License](#license)
-
-
-## <a name="dependencies"></a>Module dependencies
-
-* <a href="https://github.com/pip-webui/pip-webui-tasks">pip-webui-tasks</a> - Helpful tasks for development
-* <a href="https://github.com/pip-webui/pip-webui-lib">pip-webui-lib</a> - Vendor libraries
-* <a href="https://github.com/pip-webui/pip-webui-css">pip-webui-css</a> - CSS Framework
-* <a href="https://github.com/pip-webui/pip-webui-core">pip-webui-core</a> - Core platform module
-* <a href="https://github.com/pip-webui/pip-webui-rest">pip-webui-rest</a> - REST API module
-* <a href="https://github.com/pip-webui/pip-webui-controls">pip-webui-controls</a> - Assets of control components
-* <a href="https://github.com/pip-webui/pip-webui-layouts">pip-webui-layouts</a> - Document layouts
-* <a href="https://github.com/pip-webui/pip-webui-test">pip-webui-test</a> - Provides mocked data needed for unit testing
+![](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## <a name="components"></a>Module components
 
@@ -149,76 +96,26 @@ It is a visual UI component which implemented picture dialog. Via this control c
 [Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/picture)
 
 
-## <a name="compatibility"></a>Compatibility
+## Learn more about the module
 
-PIP.WEBUI has been thoroughly tested against all major browsers and supports:
+- [User's guide](doc/UsersGuide.md)
+- [Online samples](http://webui.pipdevs.com/pip-webui-pictures/index.html)
+- [API reference](http://webui-api.pipdevs.com/pip-webui-pictures/index.html)
+- [Developer's guide](doc/DevelopersGuide.md)
+- [Changelog](CHANGELOG.md)
+- [Pip.WebUI project website](http://www.pipwebui.org)
+- [Pip.WebUI project wiki](https://github.com/pip-webui/pip-webui/wiki)
+- [Pip.WebUI discussion forum](https://groups.google.com/forum/#!forum/pip-webui)
+- [Pip.WebUI team blog](https://pip-webui.blogspot.com/)
 
- * IE11+,
- * Edge
- * Chrome 47+,
- * Firefox 43
- * Opera 35
+## <a name="dependencies"></a>Module dependencies
 
-## <a name="community"></a>Community
-
-* Follow [@pip.webui on Twitter](http://link.com)
-* Subscribe to the [PIP.WebUI Newsletter](http://link.com)
-* Have a question that's not a feature request or bug report? Discuss on the [PIP Forum](https://groups.google.com/forum/#!forum/pipdevs)
-* Have a feature request or find a bug? [Submit an issue](http://link.com)
-* Join our Community Slack Group! [PIP Worldwide](http://link.com)
-
-
-## <a name="contributing"></a>Contributing
-
-Developers interested in contributing should read the following guidelines:
-
-* [Issue Guidelines](http://somelink.com)
-* [Contributing Guidelines](http://somelink.com)
-* [Coding guidelines](http://somelink.com)
-
-> Please do **not** ask general questions in an issue. Issues are only to report bugs, request
-  enhancements, or request new features. For general questions and discussions, use the
-  [Pip Devs Forum](https://groups.google.com/forum/#!forum/pipdevs).
-
-It is important to note that for each release, the [ChangeLog](CHANGELOG.md) is a resource that will
-itemize all:
-
-- Bug Fixes
-- New Features
-- Breaking Changes
-
-## <a name="build"></a>Build
-
-Projects environment deploy is occurred using npm and gulp.
-
-First install or update your local project's **npm** tools:
-
-```bash
-# First install all the NPM tools:
-npm install
-
-# Or update
-npm update
-```
-
-Then run the **gulp** tasks:
-
-```bash
-# To clean '/build' and '/dist' directories
-gulp clean
-
-# To build distribution files in the `/dist` directory
-gulp build
-
-# To launch samples (build will open samples/index page in web browser)
-gulp launch
-```
-
-For more details on how the build process works and additional commands (available for testing and
-debugging) developers should read the [Build Instructions](docs/guides/BUILD.md).
-
+* [pip-webui-lib](https://github.com/pip-webui/pip-webui-lib): angular, angular material and other 3rd party libraries
+* [pip-webui-css](https://github.com/pip-webui/pip-webui-css): CSS styles and web components
+* [pip-webui-core](https://github.com/pip-webui/pip-webui-core): localization and other core services
+* [pip-webui-rest](https://github.com/pip-webui/pip-webui-rest): REST resources for files
+* [pip-webui-pictures](https://github.com/pip-webui/pip-webui-pictures): user avatar control
 
 ## <a name="license"></a>License
 
-PIP.WebUI is under [MIT licensed](LICENSE).
-
+This module is released under [MIT license](License) and totally free for commercial and non-commercial use.
