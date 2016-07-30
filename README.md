@@ -2,98 +2,47 @@
 
 ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
-## <a name="components"></a>Module components
+Images are essential for any application with graphical user interface. Pip.WebUI.Pictures module provides number of different controls to visualize and edit pictures.
 
-### <a name="picture_view"></a>Picture view control
+**Picture view** is the simplest control that loads from the server and visualizes a single image. 
+
 <a href="doc/images/img-picture-simple.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-picture-simple.png"/>
 </a>
 
-The directive provides simple image block. It allows three attribute types:
-* **pip-src** - full url address
-* **pip-picture-id** - unique ID due to image naming agreement
-* **pip-default-icon** - Some default icon
+**Picture edit** control allows to set a single image and upload it to server.
 
-[Online Example](http://webui.pipdevs.com/pip-webui-entry/index.html#/signin)
-
-```html
-    <pip-picture pip-src="img/welcome.png"/>
-    </pip-picture>
-```
-
-<br/>
-
-### <a name="picture_edit"></a>Picture edit control
 <a href="doc/images/img-picture-edit-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-picture-edit-control.png"/>
 </a>
 
-This control provides editable picture component. There can be changed image via URL, local image, images gallery and camera snapshot.
-This directive accepts more attributes for manage image change or update etc.
+**Avatar view** control is identical to **Picture view**, the only difference is in URL on the server to upload image.
 
-
-[Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/picture)
-
-<br/>
-
-
-### <a name="avatar"></a>Avatar control
 <a href="doc/images/img-avatar-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-avatar-control.png"/>
 </a>
 
-Avatar control is a directive provides circle or square block with different content. Inside this one can be any image, icon or a char
-(means the first letter of the first name). This field can be disabled via corresponded attribute.
+**Picture list** control allows to upload a collection of images at once. 
 
-[Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/avatar)
-
-<br/>
-
-### <a name="picture_list_edit"></a>Picture list edit control
 <a href="doc/images/img-picture-list-edit.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-picture-list-edit.png"/>
 </a>
 
-This control provides assets of picture edit controls. Each picture can be dropped or uploads new one.
+**Collage** control visualizes a collection of images as random collage 
 
-[Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/pictures)
-
-
-<br/>
-
-### <a name="collage"></a>Collage control
 <a href="doc/images/img-picture-collage.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-picture-collage.png"/>
 </a>
 
-This control provides arranged images collage. In dependence on images amount they are arranged is predefined way.
-The images amount can be arbitrary.
+**Add picture** dialog let user add image from different sources: from file, camera, web link or image library.
 
-
-[Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/collage)
-
-<br/>
-
-### <a name="picture_dialog"></a>Picture dialog
 <a href="doc/images/img-picture-dialog.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-picture-dialog.png"/>
 </a>
 
-This dialog list is available in the each editable picture control. It allows to change/add image view several ways. It
-provides keyboard arrows navigation.
-
-[Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/picture)
-
-<br/>
-
-### <a name="add_image_directive"></a>Add image directive
 <a href="doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-add-image-directive.png"/>
 </a>
-
-It is a visual UI component which implemented picture dialog. Via this control can be added more than one images.
-
-[Online Example](http://webui.pipdevs.com/pip-webui-pictures/index.html#/picture)
 
 
 ## Learn more about the module
