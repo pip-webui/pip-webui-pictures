@@ -53,6 +53,7 @@ angular.module('myApp',[..., 'pipPictures']);
 ## <a name="picture"></a> pip-picture directive
 
 **pip-picture** directive is the simplest control that loads from the server and visualizes a single image. 
+This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -67,6 +68,7 @@ Todo: Describe all attributes for this directive
 ## <a name="picture_edit"></a> pip-picture-edit directive
 
 **pip-picture-edit** directive allows to set a single image and upload it to server.
+This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -80,6 +82,7 @@ Todo: Describe all attributes for this directive
 ## <a name="avatar"></a> pip-avatar directive
 
 **pip-avatar** directive is identical to **pip-picture**. The only difference is in URL on the server to upload image.
+This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -92,7 +95,7 @@ Todo: Describe all attributes for this directive
 
 ## <a name="avatar_edit"></a> pip-avatar-edit directive
 
-**pip-avatar-edit** directive similar to **pip-picture-edit** allows to upload a single image. The only difference is in URL on the server to upload image.
+**pip-avatar-edit** directive similar to **pip-picture-edit** allows to upload a single image. The only difference is in URL on the server to upload image. This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -106,6 +109,7 @@ Todo: Describe all attributes for this directive
 ## <a name="picture_list_edit"></a> pip-picture-list-edit directive
 
 **pip-picture-list** directive allows to upload a collection of images at once. 
+This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -118,7 +122,8 @@ Todo: Describe all attributes for this directive
 
 ## <a name="collage"></a> pip-collage directive
 
-**pip-collage** directive visualizes a collection of images as random collage 
+**pip-collage** directive visualizes a collection of images as random collage.
+This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -133,6 +138,7 @@ Todo: Describe all attributes for this directive
 ## <a name="add_picture"></a> pip-add-picture directive
 
 **pip-add-picture** directive lets user ability to add image from different sources: from file, camera, web link or image library.
+This dialog requires **files** operation in standard REST API. 
 
 ### Usage
 Todo: Add HTML snippet to demonstrate the directive with all attributes
@@ -142,6 +148,45 @@ Todo: Add screenshots for every picture dialog except file
 
 ### Attributes
 Todo: Describe all attributes for this directive 
+
+
+## <a name="camera_dialog"></a> pipCameraDialog
+
+**pipCameraDialog** allows to add image from integrated camera. If HTML5 camera access is not available this dialog uses portable webcam.js library. Hybrid applications running in Cordova may use native camera application. 
+
+### Usage
+Todo: Add code snippet to demonstrate how to open the dialog
+
+Todo: Add screenshot with the dialog
+
+### Methods
+Todo: Document the dialog public methods
+
+
+## <a name="picture_url_dialog"></a> pipPictureUrlDialog
+
+**pipPictureUrlDialog** allows to upload image from external source by its url. The dialog supports only http, https or ftp protocols and jpg, png, gif images. 
+
+### Usage
+Todo: Add code snippet to demonstrate how to open the dialog
+
+Todo: Add screenshot with the dialog
+
+### Methods
+Todo: Document the dialog public methods
+
+
+## <a name="gallery_search_dialog"></a> pipGallerySearchDialog
+
+**pipGallerySearchDialog** allows to add image from application image gallery or external image search service like Flicker, Google search or Bing. This dialog requires **files**, **imagelib** and **image_sets** operations in standard REST API. 
+
+### Usage
+Todo: Add code snippet to demonstrate how to open the dialog
+
+Todo: Add screenshot with the dialog
+
+### Methods
+Todo: Document the dialog public methods
 
 
 ## <a name="issues"></a> Questions and bugs
