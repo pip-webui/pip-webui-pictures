@@ -171,7 +171,7 @@ Todo: Document the dialog public methods
 ### Usage
 Todo: Add code snippet to demonstrate how to open the dialog
 
-Todo: Add screenshot with the dialog
+<img src="images/img-weblink.png"/>
 
 ### Methods
 Todo: Document the dialog public methods
@@ -184,7 +184,7 @@ Todo: Document the dialog public methods
 ### Usage
 Todo: Add code snippet to demonstrate how to open the dialog
 
-Todo: Add screenshot with the dialog
+<img src="images/img-image-library.png"/>
 
 ### Methods
 Todo: Document the dialog public methods
