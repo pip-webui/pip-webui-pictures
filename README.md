@@ -36,7 +36,6 @@ Images are essential for any application with graphical user interface. Pip.WebU
 
 **Add picture** dialog let user add image from different sources: from file, camera, web link or image library.
 
-Todo: Add screenshots for every picture dialog except file
 <a href="doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-add-image-directive.png"/>
 </a>
