@@ -165,7 +165,6 @@ This dialog requires **files** operation in standard REST API.
 </pip-collage>
 ```
 
-Todo: Show collages with different number of images
 <img src="images/img-picture-collage.png"/>
 
 ### Attributes
@@ -197,7 +196,7 @@ Todo: Describe all attributes for this directive
 ### Usage
 Todo: Add code snippet to demonstrate how to open the dialog
 
-Todo: Add screenshot with the dialog
+<img src="images/img-camera.png"/>
 
 ### Methods
 Todo: Document the dialog public methods

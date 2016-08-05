@@ -6,7 +6,6 @@ Images are essential for any application with graphical user interface. Pip.WebU
 
 **Picture view** is the simplest control that loads from the server and visualizes a single image. 
 
-Todo: Replace the screenshot
 <a href="doc/images/img-picture-simple.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-picture-simple.png"/>
 </a>
@@ -31,7 +30,6 @@ Todo: Replace the screenshot
 
 **Collage** control visualizes a collection of images as random collage 
 
-Todo: Show collages with different number of images
 <a href="doc/images/img-picture-collage.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
     <img src="doc/images/img-picture-collage.png"/>
 </a>
@@ -39,12 +37,24 @@ Todo: Show collages with different number of images
 **Add picture** dialog let user add image from different sources: from file, camera, web link or image library.
 
 Todo: Add screenshots for every picture dialog except file
+<a href="doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="doc/images/img-add-image-directive.png"/>
+</a>
+
 <a href="doc/images/img-picture-dialog.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
     <img src="doc/images/img-picture-dialog.png"/>
 </a>
 
-<a href="doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-add-image-directive.png"/>
+<a href="doc/images/img-camera.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="doc/images/img-camera.png"/>
+</a>
+
+<a href="doc/images/img-weblink.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="doc/images/img-weblink.png"/>
+</a>
+
+<a href="doc/images/img-image-library.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="doc/images/img-image-library.png"/>
 </a>
 
 
