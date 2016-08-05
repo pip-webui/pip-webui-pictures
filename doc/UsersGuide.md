@@ -144,7 +144,6 @@ This dialog requires **files** operation in standard REST API.
                  ng-disabled="pictureListDisabled">
 </pip-picture-list-edit>
 ```
-Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 <img src="images/img-picture-list-edit.png"/>
 
@@ -159,9 +158,12 @@ This dialog requires **files** operation in standard REST API.
 
 ### Usage
 ```html
-
+<pip-collage  pip-srcs="srcs_3"
+              pip-multiple="false" 
+              pip-unique-code="1"
+              pip-open="true">
+</pip-collage>
 ```
-Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 Todo: Show collages with different number of images
 <img src="images/img-picture-collage.png"/>
