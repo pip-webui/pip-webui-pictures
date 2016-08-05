@@ -125,7 +125,7 @@ This dialog requires **files** operation in standard REST API.
 </pip-avatar-edit>
 ```
 
-Todo: Add screenshot for this directive
+<img src="images/img-avatar-edit.png"/>
 
 ### Attributes
 Todo: Describe all attributes for this directive 

@@ -11,7 +11,7 @@
             // Modules from WebUI Framework
             'pipCore', 'pipRest', 'pipData', 'pipBasicControls', 'pipPictures', 'pipLayout',
             // testing data modules (have some data for example)
-            'pipWebuiTests',
+            //'pipWebuiTests',
             // Sample Application Modules
             'appPictures.Collage', 'appPictures.CollageResize',
             'appPictures.Picture', 'appPictures.Pictures', 'appPictures.Avatar'
