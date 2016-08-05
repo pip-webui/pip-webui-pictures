@@ -57,14 +57,14 @@ angular.module('myApp',[..., 'pipPictures']);
 This dialog requires **files** operation in standard REST API. 
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-picture  pip-picture-id="pictureEditId"></pip-picture>
+```
 
-Todo: Replace the screenshot
 <img src="images/img-picture-simple.png"/>
 
 ### Attributes
-Todo: Describe all attributes for this directive 
-
+* **pip-picture-id** - id of picture 
 
 ## <a name="picture_edit"></a> pip-picture-edit directive
 
@@ -72,7 +72,17 @@ Todo: Describe all attributes for this directive
 This dialog requires **files** operation in standard REST API. 
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-picture-edit
+     pip-picture-id="pictureEditId"
+     pip-party-id="partyId"
+     pip-created="onPictureCreated($event)"
+     pip-changed="onPictureChanged($control)"
+     pip-rebind="true"
+     pip-default-text="Change Picture"
+     ng-disabled="pictureDisabled">
+</pip-picture-edit>
+```
 
 <img src="images/img-picture-edit-control.png"/>
 
@@ -86,20 +96,34 @@ Todo: Describe all attributes for this directive
 This dialog requires **files** operation in standard REST API. 
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
-
+```html
+ <pip-avatar pip-rebind-avatar="true"
+             pip-party-id="avatars[avatarIndex].id"
+             pip-party-name="avatars[avatarIndex].name">
+ </pip-avatar>
+```
 <img src="images/img-avatar-control.png"/>
 
 ### Attributes
-Todo: Describe all attributes for this directive 
-
+* **pip-rebind-avatar** - updating picture in control
+* **pip-party-id** - party id
+* **pip-party-name** - party name 
 
 ## <a name="avatar_edit"></a> pip-avatar-edit directive
 
 **pip-avatar-edit** directive similar to **pip-picture-edit** allows to upload a single image. The only difference is in URL on the server to upload image. This dialog requires **files** operation in standard REST API. 
 
 ### Usage
-Todo: Add HTML snippet to demonstrate the directive with all attributes
+```html
+<pip-avatar-edit
+        pip-party-id="avatar1.id"
+        pip-created="onPictureCreated($event)"
+        pip-changed="onPictureChanged($control)"
+        pip-default-text="Change avatar"
+        pip-reset="isReseting()"
+        ng-disabled="pictureDisabled">
+</pip-avatar-edit>
+```
 
 Todo: Add screenshot for this directive
 
@@ -113,6 +137,13 @@ Todo: Describe all attributes for this directive
 This dialog requires **files** operation in standard REST API. 
 
 ### Usage
+```html
+<pip-picture-list-edit pip-picture-ids="pictureIds"
+                 pip-created="onPictureListCreated($event)"
+                 pip-default-text="CLICK_HERE_OR_DRAG_FILES"
+                 ng-disabled="pictureListDisabled">
+</pip-picture-list-edit>
+```
 Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 <img src="images/img-picture-list-edit.png"/>
@@ -127,6 +158,9 @@ Todo: Describe all attributes for this directive
 This dialog requires **files** operation in standard REST API. 
 
 ### Usage
+```html
+
+```
 Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 Todo: Show collages with different number of images
@@ -142,6 +176,9 @@ Todo: Describe all attributes for this directive
 This dialog requires **files** operation in standard REST API. 
 
 ### Usage
+```html
+
+```
 Todo: Add HTML snippet to demonstrate the directive with all attributes
 
 Todo: Add screenshots for every picture dialog except file
