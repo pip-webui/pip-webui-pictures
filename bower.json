@@ -1,41 +1,41 @@
 {
-  "name": "pip-webui-pictures",
-  "version": "1.0.0",
-  "description": "Pictures controls for Pip.WebUI",
-  "main": "",
-  "authors": [
-      {
-          "name": "Sergey Seroukhov",
-          "email": "seroukhov@gmail.com"
-      },
-      {
-          "name": "Anastas Fonotov",
-          "email": "anastasf@gmail.com"
-      },
-      {
-          "name": "Mark Zontak",
-          "email": "mark@zontak.me"
-      }
-  ],
-  "license": "MIT",
-  "keywords": [
-    "pip",
-    "webui",
-    "pictures",
-    "controls"
-  ],
-  "homepage": "https://github.com/pip-webui/pip-webui-pictures",
-  "ignore": [
-    ".gitignore",
-    "cordova",
-    "node_modules",
-    "bower_components",
-    "src",
-    "tests",
-    "samples",
-    "scripts",
-    "build.*",
-    "gulpfile.js",
-    "karma.conf.js"
-  ]
+    "name": "pip-webui-pictures",
+    "version": "1.0.0",
+    "description": "Pictures controls for Pip.WebUI",
+    "main": "",
+    "authors": [
+        {
+            "name": "Sergey Seroukhov",
+            "email": "seroukhov@gmail.com"
+        },
+        {
+            "name": "Anastas Fonotov",
+            "email": "anastasf@gmail.com"
+        },
+        {
+            "name": "Mark Zontak",
+            "email": "mark@zontak.me"
+        }
+    ],
+    "license": "MIT",
+    "keywords": [
+        "pip",
+        "webui",
+        "pictures",
+        "controls"
+    ],
+    "homepage": "https://github.com/pip-webui/pip-webui-pictures",
+    "ignore": [
+        ".gitignore",
+        "cordova",
+        "node_modules",
+        "bower_components",
+        "src",
+        "tests",
+        "samples",
+        "scripts",
+        "build.*",
+        "gulpfile.js",
+        "karma.conf.js"
+    ]
 }
