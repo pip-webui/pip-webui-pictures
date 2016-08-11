@@ -247,6 +247,53 @@ try {
   module = angular.module('pipPictures.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('picture_edit/picture_edit.html',
+    '<div class="pip-picture-upload pip-picture-drop md-focused"\n' +
+    '	 ng-keydown="onKeyDown($event)"\n' +
+    ' 	 tabindex="{{ ngDisabled() || control.uploading ? -1 : 0 }}"\n' +
+    '	 pip-changed="readItemLocally(url, file)"\n' +
+    '	 ng-disabled="ngDisabled()"\n' +
+    '	 pip-multi="false"\n' +
+    '	 ng-focus="onFocus()"\n' +
+    '	 ng-blur="onBlur()"\n' +
+    '	 pip-add-image>\n' +
+    '\n' +
+    '	<div class="pip-default-icon" ng-show="empty()">\n' +
+    '		<md-icon  class="pip-picture-icon" md-svg-icon="icons:{{icon}}"></md-icon>\n' +
+    '	</div>\n' +
+    '	<div class="pip-default-text" ng-show="empty()">\n' +
+    '		<span>{{text | translate}}</span>\n' +
+    '	</div>\n' +
+    '\n' +
+    '	<img class="pip-picture-image"\n' +
+    '		 ng-src="{{control.url}}"\n' +
+    '		 ng-show="!empty()"\n' +
+    '		 ng-class="{ \'pip-image-new\': isUpdated(), \'cursor-default\' : ngDisabled() || control.uploading }"\n' +
+    ' 		 ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }">\n' +
+    '\n' +
+    '	<md-button class="md-icon-button"\n' +
+    '			   ng-click="onDeleteClick($event)"\n' +
+    '			   tabindex="-1" aria-label="delete"\n' +
+    '			   ng-hide="empty() || ngDisabled()"\n' +
+    '			   ng-disabled="ngDisabled() || control.uploading">\n' +
+    '		<md-icon  md-svg-icon="icons:cross"></md-icon>\n' +
+    '	</md-button>\n' +
+    '\n' +
+    '	<md-progress-linear ng-show="control.uploading"\n' +
+    '						ng-value="control.progress">\n' +
+    '	</md-progress-linear>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipPictures.Templates');
+} catch (e) {
+  module = angular.module('pipPictures.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('picture_list_edit/picture_list_edit.html',
     '<div pip-focused>\n' +
     '	<div class="pip-picture-upload pointer pip-focusable"\n' +
@@ -294,53 +341,6 @@ module.run(['$templateCache', function($templateCache) {
     '		</div>\n' +
     '	</button>\n' +
     '	<div class="clearfix"></div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipPictures.Templates');
-} catch (e) {
-  module = angular.module('pipPictures.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('picture_edit/picture_edit.html',
-    '<div class="pip-picture-upload pip-picture-drop md-focused"\n' +
-    '	 ng-keydown="onKeyDown($event)"\n' +
-    ' 	 tabindex="{{ ngDisabled() || control.uploading ? -1 : 0 }}"\n' +
-    '	 pip-changed="readItemLocally(url, file)"\n' +
-    '	 ng-disabled="ngDisabled()"\n' +
-    '	 pip-multi="false"\n' +
-    '	 ng-focus="onFocus()"\n' +
-    '	 ng-blur="onBlur()"\n' +
-    '	 pip-add-image>\n' +
-    '\n' +
-    '	<div class="pip-default-icon" ng-show="empty()">\n' +
-    '		<md-icon  class="pip-picture-icon" md-svg-icon="icons:{{icon}}"></md-icon>\n' +
-    '	</div>\n' +
-    '	<div class="pip-default-text" ng-show="empty()">\n' +
-    '		<span>{{text | translate}}</span>\n' +
-    '	</div>\n' +
-    '\n' +
-    '	<img class="pip-picture-image"\n' +
-    '		 ng-src="{{control.url}}"\n' +
-    '		 ng-show="!empty()"\n' +
-    '		 ng-class="{ \'pip-image-new\': isUpdated(), \'cursor-default\' : ngDisabled() || control.uploading }"\n' +
-    ' 		 ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }">\n' +
-    '\n' +
-    '	<md-button class="md-icon-button"\n' +
-    '			   ng-click="onDeleteClick($event)"\n' +
-    '			   tabindex="-1" aria-label="delete"\n' +
-    '			   ng-hide="empty() || ngDisabled()"\n' +
-    '			   ng-disabled="ngDisabled() || control.uploading">\n' +
-    '		<md-icon  md-svg-icon="icons:cross"></md-icon>\n' +
-    '	</md-button>\n' +
-    '\n' +
-    '	<md-progress-linear ng-show="control.uploading"\n' +
-    '						ng-value="control.progress">\n' +
-    '	</md-progress-linear>\n' +
     '</div>\n' +
     '');
 }]);
@@ -576,6 +576,171 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 
+
+
+/**
+ * @file Avatar control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - Replace placeholder with default image generated on server
+ * - Fix resizing problem
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
+
+    thisModule.directive('pipAvatar',
+        function () {
+            return {
+                restrict: 'EA',
+                scope: false,
+                template: '<md-icon></md-icon><img/>'
+                + '<div><md-icon class="default_icon" id="icon-film" md-svg-icon="icons:film"></md-icon>'
+                + '<md-icon class="default_icon" id="icon-task" md-svg-icon="icons:task"></md-icon>'
+                + '<md-icon class="default_icon" id="icon-folder" md-svg-icon="icons:folder"></md-icon></div>',
+                controller: 'pipAvatarController'
+            }
+        }
+    );
+
+    thisModule.controller('pipAvatarController',
+        ['$scope', '$rootScope', '$element', '$attrs', '$parse', 'pipUtils', 'pipStrings', 'pipRest', '$http', 'pipImageUtils', function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
+            var
+                $svg = $element.children('md-icon'),
+                $image = $element.children('img'),
+                $defaultBlock = $element.children('div'),
+                $iconFilm = $element.find('#icon-film'),
+                $iconTask = $element.find('#icon-task'),
+                $iconFolder = $element.find('#icon-folder'),
+                image = null,
+
+                partyIdGetter = $parse($attrs.pipPartyId),
+                partyNameGetter = $parse($attrs.pipPartyName),
+                typeGetter = $parse($attrs.pipEntityType),
+                idGetter = $parse($attrs.pipId),
+
+                colors = pipImageUtils.getAvatarColors(),
+                colorClasses = pipImageUtils.getColorClasses(),
+                entityTypes = pipImageUtils.getEntityTypes();
+
+            // When image is loaded resize/reposition it
+            $image.load(function ($event) {
+                image = $($event.target);
+                pipImageUtils.setImageMarginCSS($element, image);
+            });
+
+            // Add class
+            $element.addClass('pip-avatar flex-fixed');
+
+            if ($attrs.ngClass) {
+                $scope.$watch($attrs.ngClass, function () {
+                    setTimeout(function () {
+                        pipImageUtils.setImageMarginCSS($element, image);
+                    }, 50);
+                });
+            }
+
+            // Optimization to avoid binding
+            bindControl();
+
+            if (pipUtils.toBoolean($attrs.pipRebindAvatar)) {
+                $rootScope.$on('pipPartyAvatarUpdated', refreshAvatar);
+            }
+
+            // Also optimization to avoid watch if it is unnecessary
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watch(partyIdGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+
+                $scope.$watch(idGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+            }
+
+            return;
+
+            function refreshAvatar() {
+                $iconTask.css('display', 'none');
+                $iconFilm.css('display', 'none');
+                $iconFolder.css('display', 'none');
+                $defaultBlock.css('display', 'none');
+                $image.attr('src', '');
+                $svg.css('display', 'none');
+                $image.css('display', 'inline-block');
+                bindControl();
+            };
+
+            function bindControl() {
+                var
+                    partyName = partyNameGetter($scope),
+                    partyId = partyIdGetter($scope),
+                    id = idGetter($scope),
+                    type = typeGetter($scope);
+
+                $iconTask.css('display', 'none');
+                $iconFilm.css('display', 'none');
+                $iconFolder.css('display', 'none');
+                $defaultBlock.css('display', 'none');
+
+                // Timestamp to avoid caching images for too long
+                var url = pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
+
+                if ((type && id && partyId) || (partyId && partyName)) {
+                    if (type && id && partyId) {
+                        if (type == 'category') return;
+
+                        if (entityTypes[type] == 'goals' || entityTypes[type] == 'areas' ) {
+                            $image.attr('src', url);
+                            $svg.css('display', 'none');
+                            $image.css('display', 'inline-block');
+                        } else {
+                            $defaultBlock.css('display', 'block');
+                            var colorClassIndex = pipStrings.hashCode(id) % colors.length;
+                            $element.addClass(colorClasses[colorClassIndex]);
+                            switch(type) {
+                                case 'vision':
+                                    $svg.css('display', 'none');
+                                    $iconFilm.css('display', 'inline-block');
+                                    $iconTask.css('display', 'none');
+                                    $iconFolder.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                                case 'event':
+                                    $svg.css('display', 'none');
+                                    $iconTask.css('display', 'inline-block');
+                                    $iconFilm.css('display', 'none');
+                                    $iconFolder.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                                case 'note':
+                                    $svg.css('display', 'none');
+                                    $iconFolder.css('display', 'inline-block');
+                                    $iconTask.css('display', 'none');
+                                    $iconFilm.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                            }
+                        }
+                    } else {
+                        $image.attr('src', url);
+                        $svg.css('display', 'none');
+                        $image.css('display', 'inline-block');
+                    }
+                }
+            };
+
+        }]
+    );
+
+})();
 
 
 /**
@@ -923,171 +1088,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Avatar control
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - Replace placeholder with default image generated on server
- * - Fix resizing problem
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
-
-    thisModule.directive('pipAvatar',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: false,
-                template: '<md-icon></md-icon><img/>'
-                + '<div><md-icon class="default_icon" id="icon-film" md-svg-icon="icons:film"></md-icon>'
-                + '<md-icon class="default_icon" id="icon-task" md-svg-icon="icons:task"></md-icon>'
-                + '<md-icon class="default_icon" id="icon-folder" md-svg-icon="icons:folder"></md-icon></div>',
-                controller: 'pipAvatarController'
-            }
-        }
-    );
-
-    thisModule.controller('pipAvatarController',
-        ['$scope', '$rootScope', '$element', '$attrs', '$parse', 'pipUtils', 'pipStrings', 'pipRest', '$http', 'pipImageUtils', function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
-            var
-                $svg = $element.children('md-icon'),
-                $image = $element.children('img'),
-                $defaultBlock = $element.children('div'),
-                $iconFilm = $element.find('#icon-film'),
-                $iconTask = $element.find('#icon-task'),
-                $iconFolder = $element.find('#icon-folder'),
-                image = null,
-
-                partyIdGetter = $parse($attrs.pipPartyId),
-                partyNameGetter = $parse($attrs.pipPartyName),
-                typeGetter = $parse($attrs.pipEntityType),
-                idGetter = $parse($attrs.pipId),
-
-                colors = pipImageUtils.getAvatarColors(),
-                colorClasses = pipImageUtils.getColorClasses(),
-                entityTypes = pipImageUtils.getEntityTypes();
-
-            // When image is loaded resize/reposition it
-            $image.load(function ($event) {
-                image = $($event.target);
-                pipImageUtils.setImageMarginCSS($element, image);
-            });
-
-            // Add class
-            $element.addClass('pip-avatar flex-fixed');
-
-            if ($attrs.ngClass) {
-                $scope.$watch($attrs.ngClass, function () {
-                    setTimeout(function () {
-                        pipImageUtils.setImageMarginCSS($element, image);
-                    }, 50);
-                });
-            }
-
-            // Optimization to avoid binding
-            bindControl();
-
-            if (pipUtils.toBoolean($attrs.pipRebindAvatar)) {
-                $rootScope.$on('pipPartyAvatarUpdated', refreshAvatar);
-            }
-
-            // Also optimization to avoid watch if it is unnecessary
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch(partyIdGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-
-                $scope.$watch(idGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-            }
-
-            return;
-
-            function refreshAvatar() {
-                $iconTask.css('display', 'none');
-                $iconFilm.css('display', 'none');
-                $iconFolder.css('display', 'none');
-                $defaultBlock.css('display', 'none');
-                $image.attr('src', '');
-                $svg.css('display', 'none');
-                $image.css('display', 'inline-block');
-                bindControl();
-            };
-
-            function bindControl() {
-                var
-                    partyName = partyNameGetter($scope),
-                    partyId = partyIdGetter($scope),
-                    id = idGetter($scope),
-                    type = typeGetter($scope);
-
-                $iconTask.css('display', 'none');
-                $iconFilm.css('display', 'none');
-                $iconFolder.css('display', 'none');
-                $defaultBlock.css('display', 'none');
-
-                // Timestamp to avoid caching images for too long
-                var url = pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
-
-                if ((type && id && partyId) || (partyId && partyName)) {
-                    if (type && id && partyId) {
-                        if (type == 'category') return;
-
-                        if (entityTypes[type] == 'goals' || entityTypes[type] == 'areas' ) {
-                            $image.attr('src', url);
-                            $svg.css('display', 'none');
-                            $image.css('display', 'inline-block');
-                        } else {
-                            $defaultBlock.css('display', 'block');
-                            var colorClassIndex = pipStrings.hashCode(id) % colors.length;
-                            $element.addClass(colorClasses[colorClassIndex]);
-                            switch(type) {
-                                case 'vision':
-                                    $svg.css('display', 'none');
-                                    $iconFilm.css('display', 'inline-block');
-                                    $iconTask.css('display', 'none');
-                                    $iconFolder.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                                case 'event':
-                                    $svg.css('display', 'none');
-                                    $iconTask.css('display', 'inline-block');
-                                    $iconFilm.css('display', 'none');
-                                    $iconFolder.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                                case 'note':
-                                    $svg.css('display', 'none');
-                                    $iconFolder.css('display', 'inline-block');
-                                    $iconTask.css('display', 'none');
-                                    $iconFilm.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                            }
-                        }
-                    } else {
-                        $image.attr('src', url);
-                        $svg.css('display', 'none');
-                        $image.css('display', 'inline-block');
-                    }
-                }
-            };
-
-        }]
-    );
-
-})();
-
-
-/**
  * @file Camera dialog
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -1227,6 +1227,181 @@ module.run(['$templateCache', function($templateCache) {
             function onCancelClick() {
                 $mdDialog.cancel();
             };
+        }]
+    );
+
+})();
+/**
+ * @file Camera dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular, Webcam */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipGallerySearchDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates', 'pipRest']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'IMAGE_GALLERY': 'Add from image gallery',
+            'SEARCH_PICTURES': 'Search for pictures...',
+            'IMAGE_START_SEARCH': 'Images will appear here once you start searching'
+        });
+        pipTranslateProvider.translations('ru', {
+            'IMAGE_GALLERY': 'Добавить из галереи изображений',
+            'SEARCH_PICTURES': 'Поиск изображений...',
+            'IMAGE_START_SEARCH': 'Картинки появятся после начала поиска'
+        });
+    }]);
+
+    thisModule.factory('pipGallerySearchDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback, multiple) {
+                    $mdDialog.show({
+                        templateUrl: 'gallery_search_dialog/gallery_search_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipGallerySearchController',
+                        locals: {
+                            multiple: multiple
+                        }
+                    }).then(function (result) {
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    }, function () {
+
+                    });
+                }
+            };
+        }]);
+
+    thisModule.controller('pipGallerySearchController',
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', '$http', 'pipRest', 'multiple', 'pipTransaction', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, $http, pipRest, multiple, pipTransaction) {
+
+            var prevSearch = '',
+                url = pipRest.serverUrl() + '/api/images/search',
+                images = [];
+
+            $scope.theme = $rootScope.$theme;
+            $scope.$serverUrl = pipRest.serverUrl();
+            $scope.$search = '';
+            $scope.$images = [];
+            $scope.transaction = pipTransaction('search', $scope);
+
+            $scope.onSearchClick = onSearchClick;
+            $scope.onKeyPress = onKeyPress;
+            $scope.onImageClick = onImageClick;
+            $scope.onAddClick = onAddClick;
+            $scope.onCancelClick = onCancelClick;
+            $scope.addButtonDisabled = addButtonDisabled;
+            $scope.onStopSearchClick = onStopSearchClick;
+
+            focusSearchText();
+
+            return;
+
+            function onSearchClick() {
+                if ($scope.transaction.busy()) return;
+
+                if ($scope.$search == '' || $scope.$search == prevSearch) return;
+
+                prevSearch = $scope.$search;
+                $scope.$images = [];
+                $scope.stop = null;
+                var requestUrl = url + '?q=' + $scope.$search;
+
+                var transactionId = $scope.transaction.begin('ENTERING');
+                if (!transactionId) return;
+
+                $http['get'](requestUrl)
+                    .success(function (results) {
+                        if ($scope.transaction.aborted(transactionId))return;
+
+
+                        for (var i = 0; i < results.length; i++) {
+                            $scope.$images.push({
+                                checked: false,
+                                url: results[i].link,
+                                thumbnail: results[i].thumbnail
+                            });
+                        }
+                        $scope.transaction.end();
+
+
+                    }).
+                    error(function (error) {
+                        console.error(error)
+                    });
+            }
+
+            function onStopSearchClick() {
+                $scope.transaction.abort();
+                prevSearch = '';
+            }
+
+            function onKeyPress($event) {
+                if ($event.keyCode === 13)
+                    $scope.onSearchClick();
+            }
+
+            function onImageClick(image) {
+                if ($scope.transaction.busy()) return;
+
+                image.checked = !image.checked;
+
+                if (multiple) {
+                    if (image.checked) {
+                        images.push(image);
+                    } else {
+                        _.remove(images, {url: image.url});
+                    }
+                } else {
+                    if (image.checked) {
+                        if (images.length > 0) {
+                            images[0].checked = false;
+                            images[0] = image;
+                        } else {
+                            images.push(image);
+                        }
+                    } else {
+                        images = [];
+                    }
+                }
+            }
+
+            function onAddClick() {
+                if ($scope.transaction.busy()) return;
+
+                var result = [];
+                images.forEach(function (image) {
+                    if (image.checked)
+                        result.push(image.url);
+                });
+                $mdDialog.hide(result);
+            }
+
+            function onCancelClick() {
+                $mdDialog.cancel();
+            }
+
+            function addButtonDisabled() {
+                return images.length == 0 || $scope.transaction.busy();
+            }
+
+            function focusSearchText() {
+                setTimeout(function () {
+                    var element = $('.pip-gallery-search-dialog .search-images');
+                    if (element.length > 0)
+                        element.focus();
+                }, 0);
+            }
+
         }]
     );
 
@@ -1550,181 +1725,6 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 
-/**
- * @file Camera dialog
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular, Webcam */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipGallerySearchDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates', 'pipRest']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'IMAGE_GALLERY': 'Add from image gallery',
-            'SEARCH_PICTURES': 'Search for pictures...',
-            'IMAGE_START_SEARCH': 'Images will appear here once you start searching'
-        });
-        pipTranslateProvider.translations('ru', {
-            'IMAGE_GALLERY': 'Добавить из галереи изображений',
-            'SEARCH_PICTURES': 'Поиск изображений...',
-            'IMAGE_START_SEARCH': 'Картинки появятся после начала поиска'
-        });
-    }]);
-
-    thisModule.factory('pipGallerySearchDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback, multiple) {
-                    $mdDialog.show({
-                        templateUrl: 'gallery_search_dialog/gallery_search_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipGallerySearchController',
-                        locals: {
-                            multiple: multiple
-                        }
-                    }).then(function (result) {
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    }, function () {
-
-                    });
-                }
-            };
-        }]);
-
-    thisModule.controller('pipGallerySearchController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', '$http', 'pipRest', 'multiple', 'pipTransaction', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, $http, pipRest, multiple, pipTransaction) {
-
-            var prevSearch = '',
-                url = pipRest.serverUrl() + '/api/images/search',
-                images = [];
-
-            $scope.theme = $rootScope.$theme;
-            $scope.$serverUrl = pipRest.serverUrl();
-            $scope.$search = '';
-            $scope.$images = [];
-            $scope.transaction = pipTransaction('search', $scope);
-
-            $scope.onSearchClick = onSearchClick;
-            $scope.onKeyPress = onKeyPress;
-            $scope.onImageClick = onImageClick;
-            $scope.onAddClick = onAddClick;
-            $scope.onCancelClick = onCancelClick;
-            $scope.addButtonDisabled = addButtonDisabled;
-            $scope.onStopSearchClick = onStopSearchClick;
-
-            focusSearchText();
-
-            return;
-
-            function onSearchClick() {
-                if ($scope.transaction.busy()) return;
-
-                if ($scope.$search == '' || $scope.$search == prevSearch) return;
-
-                prevSearch = $scope.$search;
-                $scope.$images = [];
-                $scope.stop = null;
-                var requestUrl = url + '?q=' + $scope.$search;
-
-                var transactionId = $scope.transaction.begin('ENTERING');
-                if (!transactionId) return;
-
-                $http['get'](requestUrl)
-                    .success(function (results) {
-                        if ($scope.transaction.aborted(transactionId))return;
-
-
-                        for (var i = 0; i < results.length; i++) {
-                            $scope.$images.push({
-                                checked: false,
-                                url: results[i].link,
-                                thumbnail: results[i].thumbnail
-                            });
-                        }
-                        $scope.transaction.end();
-
-
-                    }).
-                    error(function (error) {
-                        console.error(error)
-                    });
-            }
-
-            function onStopSearchClick() {
-                $scope.transaction.abort();
-                prevSearch = '';
-            }
-
-            function onKeyPress($event) {
-                if ($event.keyCode === 13)
-                    $scope.onSearchClick();
-            }
-
-            function onImageClick(image) {
-                if ($scope.transaction.busy()) return;
-
-                image.checked = !image.checked;
-
-                if (multiple) {
-                    if (image.checked) {
-                        images.push(image);
-                    } else {
-                        _.remove(images, {url: image.url});
-                    }
-                } else {
-                    if (image.checked) {
-                        if (images.length > 0) {
-                            images[0].checked = false;
-                            images[0] = image;
-                        } else {
-                            images.push(image);
-                        }
-                    } else {
-                        images = [];
-                    }
-                }
-            }
-
-            function onAddClick() {
-                if ($scope.transaction.busy()) return;
-
-                var result = [];
-                images.forEach(function (image) {
-                    if (image.checked)
-                        result.push(image.url);
-                });
-                $mdDialog.hide(result);
-            }
-
-            function onCancelClick() {
-                $mdDialog.cancel();
-            }
-
-            function addButtonDisabled() {
-                return images.length == 0 || $scope.transaction.busy();
-            }
-
-            function focusSearchText() {
-                setTimeout(function () {
-                    var element = $('.pip-gallery-search-dialog .search-images');
-                    if (element.length > 0)
-                        element.focus();
-                }, 0);
-            }
-
-        }]
-    );
-
-})();
 /**
  * @file Picture control
  * @copyright Digital Living Software Corp. 2014-2015
