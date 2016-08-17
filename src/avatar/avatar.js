@@ -84,6 +84,11 @@
                     if (oldValue !== newValue)
                         bindControl();
                 });
+
+                $scope.$watch(urlGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
             }
 
             return;
