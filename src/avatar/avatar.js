@@ -43,6 +43,7 @@
                 partyNameGetter = $parse($attrs.pipPartyName),
                 typeGetter = $parse($attrs.pipEntityType),
                 idGetter = $parse($attrs.pipId),
+                urlGetter = $parse($attrs.pipImageUrl),
 
                 colors = pipImageUtils.getAvatarColors(),
                 colorClasses = pipImageUtils.getColorClasses(),
@@ -103,7 +104,8 @@
                     partyName = partyNameGetter($scope),
                     partyId = partyIdGetter($scope),
                     id = idGetter($scope),
-                    type = typeGetter($scope);
+                    type = typeGetter($scope),
+                    transUrl = urlGetter($scope);
 
                 $iconTask.css('display', 'none');
                 $iconFilm.css('display', 'none');
@@ -111,9 +113,9 @@
                 $defaultBlock.css('display', 'none');
 
                 // Timestamp to avoid caching images for too long
-                var url = pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
+                var url = transUrl || pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
 
-                if ((type && id && partyId) || (partyId && partyName)) {
+                if ((type && id && partyId) || (partyId && partyName) || transUrl) {
                     if (type && id && partyId) {
                         if (type == 'category') return;
 
