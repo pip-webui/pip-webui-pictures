@@ -1,29 +1,3 @@
-/**
- * @file Registration of pictures WebUI controls
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipPictures', [        
-        'pipAddImage',
-        'pipAvatar',
-        'pipAvatarEdit',
-        'pipPicture',
-        'pipPictureEdit',
-        'pipCollage',
-        'pipPictureListEdit',        
-        'pipCameraDialog',        
-        'pipPictureUrlDialog'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipPictures.Templates');
@@ -294,63 +268,6 @@ try {
   module = angular.module('pipPictures.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('picture_url_dialog/picture_url_dialog.html',
-    '<!--\n' +
-    '@file Picture URL dialog content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog layout-column"\n' +
-    '           md-theme="{{theme}}">\n' +
-    '\n' +
-    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">\n' +
-    '        <div class="pip-header bm16 layout-row layout-align-start-center">\n' +
-    '            <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"\n' +
-    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
-    '                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
-    '            </md-button>\n' +
-    '            <h3 class="text-title m0">\n' +
-    '                {{ ::\'PICTURE_FROM_WEBLINK\' | translate}}\n' +
-    '            </h3>\n' +
-    '        </div>\n' +
-    '\n' +
-    '        <div class="pip-content">\n' +
-    '            <md-input-container md-no-float class="w-stretch text-subhead1">\n' +
-    '                <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: \'LINK_PICTURE\' | translate}}"/>\n' +
-    '            </md-input-container>\n' +
-    '\n' +
-    '            <div class="w-stretch layout-row layout-align-center-center"\n' +
-    '                 ng-hide="invalid">\n' +
-    '                <img id="url_image"/>\n' +
-    '            </div>\n' +
-    '\n' +
-    '            <div class="pip-no-images layout-row layout-align-center-center" ng-show="invalid">\n' +
-    '                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>\n' +
-    '            </div>\n' +
-    '\n' +
-    '        </div>\n' +
-    '    </md-dialog-content>\n' +
-    '    <div class="pip-footer">\n' +
-    '        <md-button ng-click="onCancelClick()" aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
-    '            {{ ::\'CANCEL\' | translate }}\n' +
-    '        </md-button>\n' +
-    '\n' +
-    '        <md-button class="md-accent" ng-click="onAddClick()" ng-disabled="invalid"\n' +
-    '                   aria-label="{{ ::\'ADD\' | translate }}">\n' +
-    '            {{ ::\'ADD\' | translate }}\n' +
-    '        </md-button>\n' +
-    '    </div>\n' +
-    '</md-dialog>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipPictures.Templates');
-} catch (e) {
-  module = angular.module('pipPictures.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('picture_list_edit/picture_list_edit.html',
     '<div pip-focused>\n' +
     '	<div class="pip-picture-upload pointer pip-focusable"\n' +
@@ -403,13 +320,66 @@ module.run(['$templateCache', function($templateCache) {
 }]);
 })();
 
+(function(module) {
+try {
+  module = angular.module('pipPictures.Templates');
+} catch (e) {
+  module = angular.module('pipPictures.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('picture_url_dialog/picture_url_dialog.html',
+    '<!--\n' +
+    '@file Picture URL dialog content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog layout-column"\n' +
+    '           md-theme="{{theme}}">\n' +
+    '\n' +
+    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">\n' +
+    '        <div class="pip-header bm16 layout-row layout-align-start-center">\n' +
+    '            <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"\n' +
+    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
+    '            </md-button>\n' +
+    '            <h3 class="text-title m0">\n' +
+    '                {{ ::\'PICTURE_FROM_WEBLINK\' | translate}}\n' +
+    '            </h3>\n' +
+    '        </div>\n' +
+    '\n' +
+    '        <div class="pip-content">\n' +
+    '            <md-input-container md-no-float class="w-stretch text-subhead1">\n' +
+    '                <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: \'LINK_PICTURE\' | translate}}"/>\n' +
+    '            </md-input-container>\n' +
+    '\n' +
+    '            <div class="w-stretch layout-row layout-align-center-center"\n' +
+    '                 ng-hide="invalid">\n' +
+    '                <img id="url_image"/>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="pip-no-images layout-row layout-align-center-center" ng-show="invalid">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>\n' +
+    '            </div>\n' +
+    '\n' +
+    '        </div>\n' +
+    '    </md-dialog-content>\n' +
+    '    <div class="pip-footer">\n' +
+    '        <md-button ng-click="onCancelClick()" aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '            {{ ::\'CANCEL\' | translate }}\n' +
+    '        </md-button>\n' +
+    '\n' +
+    '        <md-button class="md-accent" ng-click="onAddClick()" ng-disabled="invalid"\n' +
+    '                   aria-label="{{ ::\'ADD\' | translate }}">\n' +
+    '            {{ ::\'ADD\' | translate }}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '</md-dialog>');
+}]);
+})();
+
 /**
- * @file Avatar control
+ * @file Registration of pictures WebUI controls
  * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - Replace placeholder with default image generated on server
- * - Fix resizing problem
  */
 
 /* global angular */
@@ -417,162 +387,20 @@ module.run(['$templateCache', function($templateCache) {
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
-
-    thisModule.directive('pipAvatar',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: false,
-                template: '<md-icon></md-icon><img/>'
-                + '<div><md-icon class="default_icon" id="icon-film" md-svg-icon="icons:film"></md-icon>'
-                + '<md-icon class="default_icon" id="icon-task" md-svg-icon="icons:task"></md-icon>'
-                + '<md-icon class="default_icon" id="icon-folder" md-svg-icon="icons:folder"></md-icon></div>',
-                controller: 'pipAvatarController'
-            }
-        }
-    );
-
-    thisModule.controller('pipAvatarController',
-        ['$scope', '$rootScope', '$element', '$attrs', '$parse', 'pipUtils', 'pipStrings', 'pipRest', '$http', 'pipImageUtils', function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
-            var
-                $svg = $element.children('md-icon'),
-                $image = $element.children('img'),
-                $defaultBlock = $element.children('div'),
-                $iconFilm = $element.find('#icon-film'),
-                $iconTask = $element.find('#icon-task'),
-                $iconFolder = $element.find('#icon-folder'),
-                image = null,
-
-                partyIdGetter = $parse($attrs.pipPartyId),
-                partyNameGetter = $parse($attrs.pipPartyName),
-                typeGetter = $parse($attrs.pipEntityType),
-                idGetter = $parse($attrs.pipId),
-                urlGetter = $parse($attrs.pipImageUrl),
-
-                colors = pipImageUtils.getAvatarColors(),
-                colorClasses = pipImageUtils.getColorClasses(),
-                entityTypes = pipImageUtils.getEntityTypes();
-
-            // When image is loaded resize/reposition it
-            $image.load(function ($event) {
-                image = $($event.target);
-                pipImageUtils.setImageMarginCSS($element, image);
-            });
-
-            // Add class
-            $element.addClass('pip-avatar flex-fixed');
-
-            if ($attrs.ngClass) {
-                $scope.$watch($attrs.ngClass, function () {
-                    setTimeout(function () {
-                        pipImageUtils.setImageMarginCSS($element, image);
-                    }, 50);
-                });
-            }
-
-            // Optimization to avoid binding
-            bindControl();
-
-            if (pipUtils.toBoolean($attrs.pipRebindAvatar)) {
-                $rootScope.$on('pipPartyAvatarUpdated', refreshAvatar);
-            }
-
-            // Also optimization to avoid watch if it is unnecessary
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch(partyIdGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-
-                $scope.$watch(idGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-
-                $scope.$watch(urlGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-            }
-
-            return;
-
-            function refreshAvatar() {
-                $iconTask.css('display', 'none');
-                $iconFilm.css('display', 'none');
-                $iconFolder.css('display', 'none');
-                $defaultBlock.css('display', 'none');
-                $image.attr('src', '');
-                $svg.css('display', 'none');
-                $image.css('display', 'inline-block');
-                bindControl();
-            };
-
-            function bindControl() {
-                var
-                    partyName = partyNameGetter($scope),
-                    partyId = partyIdGetter($scope),
-                    id = idGetter($scope),
-                    type = typeGetter($scope),
-                    transUrl = urlGetter($scope);
-
-                $iconTask.css('display', 'none');
-                $iconFilm.css('display', 'none');
-                $iconFolder.css('display', 'none');
-                $defaultBlock.css('display', 'none');
-
-                // Timestamp to avoid caching images for too long
-                var url = transUrl || pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
-
-                if ((type && id && partyId) || (partyId && partyName) || transUrl) {
-                    if (type && id && partyId) {
-                        if (type == 'category') return;
-
-                        if (entityTypes[type] == 'goals' || entityTypes[type] == 'areas' ) {
-                            $image.attr('src', url);
-                            $svg.css('display', 'none');
-                            $image.css('display', 'inline-block');
-                        } else {
-                            $defaultBlock.css('display', 'block');
-                            var colorClassIndex = pipStrings.hashCode(id) % colors.length;
-                            $element.addClass(colorClasses[colorClassIndex]);
-                            switch(type) {
-                                case 'vision':
-                                    $svg.css('display', 'none');
-                                    $iconFilm.css('display', 'inline-block');
-                                    $iconTask.css('display', 'none');
-                                    $iconFolder.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                                case 'event':
-                                    $svg.css('display', 'none');
-                                    $iconTask.css('display', 'inline-block');
-                                    $iconFilm.css('display', 'none');
-                                    $iconFolder.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                                case 'note':
-                                    $svg.css('display', 'none');
-                                    $iconFolder.css('display', 'inline-block');
-                                    $iconTask.css('display', 'none');
-                                    $iconFilm.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                            }
-                        }
-                    } else {
-                        $image.attr('src', url);
-                        $svg.css('display', 'none');
-                        $image.css('display', 'inline-block');
-                    }
-                }
-            };
-
-        }]
-    );
-
+    angular.module('pipPictures', [        
+        'pipAddImage',
+        'pipAvatar',
+        'pipAvatarEdit',
+        'pipPicture',
+        'pipPictureEdit',
+        'pipCollage',
+        'pipPictureListEdit',        
+        'pipCameraDialog',        
+        'pipPictureUrlDialog'
+    ]);
+    
 })();
+
 
 
 /**
@@ -748,6 +576,178 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 
+
+
+/**
+ * @file Avatar control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - Replace placeholder with default image generated on server
+ * - Fix resizing problem
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
+
+    thisModule.directive('pipAvatar',
+        function () {
+            return {
+                restrict: 'EA',
+                scope: false,
+                template: '<md-icon></md-icon><img/>'
+                + '<div><md-icon class="default_icon" id="icon-film" md-svg-icon="icons:film"></md-icon>'
+                + '<md-icon class="default_icon" id="icon-task" md-svg-icon="icons:task"></md-icon>'
+                + '<md-icon class="default_icon" id="icon-folder" md-svg-icon="icons:folder"></md-icon></div>',
+                controller: 'pipAvatarController'
+            }
+        }
+    );
+
+    thisModule.controller('pipAvatarController',
+        ['$scope', '$rootScope', '$element', '$attrs', '$parse', 'pipUtils', 'pipStrings', 'pipRest', '$http', 'pipImageUtils', function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
+            var
+                $svg = $element.children('md-icon'),
+                $image = $element.children('img'),
+                $defaultBlock = $element.children('div'),
+                $iconFilm = $element.find('#icon-film'),
+                $iconTask = $element.find('#icon-task'),
+                $iconFolder = $element.find('#icon-folder'),
+                image = null,
+
+                partyIdGetter = $parse($attrs.pipPartyId),
+                partyNameGetter = $parse($attrs.pipPartyName),
+                typeGetter = $parse($attrs.pipEntityType),
+                idGetter = $parse($attrs.pipId),
+                urlGetter = $parse($attrs.pipImageUrl),
+
+                colors = pipImageUtils.getAvatarColors(),
+                colorClasses = pipImageUtils.getColorClasses(),
+                entityTypes = pipImageUtils.getEntityTypes();
+
+            // When image is loaded resize/reposition it
+            $image.load(function ($event) {
+                image = $($event.target);
+                pipImageUtils.setImageMarginCSS($element, image);
+            });
+
+            // Add class
+            $element.addClass('pip-avatar flex-fixed');
+
+            if ($attrs.ngClass) {
+                $scope.$watch($attrs.ngClass, function () {
+                    setTimeout(function () {
+                        pipImageUtils.setImageMarginCSS($element, image);
+                    }, 50);
+                });
+            }
+
+            // Optimization to avoid binding
+            bindControl();
+
+            if (pipUtils.toBoolean($attrs.pipRebindAvatar)) {
+                $rootScope.$on('pipPartyAvatarUpdated', refreshAvatar);
+            }
+
+            // Also optimization to avoid watch if it is unnecessary
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watch(partyIdGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+
+                $scope.$watch(idGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+
+                $scope.$watch(urlGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+            }
+
+            return;
+
+            function refreshAvatar() {
+                $iconTask.css('display', 'none');
+                $iconFilm.css('display', 'none');
+                $iconFolder.css('display', 'none');
+                $defaultBlock.css('display', 'none');
+                $image.attr('src', '');
+                $svg.css('display', 'none');
+                $image.css('display', 'inline-block');
+                bindControl();
+            };
+
+            function bindControl() {
+                var
+                    partyName = partyNameGetter($scope),
+                    partyId = partyIdGetter($scope),
+                    id = idGetter($scope),
+                    type = typeGetter($scope),
+                    transUrl = urlGetter($scope);
+
+                $iconTask.css('display', 'none');
+                $iconFilm.css('display', 'none');
+                $iconFolder.css('display', 'none');
+                $defaultBlock.css('display', 'none');
+
+                // Timestamp to avoid caching images for too long
+                var url = transUrl || pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
+
+                if ((type && id && partyId) || (partyId && partyName) || transUrl) {
+                    if (type && id && partyId) {
+                        if (type == 'category') return;
+
+                        if (entityTypes[type] == 'goals' || entityTypes[type] == 'areas' ) {
+                            $image.attr('src', url);
+                            $svg.css('display', 'none');
+                            $image.css('display', 'inline-block');
+                        } else {
+                            $defaultBlock.css('display', 'block');
+                            var colorClassIndex = pipStrings.hashCode(id) % colors.length;
+                            $element.addClass(colorClasses[colorClassIndex]);
+                            switch(type) {
+                                case 'vision':
+                                    $svg.css('display', 'none');
+                                    $iconFilm.css('display', 'inline-block');
+                                    $iconTask.css('display', 'none');
+                                    $iconFolder.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                                case 'event':
+                                    $svg.css('display', 'none');
+                                    $iconTask.css('display', 'inline-block');
+                                    $iconFilm.css('display', 'none');
+                                    $iconFolder.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                                case 'note':
+                                    $svg.css('display', 'none');
+                                    $iconFolder.css('display', 'inline-block');
+                                    $iconTask.css('display', 'none');
+                                    $iconFilm.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                            }
+                        }
+                    } else {
+                        $image.attr('src', url);
+                        $svg.css('display', 'none');
+                        $image.css('display', 'inline-block');
+                    }
+                }
+            };
+
+        }]
+    );
+
+})();
 
 
 /**
@@ -1558,104 +1558,6 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 /**
- * @file Picture control
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - Replace placeholder with default image generated on server
- * - Fix resizing problem
- */
- 
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipPicture", ['pipCore']);
-
-    thisModule.directive('pipPicture', 
-        function() {
-            return {
-                restrict: 'EA',
-                scope: {
-                    src: '&pipSrc',
-                    pictureId: '=pipPictureId',
-                    defaultIcon: '=pipDefaultIcon'
-                },
-                template: '<img ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }"/>'
-                          + '<div><span></span></div>',
-                controller: 'pipPictureController' 
-            }
-        }
-    );
-
-    thisModule.controller('pipPictureController',
-        ['$scope', '$element', '$attrs', '$rootScope', 'pipUtils', 'pipImageUtils', 'pipRest', function ($scope, $element, $attrs, $rootScope, pipUtils, pipImageUtils, pipRest) {
-            var 
-                image = $element.children('img'),
-                defaultBlock = $element.children('div');
-
-            $scope.onImageError = onImageError;
-            $scope.onImageLoad = onImageLoad;
-
-            // Add class
-            $element.addClass('pip-picture');
-
-            bindControl();
-
-            // Also optimization to avoid watch if it is unnecessary
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch($scope.pictureId, function(newValue) {
-                    if ($scope.pictureId != newValue) bindControl();
-                });
-            }
-
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch($scope.src, function(newValue) {
-                    if ($scope.src != newValue)
-                      bindControl();
-                });
-            }
-
-            return;
-
-            // Clean up url to remove broken icon
-            function onImageError($event) {
-                $scope.$apply(function() {
-                    var image = $($event.target);
-
-                    pipImageUtils.setErrorImageCSS(image);
-                    defaultBlock.css('display', 'block');
-                });
-            };
-
-            // When image is loaded resize/reposition it
-            function onImageLoad($event) {
-                var image = $($event.target);
-                pipImageUtils.setImageMarginCSS($element, image);
-                defaultBlock.css('display', 'none');
-            };
-
-            function bindControl() {
-                if ($scope.pictureId) {
-                    var serverUrl = pipRest.serverUrl(),
-                        userId = ($rootScope.$user || {}).id,
-                        partyId = ($rootScope.$party || {}).id || userId,
-                        url = serverUrl + '/api/parties/' + partyId + '/files/' + $scope.pictureId + '/content';
-
-                    image.attr('src', url);
-                } else {
-                    if ($scope.src) image.attr('src', $scope.src());
-                    else image.attr('src', '');
-                }
-            };
-        }]        
-    ); 
-
-})();
-
-
-/**
  * @file Camera dialog
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -1830,6 +1732,104 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })();
+/**
+ * @file Picture control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - Replace placeholder with default image generated on server
+ * - Fix resizing problem
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipPicture", ['pipCore']);
+
+    thisModule.directive('pipPicture', 
+        function() {
+            return {
+                restrict: 'EA',
+                scope: {
+                    src: '&pipSrc',
+                    pictureId: '=pipPictureId',
+                    defaultIcon: '=pipDefaultIcon'
+                },
+                template: '<img ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }"/>'
+                          + '<div><span></span></div>',
+                controller: 'pipPictureController' 
+            }
+        }
+    );
+
+    thisModule.controller('pipPictureController',
+        ['$scope', '$element', '$attrs', '$rootScope', 'pipUtils', 'pipImageUtils', 'pipRest', function ($scope, $element, $attrs, $rootScope, pipUtils, pipImageUtils, pipRest) {
+            var 
+                image = $element.children('img'),
+                defaultBlock = $element.children('div');
+
+            $scope.onImageError = onImageError;
+            $scope.onImageLoad = onImageLoad;
+
+            // Add class
+            $element.addClass('pip-picture');
+
+            bindControl();
+
+            // Also optimization to avoid watch if it is unnecessary
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watch($scope.pictureId, function(newValue) {
+                    if ($scope.pictureId != newValue) bindControl();
+                });
+            }
+
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watch($scope.src, function(newValue) {
+                    if ($scope.src != newValue)
+                      bindControl();
+                });
+            }
+
+            return;
+
+            // Clean up url to remove broken icon
+            function onImageError($event) {
+                $scope.$apply(function() {
+                    var image = $($event.target);
+
+                    pipImageUtils.setErrorImageCSS(image);
+                    defaultBlock.css('display', 'block');
+                });
+            };
+
+            // When image is loaded resize/reposition it
+            function onImageLoad($event) {
+                var image = $($event.target);
+                pipImageUtils.setImageMarginCSS($element, image);
+                defaultBlock.css('display', 'none');
+            };
+
+            function bindControl() {
+                if ($scope.pictureId) {
+                    var serverUrl = pipRest.serverUrl(),
+                        userId = ($rootScope.$user || {}).id,
+                        partyId = ($rootScope.$party || {}).id || userId,
+                        url = serverUrl + '/api/parties/' + partyId + '/files/' + $scope.pictureId + '/content';
+
+                    image.attr('src', url);
+                } else {
+                    if ($scope.src) image.attr('src', $scope.src());
+                    else image.attr('src', '');
+                }
+            };
+        }]        
+    ); 
+
+})();
+
+
 /**
  * @file Picture control
  * @copyright Digital Living Software Corp. 2014-2015
