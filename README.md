@@ -6,64 +6,64 @@ Images are essential for any application with graphical user interface. Pip.WebU
 
 **Picture view** is the simplest control that loads from the server and visualizes a single image. 
 
-<a href="doc/images/img-picture-simple.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-picture-simple.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-simple.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-simple.png"/>
 </a>
 
 **Picture edit** control allows to set a single image and upload it to server.
 
-<a href="doc/images/img-picture-edit-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-picture-edit-control.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-edit-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-edit-control.png"/>
 </a>
 
 **Avatar view** control is identical to **Picture view**, the only difference is in URL on the server to upload image.
 
-<a href="doc/images/img-avatar-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-avatar-control.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-avatar-control.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-avatar-control.png"/>
 </a>
 
 **Picture list** control allows to upload a collection of images at once. 
 
-<a href="doc/images/img-picture-list-edit.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-picture-list-edit.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-list-edit.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-list-edit.png"/>
 </a>
 
 **Collage** control visualizes a collection of images as random collage 
 
-<a href="doc/images/img-picture-collage.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
-    <img src="doc/images/img-picture-collage.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-collage.png" style="border: 3px ridge #c8d2df; width: 50%; margin: auto; display: block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-collage.png"/>
 </a>
 
 **Add picture** dialog let user add image from different sources: from file, camera, web link or image library.
 
-<a href="doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-add-image-directive.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-add-image-directive.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-add-image-directive.png"/>
 </a>
 
-<a href="doc/images/img-picture-dialog.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-picture-dialog.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-dialog.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-picture-dialog.png"/>
 </a>
 
-<a href="doc/images/img-camera.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-camera.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-camera.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-camera.png"/>
 </a>
 
-<a href="doc/images/img-weblink.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-weblink.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-weblink.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-weblink.png"/>
 </a>
 
-<a href="doc/images/img-image-library.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
-    <img src="doc/images/img-image-library.png"/>
+<a href="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-image-library.png" style="border: 3px ridge #c8d2df; margin: auto; display: inline-block">
+    <img src="https://github.com/pip-webui/pip-webui-pictures/raw/master/doc/images/img-image-library.png"/>
 </a>
 
 
 ## Learn more about the module
 
-- [User's guide](doc/UsersGuide.md)
+- [User's guide](https://github.com/pip-webui/pip-webui-pictures/blob/master/doc/UsersGuide.md)
 - [Online samples](http://webui.pipdevs.com/pip-webui-pictures/index.html)
 - [API reference](http://webui-api.pipdevs.com/pip-webui-pictures/index.html)
-- [Developer's guide](doc/DevelopersGuide.md)
-- [Changelog](CHANGELOG.md)
+- [Developer's guide](https://github.com/pip-webui/pip-webui-pictures/blob/master/doc/DevelopersGuide.md)
+- [Changelog](https://github.com/pip-webui/pip-webui-pictures/blob/master/CHANGELOG.md)
 - [Pip.WebUI project website](http://www.pipwebui.org)
 - [Pip.WebUI project wiki](https://github.com/pip-webui/pip-webui/wiki)
 - [Pip.WebUI discussion forum](https://groups.google.com/forum/#!forum/pip-webui)
