@@ -1,29 +1,3 @@
-/**
- * @file Registration of pictures WebUI controls
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipPictures', [        
-        'pipAddImage',
-        'pipAvatar',
-        'pipAvatarEdit',
-        'pipPicture',
-        'pipPictureEdit',
-        'pipCollage',
-        'pipPictureListEdit',        
-        'pipCameraDialog',        
-        'pipPictureUrlDialog'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipPictures.Templates');
@@ -404,7 +378,37 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 /**
+<<<<<<< HEAD
  * @file Avatar control
+=======
+ * @file Registration of pictures WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipPictures', [        
+        'pipAddImage',
+        'pipAvatar',
+        'pipAvatarEdit',
+        'pipPicture',
+        'pipPictureEdit',
+        'pipCollage',
+        'pipPictureListEdit',        
+        'pipCameraDialog',        
+        'pipPictureUrlDialog'
+    ]);
+    
+})();
+
+
+
+/**
+ * @file Add image control
+>>>>>>> 28164d61d57f735acf2f757568563fc281a64707
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
  * - Improve samples in sampler app
@@ -895,6 +899,150 @@ module.run(['$templateCache', function($templateCache) {
 
 })();
 /**
+ * @file Camera dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular, Webcam */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipCameraDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'TAKE_PICTURE': 'Take a picture',
+            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
+        });
+        pipTranslateProvider.translations('ru', {
+            'TAKE_PICTURE': 'Сделать фото',
+            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
+        });
+    }]);
+
+    thisModule.factory('pipCameraDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback) {
+                    $mdDialog.show({
+                        templateUrl: 'camera_dialog/camera_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipCameraController'
+                    }).then(function (result) {
+                        Webcam.reset();
+                        console.log(result);
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    }, function () {
+                        Webcam.reset();
+                    });
+                }
+            };
+        }]);
+
+    thisModule.controller('pipCameraController',
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
+            $scope.browser = pipUtils.getBrowser().os;
+            $scope.theme = $rootScope.$theme;
+
+            if ($scope.browser !== 'android') {
+                console.log('webcam');
+                Webcam.init();
+
+                setTimeout(function () {
+                    Webcam.attach('.camera-stream');
+                }, 0);
+
+                Webcam.on('error', function (err) {
+                    $scope.webCamError = true;
+                    console.error(err);
+                });
+
+                Webcam.set({
+                    width: 400,
+                    height: 300,
+
+                    dest_width: 400,
+                    dest_height: 300,
+
+                    crop_width: 400,
+                    crop_height: 300,
+
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+
+                //Webcam.setSWFLocation('../../../dist/webcam.swf');
+                Webcam.setSWFLocation('webcam.swf');
+
+            } else {
+                document.addEventListener("deviceready",onDeviceReady,false);
+
+            }
+            // todo add logic in callbacks
+            function onDeviceReady() {
+                navigator.camera.getPicture(onSuccess, onFail,
+                    {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        correctOrientation: true,
+                        quality: 75,
+                        targetWidth: 200,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    });
+            }
+
+
+            function onSuccess(imageData) {
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
+                $mdDialog.hide(picture);
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                $mdDialog.hide();
+            }
+
+            $scope.$freeze = false;
+
+            $scope.onTakePictureClick = onTakePictureClick;
+            $scope.onResetPicture = onResetPicture;
+            $scope.onCancelClick = onCancelClick;
+
+            return;
+
+            function onTakePictureClick() {
+                if (Webcam) {
+                    if ($scope.$freeze) {
+                        Webcam.snap(function (dataUri) {
+                            $scope.$freeze = false;
+                            $mdDialog.hide(dataUri);
+                        });
+                    } else {
+                        $scope.$freeze = true;
+                        Webcam.freeze();
+                    }
+                }
+            };
+
+            function onResetPicture() {
+                $scope.$freeze = false;
+                Webcam.unfreeze();
+            };
+
+            function onCancelClick() {
+                $mdDialog.cancel();
+            };
+        }]
+    );
+
+})();
+/**
  * @file Collage control
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -1166,6 +1314,7 @@ module.run(['$templateCache', function($templateCache) {
                 // Limit collage only to one element if not specified otherwise
                 if (urls.length > 8) {
                     var multiple = multipleGetter ? multipleGetter($scope) : false;
+<<<<<<< HEAD
 
                     if (!multiple) {
                         urls.length = 8;
@@ -1522,9 +1671,40 @@ module.run(['$templateCache', function($templateCache) {
                     $scope.onChange();
                 } else if ($event.keyCode == 27) {
                     $scope.control.reset();
-                }
-            };
+=======
 
+                    if (!multiple) {
+                        urls.length = 8;
+                    }
+                }
+
+                if (urls.length <= 8) {
+                    // Get scheme for visualization
+                    var scheme = getScheme(urls.length);
+
+                    // Generate and add content
+                    var html = '<div class="pip-collage-section">' + generate(urls, scheme) + '</div>';
+                    html += '<div class="clearfix"></div>';
+                    $element.html(html);
+                } else {
+                    var html = '';
+
+                    while (urls.length > 0) {
+                        var partialUrls = urls.splice(0, 8);
+
+                        // Get scheme for visualization
+                        var scheme = getScheme(partialUrls.length);
+
+                        // Generate and add content
+                        html += '<div class="pip-collage-section">' + generate(partialUrls, scheme) + '</div>';
+                    }
+
+                    html += '<div class="clearfix"></div>';
+                    $element.html(html);
+>>>>>>> 28164d61d57f735acf2f757568563fc281a64707
+                }
+
+<<<<<<< HEAD
             // Clean up url to remove broken icon
             function onImageError($event) {
                 $scope.$apply(function() {
@@ -1541,6 +1721,20 @@ module.run(['$templateCache', function($templateCache) {
                 pipImageUtils.setImageMarginCSS({clientWidth: 80, clientHeight: 80}, image);
                 $scope.control.uploading = false;
             };
+=======
+                // Bind events to images...
+                $element.find('img')
+                    .bind('error', onImageError)
+                    .bind('load', onImageLoad);
+
+                // Show the new element
+                $element.show();
+            };
+
+        }]
+
+    );
+>>>>>>> 28164d61d57f735acf2f757568563fc281a64707
 
             // On change event
             function onChange() {
