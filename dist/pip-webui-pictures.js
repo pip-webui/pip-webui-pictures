@@ -1,3 +1,29 @@
+/**
+ * @file Registration of pictures WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipPictures', [        
+        'pipAddImage',
+        'pipAvatar',
+        'pipAvatarEdit',
+        'pipPicture',
+        'pipPictureEdit',
+        'pipCollage',
+        'pipPictureListEdit',        
+        'pipCameraDialog',        
+        'pipPictureUrlDialog'
+    ]);
+    
+})();
+
+
+
 (function(module) {
 try {
   module = angular.module('pipPictures.Templates');
@@ -221,6 +247,53 @@ try {
   module = angular.module('pipPictures.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('picture_edit/picture_edit.html',
+    '<div class="pip-picture-upload pip-picture-drop md-focused"\n' +
+    '	 ng-keydown="onKeyDown($event)"\n' +
+    ' 	 tabindex="{{ ngDisabled() || control.uploading ? -1 : 0 }}"\n' +
+    '	 pip-changed="readItemLocally(url, file)"\n' +
+    '	 ng-disabled="ngDisabled()"\n' +
+    '	 pip-multi="false"\n' +
+    '	 ng-focus="onFocus()"\n' +
+    '	 ng-blur="onBlur()"\n' +
+    '	 pip-add-image>\n' +
+    '\n' +
+    '	<div class="pip-default-icon" ng-show="empty()">\n' +
+    '		<md-icon  class="pip-picture-icon" md-svg-icon="icons:{{icon}}"></md-icon>\n' +
+    '	</div>\n' +
+    '	<div class="pip-default-text" ng-show="empty()">\n' +
+    '		<span>{{text | translate}}</span>\n' +
+    '	</div>\n' +
+    '\n' +
+    '	<img class="pip-picture-image"\n' +
+    '		 ng-src="{{control.url}}"\n' +
+    '		 ng-show="!empty()"\n' +
+    '		 ng-class="{ \'pip-image-new\': isUpdated(), \'cursor-default\' : ngDisabled() || control.uploading }"\n' +
+    ' 		 ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }">\n' +
+    '\n' +
+    '	<md-button class="md-icon-button"\n' +
+    '			   ng-click="onDeleteClick($event)"\n' +
+    '			   tabindex="-1" aria-label="delete"\n' +
+    '			   ng-hide="empty() || ngDisabled()"\n' +
+    '			   ng-disabled="ngDisabled() || control.uploading">\n' +
+    '		<md-icon  md-svg-icon="icons:cross"></md-icon>\n' +
+    '	</md-button>\n' +
+    '\n' +
+    '	<md-progress-linear ng-show="control.uploading"\n' +
+    '						ng-value="control.progress">\n' +
+    '	</md-progress-linear>\n' +
+    '</div>\n' +
+    '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipPictures.Templates');
+} catch (e) {
+  module = angular.module('pipPictures.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('picture_list_edit/picture_list_edit.html',
     '<div pip-focused>\n' +
     '	<div class="pip-picture-upload pointer pip-focusable"\n' +
@@ -268,53 +341,6 @@ module.run(['$templateCache', function($templateCache) {
     '		</div>\n' +
     '	</button>\n' +
     '	<div class="clearfix"></div>\n' +
-    '</div>\n' +
-    '');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipPictures.Templates');
-} catch (e) {
-  module = angular.module('pipPictures.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('picture_edit/picture_edit.html',
-    '<div class="pip-picture-upload pip-picture-drop md-focused"\n' +
-    '	 ng-keydown="onKeyDown($event)"\n' +
-    ' 	 tabindex="{{ ngDisabled() || control.uploading ? -1 : 0 }}"\n' +
-    '	 pip-changed="readItemLocally(url, file)"\n' +
-    '	 ng-disabled="ngDisabled()"\n' +
-    '	 pip-multi="false"\n' +
-    '	 ng-focus="onFocus()"\n' +
-    '	 ng-blur="onBlur()"\n' +
-    '	 pip-add-image>\n' +
-    '\n' +
-    '	<div class="pip-default-icon" ng-show="empty()">\n' +
-    '		<md-icon  class="pip-picture-icon" md-svg-icon="icons:{{icon}}"></md-icon>\n' +
-    '	</div>\n' +
-    '	<div class="pip-default-text" ng-show="empty()">\n' +
-    '		<span>{{text | translate}}</span>\n' +
-    '	</div>\n' +
-    '\n' +
-    '	<img class="pip-picture-image"\n' +
-    '		 ng-src="{{control.url}}"\n' +
-    '		 ng-show="!empty()"\n' +
-    '		 ng-class="{ \'pip-image-new\': isUpdated(), \'cursor-default\' : ngDisabled() || control.uploading }"\n' +
-    ' 		 ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }">\n' +
-    '\n' +
-    '	<md-button class="md-icon-button"\n' +
-    '			   ng-click="onDeleteClick($event)"\n' +
-    '			   tabindex="-1" aria-label="delete"\n' +
-    '			   ng-hide="empty() || ngDisabled()"\n' +
-    '			   ng-disabled="ngDisabled() || control.uploading">\n' +
-    '		<md-icon  md-svg-icon="icons:cross"></md-icon>\n' +
-    '	</md-button>\n' +
-    '\n' +
-    '	<md-progress-linear ng-show="control.uploading"\n' +
-    '						ng-value="control.progress">\n' +
-    '	</md-progress-linear>\n' +
     '</div>\n' +
     '');
 }]);
@@ -376,208 +402,6 @@ module.run(['$templateCache', function($templateCache) {
     '</md-dialog>');
 }]);
 })();
-
-/**
-<<<<<<< HEAD
- * @file Avatar control
-=======
- * @file Registration of pictures WebUI controls
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipPictures', [        
-        'pipAddImage',
-        'pipAvatar',
-        'pipAvatarEdit',
-        'pipPicture',
-        'pipPictureEdit',
-        'pipCollage',
-        'pipPictureListEdit',        
-        'pipCameraDialog',        
-        'pipPictureUrlDialog'
-    ]);
-    
-})();
-
-
-
-/**
- * @file Add image control
->>>>>>> 28164d61d57f735acf2f757568563fc281a64707
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - Replace placeholder with default image generated on server
- * - Fix resizing problem
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
-
-    thisModule.directive('pipAvatar',
-        function () {
-            return {
-                restrict: 'EA',
-                scope: false,
-                template: '<md-icon></md-icon><img/>'
-                + '<div><md-icon class="default_icon" id="icon-film" md-svg-icon="icons:film"></md-icon>'
-                + '<md-icon class="default_icon" id="icon-task" md-svg-icon="icons:task"></md-icon>'
-                + '<md-icon class="default_icon" id="icon-folder" md-svg-icon="icons:folder"></md-icon></div>',
-                controller: 'pipAvatarController'
-            }
-        }
-    );
-
-    thisModule.controller('pipAvatarController',
-        ['$scope', '$rootScope', '$element', '$attrs', '$parse', 'pipUtils', 'pipStrings', 'pipRest', '$http', 'pipImageUtils', function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
-            var
-                $svg = $element.children('md-icon'),
-                $image = $element.children('img'),
-                $defaultBlock = $element.children('div'),
-                $iconFilm = $element.find('#icon-film'),
-                $iconTask = $element.find('#icon-task'),
-                $iconFolder = $element.find('#icon-folder'),
-                image = null,
-
-                partyIdGetter = $parse($attrs.pipPartyId),
-                partyNameGetter = $parse($attrs.pipPartyName),
-                typeGetter = $parse($attrs.pipEntityType),
-                idGetter = $parse($attrs.pipId),
-                urlGetter = $parse($attrs.pipImageUrl),
-
-                colors = pipImageUtils.getAvatarColors(),
-                colorClasses = pipImageUtils.getColorClasses(),
-                entityTypes = pipImageUtils.getEntityTypes();
-
-            // When image is loaded resize/reposition it
-            $image.load(function ($event) {
-                image = $($event.target);
-                pipImageUtils.setImageMarginCSS($element, image);
-            });
-
-            // Add class
-            $element.addClass('pip-avatar flex-fixed');
-
-            if ($attrs.ngClass) {
-                $scope.$watch($attrs.ngClass, function () {
-                    setTimeout(function () {
-                        pipImageUtils.setImageMarginCSS($element, image);
-                    }, 50);
-                });
-            }
-
-            // Optimization to avoid binding
-            bindControl();
-
-            if (pipUtils.toBoolean($attrs.pipRebindAvatar)) {
-                $rootScope.$on('pipPartyAvatarUpdated', refreshAvatar);
-            }
-
-            // Also optimization to avoid watch if it is unnecessary
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch(partyIdGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-
-                $scope.$watch(idGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-
-                $scope.$watch(urlGetter, function (newValue, oldValue) {
-                    if (oldValue !== newValue)
-                        bindControl();
-                });
-            }
-
-            return;
-
-            function refreshAvatar() {
-                $iconTask.css('display', 'none');
-                $iconFilm.css('display', 'none');
-                $iconFolder.css('display', 'none');
-                $defaultBlock.css('display', 'none');
-                $image.attr('src', '');
-                $svg.css('display', 'none');
-                $image.css('display', 'inline-block');
-                bindControl();
-            };
-
-            function bindControl() {
-                var
-                    partyName = partyNameGetter($scope),
-                    partyId = partyIdGetter($scope),
-                    id = idGetter($scope),
-                    type = typeGetter($scope),
-                    transUrl = urlGetter($scope);
-
-                $iconTask.css('display', 'none');
-                $iconFilm.css('display', 'none');
-                $iconFolder.css('display', 'none');
-                $defaultBlock.css('display', 'none');
-
-                // Timestamp to avoid caching images for too long
-                var url = transUrl || pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
-
-                if ((type && id && partyId) || (partyId && partyName) || transUrl) {
-                    if (type && id && partyId) {
-                        if (type == 'category') return;
-
-                        if (entityTypes[type] == 'goals' || entityTypes[type] == 'areas' ) {
-                            $image.attr('src', url);
-                            $svg.css('display', 'none');
-                            $image.css('display', 'inline-block');
-                        } else {
-                            $defaultBlock.css('display', 'block');
-                            var colorClassIndex = pipStrings.hashCode(id) % colors.length;
-                            $element.addClass(colorClasses[colorClassIndex]);
-                            switch(type) {
-                                case 'vision':
-                                    $svg.css('display', 'none');
-                                    $iconFilm.css('display', 'inline-block');
-                                    $iconTask.css('display', 'none');
-                                    $iconFolder.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                                case 'event':
-                                    $svg.css('display', 'none');
-                                    $iconTask.css('display', 'inline-block');
-                                    $iconFilm.css('display', 'none');
-                                    $iconFolder.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                                case 'note':
-                                    $svg.css('display', 'none');
-                                    $iconFolder.css('display', 'inline-block');
-                                    $iconTask.css('display', 'none');
-                                    $iconFilm.css('display', 'none');
-                                    $image.css('display', 'none');
-                                    break;
-                            }
-                        }
-                    } else {
-                        $image.attr('src', url);
-                        $svg.css('display', 'none');
-                        $image.css('display', 'inline-block');
-                    }
-                }
-            };
-
-        }]
-    );
-
-})();
-
 
 /**
  * @file Add image control
@@ -755,608 +579,172 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Camera dialog
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular, Webcam */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipCameraDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'TAKE_PICTURE': 'Take a picture',
-            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
-        });
-        pipTranslateProvider.translations('ru', {
-            'TAKE_PICTURE': 'Сделать фото',
-            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
-        });
-    }]);
-
-    thisModule.factory('pipCameraDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback) {
-                    $mdDialog.show({
-                        templateUrl: 'camera_dialog/camera_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipCameraController'
-                    }).then(function (result) {
-                        Webcam.reset();
-                        console.log(result);
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    }, function () {
-                        Webcam.reset();
-                    });
-                }
-            };
-        }]);
-
-    thisModule.controller('pipCameraController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
-            $scope.browser = pipUtils.getBrowser().os;
-            $scope.theme = $rootScope.$theme;
-
-            if ($scope.browser !== 'android') {
-                console.log('webcam');
-                Webcam.init();
-
-                setTimeout(function () {
-                    Webcam.attach('.camera-stream');
-                }, 0);
-
-                Webcam.on('error', function (err) {
-                    $scope.webCamError = true;
-                    console.error(err);
-                });
-
-                Webcam.set({
-                    width: 400,
-                    height: 300,
-
-                    dest_width: 400,
-                    dest_height: 300,
-
-                    crop_width: 400,
-                    crop_height: 300,
-
-                    image_format: 'jpeg',
-                    jpeg_quality: 90
-                });
-
-                //Webcam.setSWFLocation('../../../dist/webcam.swf');
-                Webcam.setSWFLocation('webcam.swf');
-
-            } else {
-                document.addEventListener("deviceready",onDeviceReady,false);
-
-            }
-            // todo add logic in callbacks
-            function onDeviceReady() {
-                navigator.camera.getPicture(onSuccess, onFail,
-                    {
-                        sourceType: Camera.PictureSourceType.CAMERA,
-                        correctOrientation: true,
-                        quality: 75,
-                        targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL
-                    });
-            }
-
-
-            function onSuccess(imageData) {
-                var picture = imageData;
-                var picture = 'data:image/jpeg;base64,' + imageData;
-                $mdDialog.hide(picture);
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                $mdDialog.hide();
-            }
-
-            $scope.$freeze = false;
-
-            $scope.onTakePictureClick = onTakePictureClick;
-            $scope.onResetPicture = onResetPicture;
-            $scope.onCancelClick = onCancelClick;
-
-            return;
-
-            function onTakePictureClick() {
-                if (Webcam) {
-                    if ($scope.$freeze) {
-                        Webcam.snap(function (dataUri) {
-                            $scope.$freeze = false;
-                            $mdDialog.hide(dataUri);
-                        });
-                    } else {
-                        $scope.$freeze = true;
-                        Webcam.freeze();
-                    }
-                }
-            };
-
-            function onResetPicture() {
-                $scope.$freeze = false;
-                Webcam.unfreeze();
-            };
-
-            function onCancelClick() {
-                $mdDialog.cancel();
-            };
-        }]
-    );
-
-})();
-/**
- * @file Camera dialog
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular, Webcam */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipCameraDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'TAKE_PICTURE': 'Take a picture',
-            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
-        });
-        pipTranslateProvider.translations('ru', {
-            'TAKE_PICTURE': 'Сделать фото',
-            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
-        });
-    }]);
-
-    thisModule.factory('pipCameraDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback) {
-                    $mdDialog.show({
-                        templateUrl: 'camera_dialog/camera_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipCameraController'
-                    }).then(function (result) {
-                        Webcam.reset();
-                        console.log(result);
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    }, function () {
-                        Webcam.reset();
-                    });
-                }
-            };
-        }]);
-
-    thisModule.controller('pipCameraController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
-            $scope.browser = pipUtils.getBrowser().os;
-            $scope.theme = $rootScope.$theme;
-
-            if ($scope.browser !== 'android') {
-                console.log('webcam');
-                Webcam.init();
-
-                setTimeout(function () {
-                    Webcam.attach('.camera-stream');
-                }, 0);
-
-                Webcam.on('error', function (err) {
-                    $scope.webCamError = true;
-                    console.error(err);
-                });
-
-                Webcam.set({
-                    width: 400,
-                    height: 300,
-
-                    dest_width: 400,
-                    dest_height: 300,
-
-                    crop_width: 400,
-                    crop_height: 300,
-
-                    image_format: 'jpeg',
-                    jpeg_quality: 90
-                });
-
-                //Webcam.setSWFLocation('../../../dist/webcam.swf');
-                Webcam.setSWFLocation('webcam.swf');
-
-            } else {
-                document.addEventListener("deviceready",onDeviceReady,false);
-
-            }
-            // todo add logic in callbacks
-            function onDeviceReady() {
-                navigator.camera.getPicture(onSuccess, onFail,
-                    {
-                        sourceType: Camera.PictureSourceType.CAMERA,
-                        correctOrientation: true,
-                        quality: 75,
-                        targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL
-                    });
-            }
-
-
-            function onSuccess(imageData) {
-                var picture = imageData;
-                var picture = 'data:image/jpeg;base64,' + imageData;
-                $mdDialog.hide(picture);
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                $mdDialog.hide();
-            }
-
-            $scope.$freeze = false;
-
-            $scope.onTakePictureClick = onTakePictureClick;
-            $scope.onResetPicture = onResetPicture;
-            $scope.onCancelClick = onCancelClick;
-
-            return;
-
-            function onTakePictureClick() {
-                if (Webcam) {
-                    if ($scope.$freeze) {
-                        Webcam.snap(function (dataUri) {
-                            $scope.$freeze = false;
-                            $mdDialog.hide(dataUri);
-                        });
-                    } else {
-                        $scope.$freeze = true;
-                        Webcam.freeze();
-                    }
-                }
-            };
-
-            function onResetPicture() {
-                $scope.$freeze = false;
-                Webcam.unfreeze();
-            };
-
-            function onCancelClick() {
-                $mdDialog.cancel();
-            };
-        }]
-    );
-
-})();
-/**
- * @file Collage control
+ * @file Avatar control
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
  * - Improve samples in sampler app
  * - Replace placeholder with default image generated on server
  * - Fix resizing problem
  */
- 
+
 /* global angular */
 
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipCollage", ['pipCore', 'pipRest']);
+    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
 
-    thisModule.directive('pipCollage',
+    thisModule.directive('pipAvatar',
         function () {
             return {
                 restrict: 'EA',
                 scope: false,
-                controller: 'pipCollageController' 
+                template: '<md-icon></md-icon><img/>'
+                + '<div><md-icon class="default_icon" id="icon-film" md-svg-icon="icons:film"></md-icon>'
+                + '<md-icon class="default_icon" id="icon-task" md-svg-icon="icons:task"></md-icon>'
+                + '<md-icon class="default_icon" id="icon-folder" md-svg-icon="icons:folder"></md-icon></div>',
+                controller: 'pipAvatarController'
             }
         }
     );
 
-    thisModule.controller('pipCollageController',
-        ['$scope', '$element', '$attrs', '$parse', '$rootScope', 'pipUtils', 'pipStrings', 'pipRest', 'pipImageUtils', function ($scope, $element, $attrs, $parse, $rootScope, pipUtils, pipStrings, pipRest, pipImageUtils) {
-            var                         
-                pictureIdsGetter = $attrs.pipPictureIds ? $parse($attrs.pipPictureIds) : null,
-                srcsGetter = $attrs.pipSrcs ? $parse($attrs.pipSrcs) : null,
-                uniqueCodeGetter = $attrs.pipUniqueCode ? $parse($attrs.pipUniqueCode) : null,
-                multipleGetter = $attrs.pipMultiple ? $parse($attrs.pipMultiple) : null,
-                allowOpen = pipUtils.toBoolean($attrs.pipOpen),
-                collageSchemes = pipImageUtils.getCollageSchemes(),
-                resized = 0,
-                $svgData = '<?xml version="1.0" encoding="utf-8"?>'+
-                    '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'+
-                    '<svg version="1.1"'+
-                    'xmlns="http://www.w3.org/2000/svg"'+
-                    'xmlns:xlink="http://www.w3.org/1999/xlink"'+
-                    'x="0px" y="0px"'+
-                    'viewBox="0 0 510 510"'+
-                    'style="enable-background:new 0 0 515 515;"'+
-                    'xml:space="preserve">'+
-                    '<defs>'+
-                    '<style type="text/css"><![CDATA['+
-                    '#symbol-picture-no-border {'+
-                    '        transform-origin: 50% 50%;'+
-                    '        transform: scale(0.6, -0.6);'+
-                    '    }'+
-                    '        ]]></style>'+
-                    '        </defs>'+
-                    '<rect x="0" width="515" height="515"/>'+
-                    '<path id="symbol-picture-no-border" d="M120 325l136-102 69 33 136-82 0-54-410 0 0 136z m341 15c0-28-23-51-51-51-29 0-52 23-52 51 0 29 23 52 52 52 28 0 51-23 51-52z" />'+
-                    '</svg>';
+    thisModule.controller('pipAvatarController',
+        ['$scope', '$rootScope', '$element', '$attrs', '$parse', 'pipUtils', 'pipStrings', 'pipRest', '$http', 'pipImageUtils', function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
+            var
+                $svg = $element.children('md-icon'),
+                $image = $element.children('img'),
+                $defaultBlock = $element.children('div'),
+                $iconFilm = $element.find('#icon-film'),
+                $iconTask = $element.find('#icon-task'),
+                $iconFolder = $element.find('#icon-folder'),
+                image = null,
+
+                partyIdGetter = $parse($attrs.pipPartyId),
+                partyNameGetter = $parse($attrs.pipPartyName),
+                typeGetter = $parse($attrs.pipEntityType),
+                idGetter = $parse($attrs.pipId),
+                urlGetter = $parse($attrs.pipImageUrl),
+
+                colors = pipImageUtils.getAvatarColors(),
+                colorClasses = pipImageUtils.getColorClasses(),
+                entityTypes = pipImageUtils.getEntityTypes();
+
+            // When image is loaded resize/reposition it
+            $image.load(function ($event) {
+                image = $($event.target);
+                pipImageUtils.setImageMarginCSS($element, image);
+            });
 
             // Add class
-            $element.addClass('pip-collage');
+            $element.addClass('pip-avatar flex-fixed');
+
+            if ($attrs.ngClass) {
+                $scope.$watch($attrs.ngClass, function () {
+                    setTimeout(function () {
+                        pipImageUtils.setImageMarginCSS($element, image);
+                    }, 50);
+                });
+            }
+
+            // Optimization to avoid binding
+            bindControl();
+
+            if (pipUtils.toBoolean($attrs.pipRebindAvatar)) {
+                $rootScope.$on('pipPartyAvatarUpdated', refreshAvatar);
+            }
 
             // Also optimization to avoid watch if it is unnecessary
             if (pipUtils.toBoolean($attrs.pipRebind)) {
-                if (srcsGetter) {
-                    $scope.$watch(srcsGetter, function (newValue) {
-                        //getImageUrls();
-                        generateContent();
-                    });
-                    $scope.$watchCollection(srcsGetter, function (newValue) {
-                        //getImageUrls();
-                        generateContent();
-                    });
-                }
-                else if (pictureIdsGetter) {
-                    $scope.$watch(pictureIdsGetter, function (newValue) {
-                        //getImageUrls();
-                        generateContent();
-                    });
-                }
+                $scope.$watch(partyIdGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+
+                $scope.$watch(idGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
+
+                $scope.$watch(urlGetter, function (newValue, oldValue) {
+                    if (oldValue !== newValue)
+                        bindControl();
+                });
             }
-
-            $scope.getElementDimensions = getElementDimensions;
-
-            var update = _.debounce(calculateResize, 50);
-
-            function calculateResize() {
-                var ims = $element.find('img');
-                var i = 0;
-                for ( i; i < ims.length; i++ ) {
-                    var container = angular.element(ims[i].parentElement),
-                        image = angular.element(ims[i]);
-
-                    if (image.css('display') != 'none')
-                        pipImageUtils.setImageMarginCSS(container, image);
-                }
-
-                var icns = $element.find('md-icon');
-
-                var i = 0;
-                for ( i; i < icns.length; i++ ) {
-                    var container = angular.element(icns[i].parentElement),
-                        icn = angular.element(icns[i]);
-                    if (container.css('display') != 'none') {
-                        pipImageUtils.setIconMarginCSS(container[0], icn);
-                    }
-
-                }
-            };
-
-            $scope.$watch($scope.getElementDimensions, function (newValue, oldValue) {
-                if (newValue && oldValue && oldValue.h == newValue.h && oldValue.w == newValue.w) return;
-                calculateResize();
-            }, true);
-
-            generateContent();
-            //getImageUrls();
 
             return;
 
-            function getElementDimensions() {
-                var dimension = {
-                    'h': $element.height(),
-                    'w': $element.width()
-                };
-
-                return dimension;
+            function refreshAvatar() {
+                $iconTask.css('display', 'none');
+                $iconFilm.css('display', 'none');
+                $iconFolder.css('display', 'none');
+                $defaultBlock.css('display', 'none');
+                $image.attr('src', '');
+                $svg.css('display', 'none');
+                $image.css('display', 'inline-block');
+                bindControl();
             };
 
-            // Clean up url to remove broken icon
-            function onImageError(event) {
-                var 
-                    image = $(event.target),
-                    container = image.parent(),
-                    defaultBlock = container.children('div'),
-                    defaultIcon = image.parent().find('md-icon');
+            function bindControl() {
+                var
+                    partyName = partyNameGetter($scope),
+                    partyId = partyIdGetter($scope),
+                    id = idGetter($scope),
+                    type = typeGetter($scope),
+                    transUrl = urlGetter($scope);
 
-                defaultBlock.css('display', 'block');
-                image.css('display', 'none');
-                pipImageUtils.setIconMarginCSS(container[0], defaultIcon);
-                defaultIcon.empty().append($svgData);
-            };
+                $iconTask.css('display', 'none');
+                $iconFilm.css('display', 'none');
+                $iconFolder.css('display', 'none');
+                $defaultBlock.css('display', 'none');
 
-            // When image is loaded resize/reposition it
-            function onImageLoad($event) {
-                var image = $($event.target),
-                    container =  image.parent(),
-                    defaultBlock = container.children('div');
+                // Timestamp to avoid caching images for too long
+                var url = transUrl || pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
 
-                pipImageUtils.setImageMarginCSS(container, image);
+                if ((type && id && partyId) || (partyId && partyName) || transUrl) {
+                    if (type && id && partyId) {
+                        if (type == 'category') return;
 
-                defaultBlock.css('display', 'none');
-            };
-
-            function getScheme(count) {
-                var schemes = collageSchemes[count - 1];
-
-                // If nothing to choose from then return
-                if (schemes.length == 1) return schemes[0];
-
-                // Calculate unique had code
-                var uniqueCode = uniqueCodeGetter ? '' + uniqueCodeGetter($scope) : '';
-                var hash = pipStrings.hashCode(uniqueCode);
-
-                // Return reproducable scheme by hashcode
-                return schemes[hash % schemes.length];
-            };
-
-            function getImageUrls() {
-                // Simply return sources
-                if (srcsGetter) {
-                    var srcs = srcsGetter($scope);
-                    //generateContent();
-                    return _.clone(srcs);
-                }
-
-                // Calculate urls if picture ids are specified
-                if (pictureIdsGetter) {
-                    var
-                        ids = pictureIdsGetter($scope) || [],
-                        serverUrl = pipRest.serverUrl(),
-                        userId = ($rootScope.$user || {}).id,
-                        partyId = ($rootScope.$party || {}).id || userId,
-                        result = [];
-
-                    for (var i = 0; i < ids.length; i++) {
-                        result.push(
-                            serverUrl + '/api/parties/' + partyId + '/files/' + ids[i] + '/content'
-                        );
-                    }
-
-                    return result;
-                }
-
-                // Return an empty array otherwise
-                return [];
-            };
-
-            function generatePicture(urls, scheme) {
-                var 
-                    url = urls[0],
-                    containerClasses = '',
-                    pictureClasses = '';
-
-                urls.splice(0, 1);
-
-                containerClasses += scheme.fullWidth ? ' pip-full-width' : '';
-                containerClasses += scheme.fullHeight ? ' pip-full-height' : '';
-                containerClasses += ' flex-' + scheme.flex;
-
-                pictureClasses += scheme.leftPadding ? ' pip-left' : '';
-                pictureClasses += scheme.rightPadding ? ' pip-right' : '';
-                pictureClasses += scheme.topPadding ? ' pip-top' : '';
-                pictureClasses += scheme.bottomPadding ? ' pip-bottom' : '';
-
-                if (allowOpen) {
-                    return '<a class="pip-picture-container' + containerClasses + '" flex="' + scheme.flex + '" '
-                        + 'href="' + url + '"  target="_blank">'
-                        + '<div class="pip-picture' + pictureClasses + '"><img src="' + url + '"/>'
-                        + '<div><md-icon></md-icon></div></div></a>';
-                }
-
-                return '<div class="pip-picture-container' + containerClasses + '" flex="' + scheme.flex + '">'
-                    + '<div class="pip-picture' + pictureClasses + '"><img src="' + url + '"/>'
-                    + '<div><md-icon></md-icon></div></div></div>';
-            };
-
-            function generatePictureGroup(urls, scheme) {
-                var classes = '', result;
-
-                classes += scheme.fullWidth ? ' pip-full-width' : '';
-                classes += scheme.fullHeight ? ' pip-full-height' : '';
-                classes += ' flex-' + scheme.flex;
-                classes += ' layout-' + scheme.layout;
-
-                result = '<div class="pip-picture-group layout' + classes + '" flex="'
-                    + scheme.flex + '" layout="' + scheme.layout + '">';
-
-                // Generate content for children recursively
-                for (var i = 0; i < scheme.children.length; i++) {
-                    result += generate(urls, scheme.children[i]);
-                }
-
-                result += '</div>';
-                return result;
-            };
-
-            function generate(urls, scheme) {
-                if (scheme.group)
-                    return generatePictureGroup(urls, scheme);
-                return generatePicture(urls, scheme);
-            };
-
-            function generateContent(urls) {
-                // Unbind previously defined actions handlers
-                $element.find('img')
-                    .unbind('error')
-                    .unbind('load');
-
-                // Clean up content
-                $element.empty();
-
-                // Calculate list of image urls
-                var urls = getImageUrls();
-
-                // And exit if nothing to show
-                if (urls.length == 0) {
-                    $element.hide();
-                    return;
-                }
-
-                // Limit collage only to one element if not specified otherwise
-                if (urls.length > 8) {
-                    var multiple = multipleGetter ? multipleGetter($scope) : false;
-<<<<<<< HEAD
-
-                    if (!multiple) {
-                        urls.length = 8;
+                        if (entityTypes[type] == 'goals' || entityTypes[type] == 'areas' ) {
+                            $image.attr('src', url);
+                            $svg.css('display', 'none');
+                            $image.css('display', 'inline-block');
+                        } else {
+                            $defaultBlock.css('display', 'block');
+                            var colorClassIndex = pipStrings.hashCode(id) % colors.length;
+                            $element.addClass(colorClasses[colorClassIndex]);
+                            switch(type) {
+                                case 'vision':
+                                    $svg.css('display', 'none');
+                                    $iconFilm.css('display', 'inline-block');
+                                    $iconTask.css('display', 'none');
+                                    $iconFolder.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                                case 'event':
+                                    $svg.css('display', 'none');
+                                    $iconTask.css('display', 'inline-block');
+                                    $iconFilm.css('display', 'none');
+                                    $iconFolder.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                                case 'note':
+                                    $svg.css('display', 'none');
+                                    $iconFolder.css('display', 'inline-block');
+                                    $iconTask.css('display', 'none');
+                                    $iconFilm.css('display', 'none');
+                                    $image.css('display', 'none');
+                                    break;
+                            }
+                        }
+                    } else {
+                        $image.attr('src', url);
+                        $svg.css('display', 'none');
+                        $image.css('display', 'inline-block');
                     }
                 }
-
-                if (urls.length <= 8) {
-                    // Get scheme for visualization
-                    var scheme = getScheme(urls.length);
-
-                    // Generate and add content
-                    var html = '<div class="pip-collage-section">' + generate(urls, scheme) + '</div>';
-                    html += '<div class="clearfix"></div>';
-                    $element.html(html);
-                } else {
-                    var html = '';
-
-                    while (urls.length > 0) {
-                        var partialUrls = urls.splice(0, 8);
-
-                        // Get scheme for visualization
-                        var scheme = getScheme(partialUrls.length);
-
-                        // Generate and add content
-                        html += '<div class="pip-collage-section">' + generate(partialUrls, scheme) + '</div>';
-                    }
-
-                    html += '<div class="clearfix"></div>';
-                    $element.html(html);
-                }
-
-                // Bind events to images...
-                $element.find('img')
-                    .bind('error', onImageError)
-                    .bind('load', onImageLoad);
-
-                // Show the new element
-                $element.show();
             };
 
         }]
-
     );
 
 })();
@@ -1671,7 +1059,313 @@ module.run(['$templateCache', function($templateCache) {
                     $scope.onChange();
                 } else if ($event.keyCode == 27) {
                     $scope.control.reset();
-=======
+                }
+            };
+
+            // Clean up url to remove broken icon
+            function onImageError($event) {
+                $scope.$apply(function() {
+                    $scope.control.url = '';
+                    var image = $($event.target);
+
+                    pipImageUtils.setErrorImageCSS(image, {width: 'auto', height: '100%'});
+                });
+            };
+
+            // When image is loaded resize/reposition it
+            function onImageLoad($event) {
+                var image = $($event.target);
+                pipImageUtils.setImageMarginCSS({clientWidth: 80, clientHeight: 80}, image);
+                $scope.control.uploading = false;
+            };
+
+            // On change event
+            function onChange() {
+                if ($scope.pipChanged) {
+                    $scope.pipChanged({
+                        $event: { sender: $scope.control },
+                        $control: $scope.control
+                    });
+                }
+            };
+        }]        
+    );
+    
+})();
+
+
+/**
+ * @file Collage control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - Replace placeholder with default image generated on server
+ * - Fix resizing problem
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipCollage", ['pipCore', 'pipRest']);
+
+    thisModule.directive('pipCollage',
+        function () {
+            return {
+                restrict: 'EA',
+                scope: false,
+                controller: 'pipCollageController' 
+            }
+        }
+    );
+
+    thisModule.controller('pipCollageController',
+        ['$scope', '$element', '$attrs', '$parse', '$rootScope', 'pipUtils', 'pipStrings', 'pipRest', 'pipImageUtils', function ($scope, $element, $attrs, $parse, $rootScope, pipUtils, pipStrings, pipRest, pipImageUtils) {
+            var                         
+                pictureIdsGetter = $attrs.pipPictureIds ? $parse($attrs.pipPictureIds) : null,
+                srcsGetter = $attrs.pipSrcs ? $parse($attrs.pipSrcs) : null,
+                uniqueCodeGetter = $attrs.pipUniqueCode ? $parse($attrs.pipUniqueCode) : null,
+                multipleGetter = $attrs.pipMultiple ? $parse($attrs.pipMultiple) : null,
+                allowOpen = pipUtils.toBoolean($attrs.pipOpen),
+                collageSchemes = pipImageUtils.getCollageSchemes(),
+                resized = 0,
+                $svgData = '<?xml version="1.0" encoding="utf-8"?>'+
+                    '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">'+
+                    '<svg version="1.1"'+
+                    'xmlns="http://www.w3.org/2000/svg"'+
+                    'xmlns:xlink="http://www.w3.org/1999/xlink"'+
+                    'x="0px" y="0px"'+
+                    'viewBox="0 0 510 510"'+
+                    'style="enable-background:new 0 0 515 515;"'+
+                    'xml:space="preserve">'+
+                    '<defs>'+
+                    '<style type="text/css"><![CDATA['+
+                    '#symbol-picture-no-border {'+
+                    '        transform-origin: 50% 50%;'+
+                    '        transform: scale(0.6, -0.6);'+
+                    '    }'+
+                    '        ]]></style>'+
+                    '        </defs>'+
+                    '<rect x="0" width="515" height="515"/>'+
+                    '<path id="symbol-picture-no-border" d="M120 325l136-102 69 33 136-82 0-54-410 0 0 136z m341 15c0-28-23-51-51-51-29 0-52 23-52 51 0 29 23 52 52 52 28 0 51-23 51-52z" />'+
+                    '</svg>';
+
+            // Add class
+            $element.addClass('pip-collage');
+
+            // Also optimization to avoid watch if it is unnecessary
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                if (srcsGetter) {
+                    $scope.$watch(srcsGetter, function (newValue) {
+                        //getImageUrls();
+                        generateContent();
+                    });
+                    $scope.$watchCollection(srcsGetter, function (newValue) {
+                        //getImageUrls();
+                        generateContent();
+                    });
+                }
+                else if (pictureIdsGetter) {
+                    $scope.$watch(pictureIdsGetter, function (newValue) {
+                        //getImageUrls();
+                        generateContent();
+                    });
+                }
+            }
+
+            $scope.getElementDimensions = getElementDimensions;
+
+            var update = _.debounce(calculateResize, 50);
+
+            function calculateResize() {
+                var ims = $element.find('img');
+                var i = 0;
+                for ( i; i < ims.length; i++ ) {
+                    var container = angular.element(ims[i].parentElement),
+                        image = angular.element(ims[i]);
+
+                    if (image.css('display') != 'none')
+                        pipImageUtils.setImageMarginCSS(container, image);
+                }
+
+                var icns = $element.find('md-icon');
+
+                var i = 0;
+                for ( i; i < icns.length; i++ ) {
+                    var container = angular.element(icns[i].parentElement),
+                        icn = angular.element(icns[i]);
+                    if (container.css('display') != 'none') {
+                        pipImageUtils.setIconMarginCSS(container[0], icn);
+                    }
+
+                }
+            };
+
+            $scope.$watch($scope.getElementDimensions, function (newValue, oldValue) {
+                if (newValue && oldValue && oldValue.h == newValue.h && oldValue.w == newValue.w) return;
+                calculateResize();
+            }, true);
+
+            generateContent();
+            //getImageUrls();
+
+            return;
+
+            function getElementDimensions() {
+                var dimension = {
+                    'h': $element.height(),
+                    'w': $element.width()
+                };
+
+                return dimension;
+            };
+
+            // Clean up url to remove broken icon
+            function onImageError(event) {
+                var 
+                    image = $(event.target),
+                    container = image.parent(),
+                    defaultBlock = container.children('div'),
+                    defaultIcon = image.parent().find('md-icon');
+
+                defaultBlock.css('display', 'block');
+                image.css('display', 'none');
+                pipImageUtils.setIconMarginCSS(container[0], defaultIcon);
+                defaultIcon.empty().append($svgData);
+            };
+
+            // When image is loaded resize/reposition it
+            function onImageLoad($event) {
+                var image = $($event.target),
+                    container =  image.parent(),
+                    defaultBlock = container.children('div');
+
+                pipImageUtils.setImageMarginCSS(container, image);
+
+                defaultBlock.css('display', 'none');
+            };
+
+            function getScheme(count) {
+                var schemes = collageSchemes[count - 1];
+
+                // If nothing to choose from then return
+                if (schemes.length == 1) return schemes[0];
+
+                // Calculate unique had code
+                var uniqueCode = uniqueCodeGetter ? '' + uniqueCodeGetter($scope) : '';
+                var hash = pipStrings.hashCode(uniqueCode);
+
+                // Return reproducable scheme by hashcode
+                return schemes[hash % schemes.length];
+            };
+
+            function getImageUrls() {
+                // Simply return sources
+                if (srcsGetter) {
+                    var srcs = srcsGetter($scope);
+                    //generateContent();
+                    return _.clone(srcs);
+                }
+
+                // Calculate urls if picture ids are specified
+                if (pictureIdsGetter) {
+                    var
+                        ids = pictureIdsGetter($scope) || [],
+                        serverUrl = pipRest.serverUrl(),
+                        userId = ($rootScope.$user || {}).id,
+                        partyId = ($rootScope.$party || {}).id || userId,
+                        result = [];
+
+                    for (var i = 0; i < ids.length; i++) {
+                        result.push(
+                            serverUrl + '/api/parties/' + partyId + '/files/' + ids[i] + '/content'
+                        );
+                    }
+
+                    return result;
+                }
+
+                // Return an empty array otherwise
+                return [];
+            };
+
+            function generatePicture(urls, scheme) {
+                var 
+                    url = urls[0],
+                    containerClasses = '',
+                    pictureClasses = '';
+
+                urls.splice(0, 1);
+
+                containerClasses += scheme.fullWidth ? ' pip-full-width' : '';
+                containerClasses += scheme.fullHeight ? ' pip-full-height' : '';
+                containerClasses += ' flex-' + scheme.flex;
+
+                pictureClasses += scheme.leftPadding ? ' pip-left' : '';
+                pictureClasses += scheme.rightPadding ? ' pip-right' : '';
+                pictureClasses += scheme.topPadding ? ' pip-top' : '';
+                pictureClasses += scheme.bottomPadding ? ' pip-bottom' : '';
+
+                if (allowOpen) {
+                    return '<a class="pip-picture-container' + containerClasses + '" flex="' + scheme.flex + '" '
+                        + 'href="' + url + '"  target="_blank">'
+                        + '<div class="pip-picture' + pictureClasses + '"><img src="' + url + '"/>'
+                        + '<div><md-icon></md-icon></div></div></a>';
+                }
+
+                return '<div class="pip-picture-container' + containerClasses + '" flex="' + scheme.flex + '">'
+                    + '<div class="pip-picture' + pictureClasses + '"><img src="' + url + '"/>'
+                    + '<div><md-icon></md-icon></div></div></div>';
+            };
+
+            function generatePictureGroup(urls, scheme) {
+                var classes = '', result;
+
+                classes += scheme.fullWidth ? ' pip-full-width' : '';
+                classes += scheme.fullHeight ? ' pip-full-height' : '';
+                classes += ' flex-' + scheme.flex;
+                classes += ' layout-' + scheme.layout;
+
+                result = '<div class="pip-picture-group layout' + classes + '" flex="'
+                    + scheme.flex + '" layout="' + scheme.layout + '">';
+
+                // Generate content for children recursively
+                for (var i = 0; i < scheme.children.length; i++) {
+                    result += generate(urls, scheme.children[i]);
+                }
+
+                result += '</div>';
+                return result;
+            };
+
+            function generate(urls, scheme) {
+                if (scheme.group)
+                    return generatePictureGroup(urls, scheme);
+                return generatePicture(urls, scheme);
+            };
+
+            function generateContent(urls) {
+                // Unbind previously defined actions handlers
+                $element.find('img')
+                    .unbind('error')
+                    .unbind('load');
+
+                // Clean up content
+                $element.empty();
+
+                // Calculate list of image urls
+                var urls = getImageUrls();
+
+                // And exit if nothing to show
+                if (urls.length == 0) {
+                    $element.hide();
+                    return;
+                }
+
+                // Limit collage only to one element if not specified otherwise
+                if (urls.length > 8) {
+                    var multiple = multipleGetter ? multipleGetter($scope) : false;
 
                     if (!multiple) {
                         urls.length = 8;
@@ -1701,27 +1395,8 @@ module.run(['$templateCache', function($templateCache) {
 
                     html += '<div class="clearfix"></div>';
                     $element.html(html);
->>>>>>> 28164d61d57f735acf2f757568563fc281a64707
                 }
 
-<<<<<<< HEAD
-            // Clean up url to remove broken icon
-            function onImageError($event) {
-                $scope.$apply(function() {
-                    $scope.control.url = '';
-                    var image = $($event.target);
-
-                    pipImageUtils.setErrorImageCSS(image, {width: 'auto', height: '100%'});
-                });
-            };
-
-            // When image is loaded resize/reposition it
-            function onImageLoad($event) {
-                var image = $($event.target);
-                pipImageUtils.setImageMarginCSS({clientWidth: 80, clientHeight: 80}, image);
-                $scope.control.uploading = false;
-            };
-=======
                 // Bind events to images...
                 $element.find('img')
                     .bind('error', onImageError)
@@ -1734,20 +1409,7 @@ module.run(['$templateCache', function($templateCache) {
         }]
 
     );
->>>>>>> 28164d61d57f735acf2f757568563fc281a64707
 
-            // On change event
-            function onChange() {
-                if ($scope.pipChanged) {
-                    $scope.pipChanged({
-                        $event: { sender: $scope.control },
-                        $control: $scope.control
-                    });
-                }
-            };
-        }]        
-    );
-    
 })();
 
 
@@ -1922,6 +1584,150 @@ module.run(['$templateCache', function($templateCache) {
                 }, 0);
             }
 
+        }]
+    );
+
+})();
+/**
+ * @file Camera dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular, Webcam */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipCameraDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'TAKE_PICTURE': 'Take a picture',
+            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
+        });
+        pipTranslateProvider.translations('ru', {
+            'TAKE_PICTURE': 'Сделать фото',
+            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
+        });
+    }]);
+
+    thisModule.factory('pipCameraDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback) {
+                    $mdDialog.show({
+                        templateUrl: 'camera_dialog/camera_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipCameraController'
+                    }).then(function (result) {
+                        Webcam.reset();
+                        console.log(result);
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    }, function () {
+                        Webcam.reset();
+                    });
+                }
+            };
+        }]);
+
+    thisModule.controller('pipCameraController',
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
+            $scope.browser = pipUtils.getBrowser().os;
+            $scope.theme = $rootScope.$theme;
+
+            if ($scope.browser !== 'android') {
+                console.log('webcam');
+                Webcam.init();
+
+                setTimeout(function () {
+                    Webcam.attach('.camera-stream');
+                }, 0);
+
+                Webcam.on('error', function (err) {
+                    $scope.webCamError = true;
+                    console.error(err);
+                });
+
+                Webcam.set({
+                    width: 400,
+                    height: 300,
+
+                    dest_width: 400,
+                    dest_height: 300,
+
+                    crop_width: 400,
+                    crop_height: 300,
+
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+
+                //Webcam.setSWFLocation('../../../dist/webcam.swf');
+                Webcam.setSWFLocation('webcam.swf');
+
+            } else {
+                document.addEventListener("deviceready",onDeviceReady,false);
+
+            }
+            // todo add logic in callbacks
+            function onDeviceReady() {
+                navigator.camera.getPicture(onSuccess, onFail,
+                    {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        correctOrientation: true,
+                        quality: 75,
+                        targetWidth: 200,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    });
+            }
+
+
+            function onSuccess(imageData) {
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
+                $mdDialog.hide(picture);
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                $mdDialog.hide();
+            }
+
+            $scope.$freeze = false;
+
+            $scope.onTakePictureClick = onTakePictureClick;
+            $scope.onResetPicture = onResetPicture;
+            $scope.onCancelClick = onCancelClick;
+
+            return;
+
+            function onTakePictureClick() {
+                if (Webcam) {
+                    if ($scope.$freeze) {
+                        Webcam.snap(function (dataUri) {
+                            $scope.$freeze = false;
+                            $mdDialog.hide(dataUri);
+                        });
+                    } else {
+                        $scope.$freeze = true;
+                        Webcam.freeze();
+                    }
+                }
+            };
+
+            function onResetPicture() {
+                $scope.$freeze = false;
+                Webcam.unfreeze();
+            };
+
+            function onCancelClick() {
+                $mdDialog.cancel();
+            };
         }]
     );
 
