@@ -31,6 +31,58 @@ try {
   module = angular.module('pipPictures.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('add_image/add_image.html',
+    ' <!--\n' +
+    '@file Add image directive content\n' +
+    '@copyright Digital Living Software Corp. 2014-2015\n' +
+    '-->\n' +
+    '\n' +
+    '<md-menu>\n' +
+    '        <ng-transclude class="pip-add-image-open-button" ng-click="ngDisabled() ? \'\' : $mdOpenMenu()"></ng-transclude>\n' +
+    '        <md-menu-content width="4">\n' +
+    '            <md-menu-item>\n' +
+    '                <md-button class="layout-row layout-align-start-center" accept="image/*"\n' +
+    '                           ng-keydown="onKeyDown($event)" ng-multiple="isMulti()"\n' +
+    '                           ng-file-select ng-file-change="onFileChange($files)" ng-click="hideMenu()" ng-file-drop>\n' +
+    '\n' +
+    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:folder"></md-icon>\n' +
+    '                    <!--<span class="icon-folder text-headline text-grey tp8 rm24-flex"></span>-->\n' +
+    '                    <span class="text-grey">{{::\'FILE\' | translate}}</span>\n' +
+    '                </md-button>\n' +
+    '            </md-menu-item>\n' +
+    '            <md-menu-item>\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="onWebLinkClick()">\n' +
+    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon>\n' +
+    '                    <!--<span class="icon-weblink text-headline text-grey tp8 rm24-flex"></span>-->\n' +
+    '                    <span class="text-grey">{{::\'WEB_LINK\' | translate}}</span>\n' +
+    '                </md-button>\n' +
+    '            </md-menu-item>\n' +
+    '            <md-menu-item>\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="onCameraClick()">\n' +
+    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:camera"></md-icon>\n' +
+    '                    <!--<span class="icon-camera text-headline text-grey tp8 rm24-flex"></span>-->\n' +
+    '                    <span class="text-grey">{{::\'CAMERA\' | translate}}</span>\n' +
+    '                </md-button>\n' +
+    '            </md-menu-item>\n' +
+    '            <md-menu-item>\n' +
+    '                <md-button class="layout-row layout-align-start-center" ng-click="onGalleryClick()">\n' +
+    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:images"></md-icon>\n' +
+    '                    <!--<span class="icon-images text-headline text-grey tp8 rm24-flex"></span>-->\n' +
+    '                    <span class="text-grey">{{::\'IMAGE_GALLERY\' | translate}}</span>\n' +
+    '                </md-button>\n' +
+    '            </md-menu-item>\n' +
+    '        </md-menu-content>\n' +
+    '    </md-menu>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipPictures.Templates');
+} catch (e) {
+  module = angular.module('pipPictures.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('camera_dialog/camera_dialog.html',
     '<!--\n' +
     '@file Camera dialog content\n' +
@@ -348,58 +400,6 @@ module.run(['$templateCache', function($templateCache) {
     '        </md-button>\n' +
     '    </div>\n' +
     '</md-dialog>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipPictures.Templates');
-} catch (e) {
-  module = angular.module('pipPictures.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('add_image/add_image.html',
-    ' <!--\n' +
-    '@file Add image directive content\n' +
-    '@copyright Digital Living Software Corp. 2014-2015\n' +
-    '-->\n' +
-    '\n' +
-    '<md-menu>\n' +
-    '        <ng-transclude class="pip-add-image-open-button" ng-click="ngDisabled() ? \'\' : $mdOpenMenu()"></ng-transclude>\n' +
-    '        <md-menu-content width="4">\n' +
-    '            <md-menu-item>\n' +
-    '                <md-button class="layout-row layout-align-start-center" accept="image/*"\n' +
-    '                           ng-keydown="onKeyDown($event)" ng-multiple="isMulti()"\n' +
-    '                           ng-file-select ng-file-change="onFileChange($files)" ng-click="hideMenu()" ng-file-drop>\n' +
-    '\n' +
-    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:folder"></md-icon>\n' +
-    '                    <!--<span class="icon-folder text-headline text-grey tp8 rm24-flex"></span>-->\n' +
-    '                    <span class="text-grey">{{::\'FILE\' | translate}}</span>\n' +
-    '                </md-button>\n' +
-    '            </md-menu-item>\n' +
-    '            <md-menu-item>\n' +
-    '                <md-button class="layout-row layout-align-start-center" ng-click="onWebLinkClick()">\n' +
-    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:weblink"></md-icon>\n' +
-    '                    <!--<span class="icon-weblink text-headline text-grey tp8 rm24-flex"></span>-->\n' +
-    '                    <span class="text-grey">{{::\'WEB_LINK\' | translate}}</span>\n' +
-    '                </md-button>\n' +
-    '            </md-menu-item>\n' +
-    '            <md-menu-item>\n' +
-    '                <md-button class="layout-row layout-align-start-center" ng-click="onCameraClick()">\n' +
-    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:camera"></md-icon>\n' +
-    '                    <!--<span class="icon-camera text-headline text-grey tp8 rm24-flex"></span>-->\n' +
-    '                    <span class="text-grey">{{::\'CAMERA\' | translate}}</span>\n' +
-    '                </md-button>\n' +
-    '            </md-menu-item>\n' +
-    '            <md-menu-item>\n' +
-    '                <md-button class="layout-row layout-align-start-center" ng-click="onGalleryClick()">\n' +
-    '                    <md-icon class="text-headline text-grey rm24-flex" md-svg-icon="icons:images"></md-icon>\n' +
-    '                    <!--<span class="icon-images text-headline text-grey tp8 rm24-flex"></span>-->\n' +
-    '                    <span class="text-grey">{{::\'IMAGE_GALLERY\' | translate}}</span>\n' +
-    '                </md-button>\n' +
-    '            </md-menu-item>\n' +
-    '        </md-menu-content>\n' +
-    '    </md-menu>');
 }]);
 })();
 
@@ -923,150 +923,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Camera dialog
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular, Webcam */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipCameraDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'TAKE_PICTURE': 'Take a picture',
-            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
-        });
-        pipTranslateProvider.translations('ru', {
-            'TAKE_PICTURE': 'Сделать фото',
-            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
-        });
-    }]);
-
-    thisModule.factory('pipCameraDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback) {
-                    $mdDialog.show({
-                        templateUrl: 'camera_dialog/camera_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipCameraController'
-                    }).then(function (result) {
-                        Webcam.reset();
-                        console.log(result);
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    }, function () {
-                        Webcam.reset();
-                    });
-                }
-            };
-        }]);
-
-    thisModule.controller('pipCameraController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
-            $scope.browser = pipUtils.getBrowser().os;
-            $scope.theme = $rootScope.$theme;
-
-            if ($scope.browser !== 'android') {
-                console.log('webcam');
-                Webcam.init();
-
-                setTimeout(function () {
-                    Webcam.attach('.camera-stream');
-                }, 0);
-
-                Webcam.on('error', function (err) {
-                    $scope.webCamError = true;
-                    console.error(err);
-                });
-
-                Webcam.set({
-                    width: 400,
-                    height: 300,
-
-                    dest_width: 400,
-                    dest_height: 300,
-
-                    crop_width: 400,
-                    crop_height: 300,
-
-                    image_format: 'jpeg',
-                    jpeg_quality: 90
-                });
-
-                //Webcam.setSWFLocation('../../../dist/webcam.swf');
-                Webcam.setSWFLocation('webcam.swf');
-
-            } else {
-                document.addEventListener("deviceready",onDeviceReady,false);
-
-            }
-            // todo add logic in callbacks
-            function onDeviceReady() {
-                navigator.camera.getPicture(onSuccess, onFail,
-                    {
-                        sourceType: Camera.PictureSourceType.CAMERA,
-                        correctOrientation: true,
-                        quality: 75,
-                        targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL
-                    });
-            }
-
-
-            function onSuccess(imageData) {
-                var picture = imageData;
-                var picture = 'data:image/jpeg;base64,' + imageData;
-                $mdDialog.hide(picture);
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                $mdDialog.hide();
-            }
-
-            $scope.$freeze = false;
-
-            $scope.onTakePictureClick = onTakePictureClick;
-            $scope.onResetPicture = onResetPicture;
-            $scope.onCancelClick = onCancelClick;
-
-            return;
-
-            function onTakePictureClick() {
-                if (Webcam) {
-                    if ($scope.$freeze) {
-                        Webcam.snap(function (dataUri) {
-                            $scope.$freeze = false;
-                            $mdDialog.hide(dataUri);
-                        });
-                    } else {
-                        $scope.$freeze = true;
-                        Webcam.freeze();
-                    }
-                }
-            };
-
-            function onResetPicture() {
-                $scope.$freeze = false;
-                Webcam.unfreeze();
-            };
-
-            function onCancelClick() {
-                $mdDialog.cancel();
-            };
-        }]
-    );
-
-})();
-/**
  * @file Avatar control
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -1238,6 +1094,150 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 
+/**
+ * @file Camera dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular, Webcam */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipCameraDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'TAKE_PICTURE': 'Take a picture',
+            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
+        });
+        pipTranslateProvider.translations('ru', {
+            'TAKE_PICTURE': 'Сделать фото',
+            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
+        });
+    }]);
+
+    thisModule.factory('pipCameraDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback) {
+                    $mdDialog.show({
+                        templateUrl: 'camera_dialog/camera_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipCameraController'
+                    }).then(function (result) {
+                        Webcam.reset();
+                        console.log(result);
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    }, function () {
+                        Webcam.reset();
+                    });
+                }
+            };
+        }]);
+
+    thisModule.controller('pipCameraController',
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
+            $scope.browser = pipUtils.getBrowser().os;
+            $scope.theme = $rootScope.$theme;
+
+            if ($scope.browser !== 'android') {
+                console.log('webcam');
+                Webcam.init();
+
+                setTimeout(function () {
+                    Webcam.attach('.camera-stream');
+                }, 0);
+
+                Webcam.on('error', function (err) {
+                    $scope.webCamError = true;
+                    console.error(err);
+                });
+
+                Webcam.set({
+                    width: 400,
+                    height: 300,
+
+                    dest_width: 400,
+                    dest_height: 300,
+
+                    crop_width: 400,
+                    crop_height: 300,
+
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+
+                //Webcam.setSWFLocation('../../../dist/webcam.swf');
+                Webcam.setSWFLocation('webcam.swf');
+
+            } else {
+                document.addEventListener("deviceready",onDeviceReady,false);
+
+            }
+            // todo add logic in callbacks
+            function onDeviceReady() {
+                navigator.camera.getPicture(onSuccess, onFail,
+                    {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        correctOrientation: true,
+                        quality: 75,
+                        targetWidth: 200,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    });
+            }
+
+
+            function onSuccess(imageData) {
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
+                $mdDialog.hide(picture);
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                $mdDialog.hide();
+            }
+
+            $scope.$freeze = false;
+
+            $scope.onTakePictureClick = onTakePictureClick;
+            $scope.onResetPicture = onResetPicture;
+            $scope.onCancelClick = onCancelClick;
+
+            return;
+
+            function onTakePictureClick() {
+                if (Webcam) {
+                    if ($scope.$freeze) {
+                        Webcam.snap(function (dataUri) {
+                            $scope.$freeze = false;
+                            $mdDialog.hide(dataUri);
+                        });
+                    } else {
+                        $scope.$freeze = true;
+                        Webcam.freeze();
+                    }
+                }
+            };
+
+            function onResetPicture() {
+                $scope.$freeze = false;
+                Webcam.unfreeze();
+            };
+
+            function onCancelClick() {
+                $mdDialog.cancel();
+            };
+        }]
+    );
+
+})();
 /**
  * @file Collage control
  * @copyright Digital Living Software Corp. 2014-2015
@@ -2629,102 +2629,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Picture URL dialog
- * @copyright Digital Living Software Corp. 2014-2016
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipPictureUrlDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'PICTURE_FROM_WEBLINK': 'Add from web link',
-            'LINK_PICTURE': 'Link to the picture...'
-        });
-        pipTranslateProvider.translations('ru', {
-            'PICTURE_FROM_WEBLINK': 'Добавить из веб ссылки',
-            'LINK_PICTURE': 'Ссылка на изображение...'
-        });
-    }]);
-
-    thisModule.factory('pipPictureUrlDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback) {
-                    $mdDialog.show({
-                        templateUrl: 'picture_url_dialog/picture_url_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipPictureUrlDialogController'
-                    }).then(function (result) {
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    });
-                }
-            };
-    }]);
-
-    thisModule.controller('pipPictureUrlDialogController', 
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipImageUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipImageUtils) {
-            $scope.url = '';
-            $scope.invalid = true;
-            $scope.theme = $rootScope.$theme;
-            $scope.checkUrl = checkUrl;
-            $scope.onCancelClick = onCancelClick;
-            $scope.onAddClick = onAddClick;
-
-            return;
-
-            function setImageSize(img) {
-                var imageWidth = img.width(),
-                    imageHeight = img.height();
-
-                var cssParams = {};
-
-                if ((imageWidth) > (imageHeight)) {
-                    cssParams['width'] = '250px';
-                    cssParams['height'] = 'auto';
-                } else {
-                    cssParams['width'] = 'auto';
-                    cssParams['height'] = '250px';
-                }
-
-                img.css(cssParams);
-            }
-
-            function checkUrl() {
-                var img = $("img#url_image")
-                    .on('error', function () {
-                        $scope.invalid = true;
-                        $scope.$apply();
-                    })
-                    .on('load', function () {
-                        $scope.invalid = false;
-                        setImageSize(img);
-                        $scope.$apply();
-                    })
-                    .attr("src", $scope.url);
-            };
-            
-            function onCancelClick() {
-                $mdDialog.cancel();
-            };
-            
-            function onAddClick() {
-                $mdDialog.hide($scope.url);
-            };
-        }]
-    );
-
-})();
-/**
  * @file Picture paste service
  * @copyright Digital Living Software Corp. 2014-2015
  */
@@ -3630,4 +3534,100 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 
+/**
+ * @file Picture URL dialog
+ * @copyright Digital Living Software Corp. 2014-2016
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipPictureUrlDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'PICTURE_FROM_WEBLINK': 'Add from web link',
+            'LINK_PICTURE': 'Link to the picture...'
+        });
+        pipTranslateProvider.translations('ru', {
+            'PICTURE_FROM_WEBLINK': 'Добавить из веб ссылки',
+            'LINK_PICTURE': 'Ссылка на изображение...'
+        });
+    }]);
+
+    thisModule.factory('pipPictureUrlDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback) {
+                    $mdDialog.show({
+                        templateUrl: 'picture_url_dialog/picture_url_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipPictureUrlDialogController'
+                    }).then(function (result) {
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    });
+                }
+            };
+    }]);
+
+    thisModule.controller('pipPictureUrlDialogController', 
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipImageUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipImageUtils) {
+            $scope.url = '';
+            $scope.invalid = true;
+            $scope.theme = $rootScope.$theme;
+            $scope.checkUrl = checkUrl;
+            $scope.onCancelClick = onCancelClick;
+            $scope.onAddClick = onAddClick;
+
+            return;
+
+            function setImageSize(img) {
+                var imageWidth = img.width(),
+                    imageHeight = img.height();
+
+                var cssParams = {};
+
+                if ((imageWidth) > (imageHeight)) {
+                    cssParams['width'] = '250px';
+                    cssParams['height'] = 'auto';
+                } else {
+                    cssParams['width'] = 'auto';
+                    cssParams['height'] = '250px';
+                }
+
+                img.css(cssParams);
+            }
+
+            function checkUrl() {
+                var img = $("img#url_image")
+                    .on('error', function () {
+                        $scope.invalid = true;
+                        $scope.$apply();
+                    })
+                    .on('load', function () {
+                        $scope.invalid = false;
+                        setImageSize(img);
+                        $scope.$apply();
+                    })
+                    .attr("src", $scope.url);
+            };
+            
+            function onCancelClick() {
+                $mdDialog.cancel();
+            };
+            
+            function onAddClick() {
+                $mdDialog.hide($scope.url);
+            };
+        }]
+    );
+
+})();
 //# sourceMappingURL=pip-webui-pictures.js.map
