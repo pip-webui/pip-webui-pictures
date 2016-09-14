@@ -8,10 +8,10 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipAnnouncesCache', ['pipAnnouncesData']);
+    var thisModule = angular.module('pipCacheAnnouncement', ['pipDataAnnouncement']);
 
-    thisModule.service('pipAnnouncesCache',
-        ['pipEnums', 'pipDataCache', 'pipTagsCache', function (pipEnums, pipDataCache, pipTagsCache) {
+    thisModule.service('pipCacheAnnouncement',
+        ['pipEnums', 'pipDataCache', 'pipCacheTag', function (pipEnums, pipDataCache, pipCacheTag) {
 
             return {
                 readAnnounces: readAnnounces,
@@ -31,14 +31,14 @@
             function onAnnounceCreate(params, successCallback) {
                 return pipDataCache.addDecorator(
                     'announces', params,
-                    pipTagsCache.tagsUpdateDecorator(params, successCallback)
+                    pipCacheTag.tagsUpdateDecorator(params, successCallback)
                 );
             }
 
             function onAnnounceUpdate(params, successCallback) {
                 return pipDataCache.updateDecorator(
                     'announces', params,
-                    pipTagsCache.tagsUpdateDecorator(params, successCallback)
+                    pipCacheTag.tagsUpdateDecorator(params, successCallback)
                 );
             }
 
@@ -330,10 +330,10 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipGuidesCache', ['pipGuidesData']);
+    var thisModule = angular.module('pipCacheGuide', ['pipDataGuide']);
 
-    thisModule.service('pipGuidesCache',
-        ['pipEnums', 'pipDataCache', 'pipTagsCache', function (pipEnums, pipDataCache, pipTagsCache) {
+    thisModule.service('pipCacheGuide',
+        ['pipEnums', 'pipDataCache', 'pipCacheTag', function (pipEnums, pipDataCache, pipCacheTag) {
 
             return {
                 readGuides: readGuides,
@@ -353,14 +353,14 @@
             function onGuideCreate(params, successCallback) {
                 return pipDataCache.addDecorator(
                     'guides', params,
-                    pipTagsCache.tagsUpdateDecorator(params, successCallback)
+                    pipCacheTag.tagsUpdateDecorator(params, successCallback)
                 );
             };
 
             function onGuideUpdate(params, successCallback) {
                 return pipDataCache.updateDecorator(
                     'guides', params,
-                    pipTagsCache.tagsUpdateDecorator(params, successCallback)
+                    pipCacheTag.tagsUpdateDecorator(params, successCallback)
                 );
             };
 
@@ -659,9 +659,9 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipTagsCache', ['pipUtils', 'pipDataCache']);
+    var thisModule = angular.module('pipCacheTag', ['pipUtils', 'pipDataCache']);
 
-    thisModule.service('pipTagsCache',
+    thisModule.service('pipCacheTag',
         ['pipTags', 'pipDataCache', function(pipTags, pipDataCache) {
             return {
                 readTags: readTags,
@@ -749,10 +749,10 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipTipsCache', ['pipTipsData']);
+    var thisModule = angular.module('pipCacheTip', ['pipDataTip']);
 
-    thisModule.service('pipTipsCache',
-        ['pipEnums', 'pipDataCache', 'pipTagsCache', function (pipEnums, pipDataCache, pipTagsCache) {
+    thisModule.service('pipCacheTip',
+        ['pipEnums', 'pipDataCache', 'pipCacheTag', function (pipEnums, pipDataCache, pipCacheTag) {
 
             return {
                 readTips: readTips,
@@ -772,14 +772,14 @@
             function onTipCreate(params, successCallback) {
                 return pipDataCache.addDecorator(
                     'tips', params,
-                    pipTagsCache.tagsUpdateDecorator(params, successCallback)
+                    pipCacheTag.tagsUpdateDecorator(params, successCallback)
                 );
             };
 
             function onTipUpdate(params, successCallback) {
                 return pipDataCache.updateDecorator(
                     'tips', params,
-                    pipTagsCache.tagsUpdateDecorator(params, successCallback)
+                    pipCacheTag.tagsUpdateDecorator(params, successCallback)
                 );
             };
 
@@ -2288,9 +2288,9 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipAnnouncesData', ['pipRest', 'pipDataModel', 'pipAnnouncesCache']);
+    var thisModule = angular.module('pipDataAnnouncement', ['pipRest', 'pipDataModel', 'pipCacheAnnouncement']);
 
-    thisModule.provider('pipAnnouncesData', function () {
+    thisModule.provider('pipDataAnnouncement', function () {
 
         // Read all announces
         this.readAnnouncesResolver = function () {
@@ -2317,7 +2317,7 @@
         };
 
         // CRUD operations and other business methods
-        this.$get = ['pipRest', '$stateParams', 'pipDataModel', 'pipAnnouncesCache', function (pipRest, $stateParams, pipDataModel, pipAnnouncesCache) {
+        this.$get = ['pipRest', '$stateParams', 'pipDataModel', 'pipCacheAnnouncement', function (pipRest, $stateParams, pipDataModel, pipCacheAnnouncement) {
             return {
                 partyId: pipRest.partyId,
                 readAnnounces: function (params, successCallback, errorCallback) {
@@ -2326,7 +2326,7 @@
                     params.item.search = $stateParams.search;
                     params.item.tags = $stateParams.search;
                     params.item.party_id = pipRest.partyId($stateParams);
-                    return pipAnnouncesCache.readAnnounces(params, successCallback, errorCallback);
+                    return pipCacheAnnouncement.readAnnounces(params, successCallback, errorCallback);
                 },
 
                 updateAnnounce: function (params, successCallback, errorCallback) {
@@ -2335,7 +2335,7 @@
                     params.skipTransactionEnd = false;
                     pipDataModel.update(
                         params,
-                        pipAnnouncesCache.onAnnounceCreate(params, successCallback),
+                        pipCacheAnnouncement.onAnnounceCreate(params, successCallback),
                         errorCallback
                     );
                 },
@@ -2348,7 +2348,7 @@
                         params.skipTransactionEnd = false;
                         pipDataModel.update(
                             params,
-                            pipAnnouncesCache.onAnnounceUpdate(params, successCallback),
+                            pipCacheAnnouncement.onAnnounceUpdate(params, successCallback),
                             errorCallback
                         );
                     });
@@ -2362,7 +2362,7 @@
                         params.skipTransactionEnd = false;
                         pipDataModel.create(
                             params,
-                            pipAnnouncesCache.onAnnounceCreate(params, successCallback),
+                            pipCacheAnnouncement.onAnnounceCreate(params, successCallback),
                             errorCallback
                         );
                     });
@@ -2374,14 +2374,14 @@
                     params.skipTransactionEnd = false;
                     pipDataModel.create(
                         params,
-                        pipAnnouncesCache.onAnnounceCreate(params, successCallback),
+                        pipCacheAnnouncement.onAnnounceCreate(params, successCallback),
                         errorCallback
                     );
                 },
 
                 deleteAnnounce: function(params, successCallback, errorCallback) {
                     params.resource = 'announces';
-                    pipDataModel.remove(params, pipAnnouncesCache.onAnnounceDelete(params, successCallback), errorCallback);
+                    pipDataModel.remove(params, pipCacheAnnouncement.onAnnounceDelete(params, successCallback), errorCallback);
                 }
             }
         }];
@@ -2403,19 +2403,19 @@
 		'pipDataCache',
         
         'pipUsersData',
-        'pipSettingsData',
+        'pipDataSettings',
         'pipSessionData',
-        'pipTagsData',
+        'pipDataTag',
 
-        'pipAnnouncesData',
-        'pipFeedbacksData',
-        'pipImageSetsData',
+        'pipDataAnnouncement',
+        'pipDataFeedback',
+        'pipDataImageSets',
 
-        'pipTipsCache',
-        'pipTipsData',
+        'pipCacheTip',
+        'pipDataTip',
 
-        'pipGuidesCache',
-        'pipGuidesData'
+        'pipCacheGuide',
+        'pipDataGuide'
     ]);
     
 })();
@@ -2790,9 +2790,9 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipFeedbacksData', ['pipRest', 'pipDataModel']);
+    var thisModule = angular.module('pipDataFeedback', ['pipRest', 'pipDataModel']);
 
-    thisModule.provider('pipFeedbacksData', function() {
+    thisModule.provider('pipDataFeedback', function() {
 
         this.readFeedbacksResolver = function () {
             return /* @ngInject */ ['$stateParams', 'pipRest', function ($stateParams, pipRest) {
@@ -2857,9 +2857,9 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipGuidesData', ['pipRest', 'pipDataModel']);
+    var thisModule = angular.module('pipDataGuide', ['pipRest', 'pipDataModel']);
 
-    thisModule.provider('pipGuidesData', function () {
+    thisModule.provider('pipDataGuide', function () {
         var PAGE_SIZE = 5;
 
         // Read all guides
@@ -2887,14 +2887,14 @@
         };
 
         // CRUD operations and other business methods
-        this.$get = ['pipRest', '$stateParams', 'pipDataModel', 'pipGuidesCache', function (pipRest, $stateParams, pipDataModel, pipGuidesCache) {
+        this.$get = ['pipRest', '$stateParams', 'pipDataModel', 'pipCacheGuide', function (pipRest, $stateParams, pipDataModel, pipCacheGuide) {
             return {
                 partyId: pipRest.partyId,
 
                 readGuides: function(params, successCallback, errorCallback) {
                     params.resource = 'guides';
                     params.party_id = pipRest.partyId($stateParams);
-                    return pipGuidesCache.readGuides(params, successCallback, errorCallback);
+                    return pipCacheGuide.readGuides(params, successCallback, errorCallback);
                 },
 
                 readIntroGuides: function(params, successCallback, errorCallback) {
@@ -2902,7 +2902,7 @@
                     params.party_id = pipRest.partyId($stateParams);
                     params.type = 'intro';
                     params.status = 'completed';
-                    return pipGuidesCache.readGuides(params, successCallback, errorCallback);
+                    return pipCacheGuide.readGuides(params, successCallback, errorCallback);
                 },
 
                 readGuide: function (params, successCallback, errorCallback) {
@@ -2910,7 +2910,7 @@
                     params.item = params.item || {};
                     params.item.party_id = pipRest.partyId($stateParams);
                     params.item.id = params.item.id || $stateParams.id;
-                    return pipDataModel.readOne(params, pipGuidesCache.onGuideUpdate(params, successCallback), errorCallback);
+                    return pipDataModel.readOne(params, pipCacheGuide.onGuideUpdate(params, successCallback), errorCallback);
                 },
 
                 createGuide: function (params, successCallback, errorCallback) {
@@ -2919,7 +2919,7 @@
                     params.item.party_id = pipRest.partyId($stateParams);
                     pipDataModel.create(
                         params,
-                        pipGuidesCache.onGuideCreate(params, successCallback),
+                        pipCacheGuide.onGuideCreate(params, successCallback),
                         errorCallback
                     );
                 },
@@ -2932,7 +2932,7 @@
                         params.skipTransactionEnd = false;
                         pipDataModel.create(
                             params,
-                            pipGuidesCache.onGuideCreate(params, successCallback),
+                            pipCacheGuide.onGuideCreate(params, successCallback),
                             errorCallback
                         );
                     });
@@ -2944,7 +2944,7 @@
                     params.skipTransactionEnd = false;
                     pipDataModel.update(
                         params,
-                        pipGuidesCache.onGuideUpdate(params, successCallback),
+                        pipCacheGuide.onGuideUpdate(params, successCallback),
                         errorCallback
                     );
                 },
@@ -2957,7 +2957,7 @@
                         params.skipTransactionEnd = false;
                         pipDataModel.update(
                             params,
-                            pipGuidesCache.onGuideUpdate(params, successCallback),
+                            pipCacheGuide.onGuideUpdate(params, successCallback),
                             errorCallback
                         );
                     });
@@ -2966,7 +2966,7 @@
                 
                 deleteGuide: function(params, successCallback, errorCallback) {
                     params.resource = 'guides';
-                    pipDataModel.remove(params, pipGuidesCache.onGuideDelete(params, successCallback),  errorCallback);
+                    pipDataModel.remove(params, pipCacheGuide.onGuideDelete(params, successCallback),  errorCallback);
                 }
 
             }
@@ -2984,9 +2984,9 @@
 (function () {
     'use strict';
     
-    var thisModule = angular.module('pipImageSetsData', ['pipRest', 'pipDataModel']);
+    var thisModule = angular.module('pipDataImageSets', ['pipRest', 'pipDataModel']);
 
-    thisModule.provider('pipImageSetsData', function () {
+    thisModule.provider('pipDataImageSets', function () {
         var PAGE_SIZE = 15;
 
         // Read all image sets
@@ -3201,9 +3201,9 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipSettingsData', ['pipRest', 'pipSessionData', 'pipSessionCache', 'pipDataModel']);
+    var thisModule = angular.module('pipDataSettings', ['pipRest', 'pipSessionData', 'pipSessionCache', 'pipDataModel']);
 
-    thisModule.provider('pipSettingsData', ['pipSessionDataProvider', function (pipSessionDataProvider) {
+    thisModule.provider('pipDataSettings', ['pipSessionDataProvider', function (pipSessionDataProvider) {
 
         this.readSettingsResolver = pipSessionDataProvider.readSettingsResolver;
 
@@ -3272,19 +3272,19 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipTagsData', ['pipRest' , 'pipDataModel', 'pipTagsCache']);
+    var thisModule = angular.module('pipDataTag', ['pipRest' , 'pipDataModel', 'pipCacheTag']);
 
-    thisModule.provider('pipTagsData', function() {
+    thisModule.provider('pipDataTag', function() {
         
         this.readTagsResolver = function() {
-            return /* @ngInject */ ['$stateParams', 'pipRest', 'pipTagsCache', function($stateParams, pipRest, pipTagsCache) {
-                return pipTagsCache.readTags({
+            return /* @ngInject */ ['$stateParams', 'pipRest', 'pipCacheTag', function($stateParams, pipRest, pipCacheTag) {
+                return pipCacheTag.readTags({
                     item: { party_id: pipRest.partyId($stateParams) }
                 });
             }];
         };
 
-        this.$get = ['$stateParams', '$state', 'pipRest', 'pipDataModel', 'pipTagsCache', function($stateParams, $state, pipRest, pipDataModel, pipTagsCache) {
+        this.$get = ['$stateParams', '$state', 'pipRest', 'pipDataModel', 'pipCacheTag', function($stateParams, $state, pipRest, pipDataModel, pipCacheTag) {
             return {
                 partyId: pipRest.partyId,
                 
@@ -3294,7 +3294,7 @@
                     if(params.item.party_id == null) {
                         params.item.party_id = pipRest.partyId($stateParams);
                     }
-                    return pipTagsCache.readTags(params, successCallback, errorCallback);
+                    return pipCacheTag.readTags(params, successCallback, errorCallback);
                 }
             }
         }];
@@ -3312,9 +3312,9 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipTipsData', ['pipRest', 'pipDataModel']);
+    var thisModule = angular.module('pipDataTip', ['pipRest', 'pipDataModel']);
 
-    thisModule.provider('pipTipsData', function () {
+    thisModule.provider('pipDataTip', function () {
         var PAGE_SIZE = 100;
 
         // Read all tips
@@ -3333,7 +3333,7 @@
         };
 
         // CRUD operations and other business methods
-        this.$get = ['pipRest', '$stateParams', 'pipDataModel', 'pipTipsCache', function (pipRest, $stateParams, pipDataModel, pipTipsCache) {
+        this.$get = ['pipRest', '$stateParams', 'pipDataModel', 'pipCacheTip', function (pipRest, $stateParams, pipDataModel, pipCacheTip) {
 
             return {
                 partyId: pipRest.partyId,
@@ -3345,7 +3345,7 @@
                     params.item.search = $stateParams.search;
                     params.item.tags = $stateParams.search;
                     params.item.party_id = pipRest.partyId($stateParams);
-                    return pipTipsCache.readTips(params, successCallback, errorCallback);
+                    return pipCacheTip.readTips(params, successCallback, errorCallback);
                 },
 
                 readTip: function (params, successCallback, errorCallback) {
@@ -3353,7 +3353,7 @@
                     params.item = params.item || {};
                     params.item.party_id = pipRest.partyId($stateParams);
                     params.item.id = params.item.id || $stateParams.id;
-                    return pipDataModel.readOne(params, pipTipsCache.onTipsUpdate(params, successCallback), errorCallback);
+                    return pipDataModel.readOne(params, pipCacheTip.onTipsUpdate(params, successCallback), errorCallback);
                 },
 
                 createTip: function (params, successCallback, errorCallback) {
@@ -3362,7 +3362,7 @@
                     params.item.party_id = pipRest.partyId($stateParams);
                     pipDataModel.create(
                         params,
-                        pipTipsCache.onTipCreate(params, successCallback),
+                        pipCacheTip.onTipCreate(params, successCallback),
                         errorCallback
                     );
                 },
@@ -3379,7 +3379,7 @@
                         params.item.party_id = pipRest.partyId($stateParams);
                         pipDataModel.create(
                             params,
-                            pipTipsCache.onTipCreate(params, successCallback),
+                            pipCacheTip.onTipCreate(params, successCallback),
                             errorCallback
                         );
                     }, errorCallback);
@@ -3391,7 +3391,7 @@
                     params.item.party_id = pipRest.partyId($stateParams);
                     pipDataModel.update(
                         params,
-                        pipTipsCache.onTipUpdate(params, successCallback),
+                        pipCacheTip.onTipUpdate(params, successCallback),
                         errorCallback
                     );
                 },
@@ -3408,7 +3408,7 @@
                         params.item.party_id = pipRest.partyId($stateParams);
                         pipDataModel.update(
                             params,
-                            pipTipsCache.onTipUpdate(params, successCallback),
+                            pipCacheTip.onTipUpdate(params, successCallback),
                             errorCallback
                         );
                     });
@@ -3416,7 +3416,7 @@
 
                 deleteTip: function(params, successCallback, errorCallback) {
                     params.resource = 'tips';
-                    pipDataModel.remove(params, pipTipsCache.onTipDelete(params, successCallback), errorCallback);
+                    pipDataModel.remove(params, pipCacheTip.onTipDelete(params, successCallback), errorCallback);
                 }
             }
         }];
