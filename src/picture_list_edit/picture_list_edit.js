@@ -13,7 +13,7 @@
     'use strict';
 
     var thisModule = angular.module("pipPictureListEdit", 
-        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipDataPicture', 'pipPicturePaste']);
+        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipData', 'pipPicturePaste']);
 
     thisModule.config(function(pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
@@ -47,7 +47,7 @@
 
     thisModule.controller('pipPictureListEditController',
         function($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipUtils,
-                 pipRest, pipPicturePaste, pipImageUtils) {
+                 pipDataPicture, pipPicturePaste, pipImageUtils) {
                 
             var
                 $control = $element.children('.pip-picture-drop'),
@@ -109,7 +109,7 @@
             return;
 
             function contentUrl(id) {
-                return pipDatPicture.getPictureContentUrl(id); 
+                return pipDataPicture.getPictureContentUrl(id); 
             }
 
             function onImageError($event, item) {
@@ -216,7 +216,7 @@
                     item.uploading = true;
                  
                      pipDataAvatar.createAvatarByUrl(
-                         pipDatPicture.getPicturePostUrl(filter),
+                         pipDataPicture.getPicturePostUrl(filter),
                          function (response) {
                             item.id = response.data ? response.data.id : response.id || null;
                             item.uploaded = true;

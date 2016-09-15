@@ -12,7 +12,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipRest', 'pipImageUtils']);
+    var thisModule = angular.module("pipAvatar", ['pipCore', 'pipData', 'pipImageUtils']);
 
     thisModule.directive('pipAvatar',
         function () {
@@ -29,7 +29,7 @@
     );
 
     thisModule.controller('pipAvatarController',
-        function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipStrings, pipRest, $http, pipImageUtils) {
+        function ($scope, $rootScope, $element, $attrs, $parse, pipUtils, pipDataAvatar, pipStrings, $http, pipImageUtils) {
             var
                 $svg = $element.children('md-icon'),
                 $image = $element.children('img'),

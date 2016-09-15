@@ -8,7 +8,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module('pipPictureEdit', ['ui.event', 'angularFileUpload', 'pipRest', 'pipPicturePaste',
+    var thisModule = angular.module('pipPictureEdit', ['ui.event', 'angularFileUpload', 'pipData', 'pipPicturePaste',
         'pipTranslate', 'pipPictures.Templates']);
 
     thisModule.config(function (pipTranslateProvider) {

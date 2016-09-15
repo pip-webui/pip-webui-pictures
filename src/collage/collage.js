@@ -12,7 +12,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipCollage", ['pipCore', 'pipRest']);
+    var thisModule = angular.module("pipCollage", ['pipCore', 'pipData']);
 
     thisModule.directive('pipCollage',
         function () {
@@ -25,7 +25,7 @@
     );
 
     thisModule.controller('pipCollageController',
-        function ($scope, $element, $attrs, $parse, $rootScope, pipUtils, pipStrings, pipRest, pipImageUtils) {
+        function ($scope, $element, $attrs, $parse, $rootScope, pipUtils, pipStrings, pipImageUtils, pipDataPicture) {
             var                         
                 pictureIdsGetter = $attrs.pipPictureIds ? $parse($attrs.pipPictureIds) : null,
                 srcsGetter = $attrs.pipSrcs ? $parse($attrs.pipSrcs) : null,
@@ -176,15 +176,10 @@
                 if (pictureIdsGetter) {
                     var
                         ids = pictureIdsGetter($scope) || [],
-                        serverUrl = pipRest.serverUrl(),
-                        userId = ($rootScope.$user || {}).id,
-                        partyId = ($rootScope.$party || {}).id || userId,
                         result = [];
 
                     for (var i = 0; i < ids.length; i++) {
-                        result.push(
-                            serverUrl + '/api/parties/' + partyId + '/files/' + ids[i] + '/content'
-                        );
+                        result.push(pipDataPicture.getPictureContentUrl(ids[i]));
                     }
 
                     return result;

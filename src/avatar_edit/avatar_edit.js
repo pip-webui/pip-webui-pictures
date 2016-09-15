@@ -12,7 +12,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipAvatarEdit", ['ui.event', 'angularFileUpload', 'pipPicturePaste', 'pipRest',
+    var thisModule = angular.module("pipAvatarEdit", ['ui.event', 'angularFileUpload', 'pipPicturePaste', 'pipData',
         'pipImageUtils', 'pipPictures.Templates']);
 
     thisModule.config(function(pipTranslateProvider) {
@@ -44,7 +44,7 @@
     );
 
     thisModule.controller('pipAvatarEditController',
-        function($scope, $element, $attrs, $http, $upload, $rootScope, pipPicturePaste, pipRest, pipImageUtils) {
+        function($scope, $element, $attrs, $http, $upload, $rootScope, pipPicturePaste, pipDataAvatar, pipImageUtils) {
             var 
                 $control = $element.children('.pip-picture-upload'),
                 $input = $control.children('input[type=file]'),

@@ -12,7 +12,7 @@
 (function () {
     'use strict';
 
-    var thisModule = angular.module("pipPicture", ['pipCore']);
+    var thisModule = angular.module("pipPicture", ['pipCore', 'pipData']);
 
     thisModule.directive('pipPicture', 
         function() {
@@ -31,7 +31,7 @@
     );
 
     thisModule.controller('pipPictureController',
-        function ($scope, $element, $attrs, $rootScope, pipUtils, pipImageUtils, pipRest) {
+        function ($scope, $element, $attrs, $rootScope, pipUtils, pipImageUtils, pipDataPicture) {
             var 
                 image = $element.children('img'),
                 defaultBlock = $element.children('div');

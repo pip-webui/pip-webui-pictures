@@ -664,7 +664,6 @@
                 setImageMarginCSS: setImageMarginCSS,
                 setIconMarginCSS: setIconMarginCSS,
                 // getAvatarUrl: getAvatarUrl,
-                bindFile: bindFile,
                 getCollageSchemes: getCollageSchemes
             };
 // // todo to data_avatar
@@ -720,25 +719,6 @@
 
             //     return url;
             // };
-
-            function bindFile(imageId, successCallback, errorCallback) {
-                var url,
-                    userId = ($rootScope.$user || {}).id,
-                    partyId = ($rootScope.$party || {}).id || userId,
-                    fileUrl = pipRest.serverUrl() + "/api/parties/" + partyId + "/files/" + imageId;
-
-                //if (addHttpHeaders() && fileUrl)
-                if (fileUrl)
-                    $http.get(fileUrl)
-                        .success(function (response) {
-                            url = response && response.url ? response.url : '';
-
-                            if (successCallback) successCallback(url);
-                        })
-                        .error(function (error) {
-                            if (errorCallback) errorCallback(error);
-                        });
-            };
 
             function setErrorImageCSS(image, params) {
                 var cssParams = {
