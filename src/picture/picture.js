@@ -79,10 +79,12 @@
 
             function bindControl() {
                 if ($scope.pictureId) {
-                    var serverUrl = pipRest.serverUrl(),
-                        userId = ($rootScope.$user || {}).id,
-                        partyId = ($rootScope.$party || {}).id || userId,
-                        url = serverUrl + '/api/parties/' + partyId + '/files/' + $scope.pictureId + '/content';
+                    var url = pipDatPicture.getPictureContentUrl($scope.pictureId); 
+                    // serverUrl = pipRest.serverUrl(),
+                    //     userId = ($rootScope.$user || {}).id,
+                    //     partyId = ($rootScope.$party || {}).id || userId,
+                    //     url = serverUrl + '/api/parties/' + partyId + '/files/' + $scope.pictureId + '/content';
+                        
 
                     image.attr('src', url);
                 } else {
