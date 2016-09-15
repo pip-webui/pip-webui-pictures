@@ -181,7 +181,7 @@
                         item.upload = pipDataDocument.createPicture(
                             {
                                 name: item.file.name,
-                                type: file.type,
+                                type: item.file.type,
                                 data: e.target.result
                             }, function (response) {
                                     item.id = response.data ? response.data.id : null;
