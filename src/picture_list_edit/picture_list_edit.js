@@ -13,7 +13,7 @@
     'use strict';
 
     var thisModule = angular.module("pipPictureListEdit", 
-        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipRest', 'pipPicturePaste']);
+        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipDataPicture', 'pipPicturePaste']);
 
     thisModule.config(function(pipTranslateProvider) {
         pipTranslateProvider.translations('en', {
@@ -92,16 +92,6 @@
                 );
             }
 
-            // // Add paste listeners
-            // $element.find('.pip-picture-upload').focus(function () {
-            //     pipPicturePaste.addPasteListener(function (item) {
-            //         $scope.readItemLocally(item.url, item.file);
-            //     });
-            // });
-            // $element.find('.pip-picture-upload').blur(function () {
-            //     pipPicturePaste.removePasteListener();
-            // });
-
             // Add class
             $element.addClass('pip-picture-list-edit');
 
@@ -119,11 +109,7 @@
             return;
 
             function contentUrl(id) {
-                var
-                    serverUrl = pipRest.serverUrl(),
-                    partyId = $scope.$party ? $scope.$party.id : pipRest.userId();
-
-                return serverUrl + '/api/parties/' + partyId + '/files/' + id + '/content';
+                return pipDatPicture.getPictureContentUrl(id); 
             }
 
             function onImageError($event, item) {
@@ -182,23 +168,6 @@
 
             }
 
-            function addItemUrl(item) {
-                var name = item.url.slice(item.url.lastIndexOf('/') + 1, item.url.length).split('?')[0];
-                var
-                    serverUrl = pipRest.serverUrl(),
-                    partyId = $scope.$party ? $scope.$party.id : pipRest.userId();
-
-                return serverUrl + '/api/parties/' + partyId + '/files?name=' + name + '&url=' + item.url
-            }
-
-            function addItemUrlWithFile(item) {
-                var
-                    serverUrl = pipRest.serverUrl(),
-                    partyId = $scope.$party ? $scope.$party.id : pipRest.userId();
-
-                return serverUrl + '/api/parties/' + partyId + '/files?name=' + item.file.name
-            }
-
             function addItem(item, callback) {
                 if (item.file !== null) {
                     var file = item.file;
@@ -207,32 +176,30 @@
                     fileReader.onload = function (e) {
                         if (item.uploading) return;
                         item.uploading = true;
-                        item.upload = $upload.http({
-                            url: addItemUrlWithFile(item),
-                            headers: {'Content-Type': file.type},
-                            data: e.target.result
-                        })
-                            .then(
-                            function (response) {
-                                item.id = response.data ? response.data.id : null;
-                                item.uploaded = true;
-                                item.uploading = false;
-                                item.progress = 0;
-                                item.upload = null;
-                                item.file = null;
-                                item.url = contentUrl(item.id);
-                                item.state = 'original';
 
-                                callback();
+
+                        item.upload = pipDataDocument.createPicture(
+                            {
+                                name: item.file.name,
+                                type: file.type,
+                                data: e.target.result
+                            }, function (response) {
+                                    item.id = response.data ? response.data.id : null;
+                                    item.uploaded = true;
+                                    item.uploading = false;
+                                    item.progress = 0;
+                                    item.upload = null;
+                                    item.file = null;
+                                    item.url = contentUrl(item.id);
+                                    item.state = 'original';
+                                    callback();
                             },
-                            function (error) {
-                                item.uploaded = false;
-                                item.uploading = false;
-                                item.progress = 0;
-                                item.upload = null;
-                                //$scope.$apply();
-//
-                                callback(error);
+                            function () {
+                                    item.uploaded = false;
+                                    item.uploading = false;
+                                    item.progress = 0;
+                                    item.upload = null;
+                                    callback(error);
                             },
                             function (e) {
                                 // Math.min is to fix IE which reports 200% sometimes
@@ -243,10 +210,14 @@
 
                     fileReader.readAsArrayBuffer(file);
                 } else {
-                    var url = addItemUrl(item);
+                    var name = item.url.slice(item.url.lastIndexOf('/') + 1, item.url.length).split('?')[0],
+                        filter = name + '&url=' + item.url;
+                    
                     item.uploading = true;
-                    $http['post'](url)
-                        .success(function (response) {
+                 
+                     pipDataAvatar.createAvatarByUrl(
+                         pipDatPicture.getPicturePostUrl(filter),
+                         function (response) {
                             item.id = response.data ? response.data.id : response.id || null;
                             item.uploaded = true;
                             item.uploading = false;
@@ -255,26 +226,18 @@
                             item.file = null;
                             item.url = contentUrl(item.id);
                             item.state = 'original';
-
                             callback();
-                        })
-                        .error(function (error) {
+                         },
+                         function (error) {
                             item.uploaded = false;
                             item.uploading = false;
                             item.progress = 0;
                             item.upload = null;
-
                             callback();
-                        });
+                         }
+                     );
+
                 }
-            }
-
-            function deleteItemUrl(item) {
-                var
-                    serverUrl = pipRest.serverUrl(),
-                    partyId = $scope.$party ? $scope.$party.id : pipRest.userId();
-
-                return serverUrl + '/api/parties/' + partyId + '/files/' + item.id;
             }
 
             function deleteItem(item, callback) {
@@ -289,25 +252,24 @@
                 if (item.state != 'deleted')
                     return;
 
-                //pipImageUtils.addHttpHeaders();
-                $http['delete'](deleteItemUrl(item))
-                .success(function (data) {
-                    _.remove(control.items, {pin: item.pin});
-                    callback();
-                })
-                .error(function (data, status) {
-                    // Todo: perform a better processing
-                    if (data == null) {
+                pipDataPicture.deletePicture(
+                    item.id, 
+                    function () {
                         _.remove(control.items, {pin: item.pin});
-                    } else {
-                        item.uploaded = false;
-                        item.uploading = false;
-                        item.progress = 0;
-                        item.upload = null;
-                    }
-
-                    callback(data);
-                });
+                        callback();
+                    }, 
+                    function (data) {
+                        // Todo: perform a better processing
+                        if (data == null) {
+                            _.remove(control.items, {pin: item.pin});
+                        } else {
+                            item.uploaded = false;
+                            item.uploading = false;
+                            item.progress = 0;
+                            item.upload = null;
+                        }
+                        callback(data);
+                    });
             }
 
             function save(successCallback, errorCallback) {
