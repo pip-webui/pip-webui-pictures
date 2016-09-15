@@ -48,8 +48,8 @@
             var 
                 $control = $element.children('.pip-picture-upload'),
                 $input = $control.children('input[type=file]'),
-                entityTypes = pipImageUtils.getEntityTypes(),
-                serverUrl = pipRest.serverUrl();
+                entityTypes = pipDataAvatar.getEntityTypes();
+                // serverUrl = pipRest.serverUrl();
             
             $scope.text = $attrs.pipDefaultText || 'PICTURE_EDIT_TEXT'; 
             $scope.icon = $attrs.pipDefaultIcon || 'picture-no-border';
@@ -131,7 +131,7 @@
                 $scope.control.url = '';
 
                 if (!afterDeleting) {
-                    var url = pipImageUtils.getAvatarUrl($scope.pipPartyId(), '',
+                    var url = pipDataAvatar.getAvatarUrl($scope.pipPartyId(), '',
                         $scope.pipId(), $scope.pipEntityType(), false, true);
 
                     if (!url) return;
@@ -145,29 +145,40 @@
 
                 } else $scope.onChange();
             };
+// tofo move to pipDataAvatar
+            // function generateUrl() {
+            //     if ($scope.pipEntityType() && $scope.pipId() && $scope.pipPartyId()) {
+            //         return serverUrl + '/api/parties/' + $scope.pipPartyId() + '/'
+            //             + entityTypes[$scope.pipEntityType()] + '/' + $scope.pipId() + '/avatar';
+            //     } else {
+            //         if ($scope.pipPartyId() && !$scope.pipEntityType()) {
+            //             if ($attrs.pipEntityType || $attrs.pipId)
+            //                 return '';
+            //             return serverUrl + '/api/parties/' + $scope.pipPartyId()
+            //                 + '/avatar';
+            //         }
+            //     }
 
-            function generateUrl() {
-                if ($scope.pipEntityType() && $scope.pipId() && $scope.pipPartyId()) {
-                    return serverUrl + '/api/parties/' + $scope.pipPartyId() + '/'
-                        + entityTypes[$scope.pipEntityType()] + '/' + $scope.pipId() + '/avatar';
-                } else {
-                    if ($scope.pipPartyId() && !$scope.pipEntityType()) {
-                        if ($attrs.pipEntityType || $attrs.pipId)
-                            return '';
-                        return serverUrl + '/api/parties/' + $scope.pipPartyId()
-                            + '/avatar';
-                    }
-                }
-
-                return '';
+            //     return '';
+            // }
+            function getParams() {
+                return {
+                        entityType:  $scope.pipEntityType(),
+                        id: $scope.pipId(),
+                        partyId: $scope.pipPartyId()
+                    };
             }
 
             function saveItemUrl() {
                 var url = $scope.control.url,
-                    FILE_URL = generateUrl();
-                var name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0];
+                    // FILE_URL = generateUrl();
+                    // name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0];
+                // return FILE_URL + '?name=' + name + '&url=' + url
 
-                return FILE_URL + '?name=' + name + '&url=' + url
+                    name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0],
+                    filter = name + '&url=' + url;
+
+                return pipDataAvatar.getAvatarPostUrl(getParams(), filter);  
             };
 
             function savePicture(successCallback, errorCallback) {
@@ -177,17 +188,18 @@
 
                 if ($scope.control.file !== null) {
                     var 
-                        fileReader = new FileReader(),
-                        FILE_URL = generateUrl();
+                        fileReader = new FileReader();
+                        // FILE_URL = generateUrl();
                         
                     fileReader.onload = function (e) {
                         control.uploading = true;
-                        var upload = $upload.http({
-                                url: FILE_URL + '?name=' + file.name,
-                                headers: { 'Content-Type': file.type },
+
+                        var upload = pipDataAvatar.createAvatar({
+                                name: file.name,
+                                params: getParams(),
+                                type: file.type,
                                 data: e.target.result
-                            })
-                            .then(
+                            },
                             function (response) {
                                 control.reset();
                                 if (successCallback) successCallback(response);
@@ -201,7 +213,6 @@
                                 else console.error(error);
                             },
                             function (e) {
-                                // Math.min is to fix IE which reports 200% sometimes
                                 control.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
                             }
                         );
@@ -209,42 +220,45 @@
 
                     fileReader.readAsArrayBuffer(file);
                 } else {
-                     var url = saveItemUrl();
                      control.uploading = true;
 
-                     $http['post'](url)
-                         .success(function (response) {
+                     pipDataAvatar.createAvatarByUrl(
+                         saveItemUrl(),
+                         function (response) {
                              control.reset();
  
                              if (successCallback) successCallback(response);
-                         })
-                         .error(function (error) {
+                         },
+                         function (error) {
                              control.uploading = false;
                              control.upload = false;
 
                              if (errorCallback) errorCallback(error);
                              else console.error(error);
-                         });
+                         }
+                     );
                 }
             };
 
             function deletePicture(successCallback, errorCallback) {
                 var control = $scope.control;
-                $http['delete'](generateUrl())
-                .success(function (data) {
-                    control.reset(true);
 
-                    if (successCallback) successCallback();
-                })
-                .error(function (error) {
-                    control.uploading = false;
-                    control.upload = false;
-                    control.progress = 0;
-                    //$scope.$apply();
+                pipDataAvatar.deleteDocument(
+                    getParams(), 
+                    function (data) {
+                        control.reset(true);
 
-                    if (errorCallback) errorCallback(error);
-                    else console.error(error);
-                });
+                        if (successCallback) successCallback();
+                    },
+                    function (error) {
+                        control.uploading = false;
+                        control.upload = false;
+                        control.progress = 0;
+
+                        if (errorCallback) errorCallback(error);
+                        else console.error(error);
+                    }
+                );
             };
 
             function save(successCallback, errorCallback) {

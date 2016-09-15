@@ -45,9 +45,9 @@
                 idGetter = $parse($attrs.pipId),
                 urlGetter = $parse($attrs.pipImageUrl),
 
-                colors = pipImageUtils.getAvatarColors(),
-                colorClasses = pipImageUtils.getColorClasses(),
-                entityTypes = pipImageUtils.getEntityTypes();
+                colors = pipDataAvatar.getAvatarColors(),
+                colorClasses = pipDataAvatar.getColorClasses(),
+                entityTypes = pipDataAvatar.getEntityTypes();
 
             // When image is loaded resize/reposition it
             $image.load(function ($event) {
@@ -118,8 +118,17 @@
                 $defaultBlock.css('display', 'none');
 
                 // Timestamp to avoid caching images for too long
-                var url = transUrl || pipImageUtils.getAvatarUrl(partyId, partyName, id, type, false, false);
+                var params = {
+                    partyId: partyId, 
+                    partyName: partyName, 
+                    id: id, 
+                    type: type, 
+                    noRedirect: false, 
+                    noDefault: false
+                },
+                    url = transUrl || pipDataAvatar.getAvatarUrl(params);
 
+// todo abstract this code!!!
                 if ((type && id && partyId) || (partyId && partyName) || transUrl) {
                     if (type && id && partyId) {
                         if (type == 'category') return;
