@@ -34,7 +34,6 @@
                         controller: 'pipCameraController'
                     }).then(function (result) {
                         Webcam.reset();
-                        console.log(result);
                         if (successCallback) {
                             successCallback(result);
                         }
@@ -51,7 +50,6 @@
             $scope.theme = $rootScope.$theme;
 
             if ($scope.browser !== 'android') {
-                console.log('webcam');
                 Webcam.init();
 
                 setTimeout(function () {

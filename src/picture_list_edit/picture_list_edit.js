@@ -177,13 +177,13 @@
                         if (item.uploading) return;
                         item.uploading = true;
 
-
-                        item.upload = pipDataDocument.createPicture(
+                        item.upload = pipDataPicture.createPicture(
                             {
                                 name: item.file.name,
                                 type: item.file.type,
                                 data: e.target.result
-                            }, function (response) {
+                            }, 
+                            function (response) {
                                     item.id = response.data ? response.data.id : null;
                                     item.uploaded = true;
                                     item.uploading = false;

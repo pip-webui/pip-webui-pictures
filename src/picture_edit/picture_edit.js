@@ -143,13 +143,14 @@
 
                     fileReader.onload = function (e) {
                         control.uploading = true;
-                        //        pipImageUtils.addHttpHeaders();
-                        var upload = pipDataDocument.createPicture(
+
+                        var upload = pipDataPicture.createPicture(
                             {
                                 name: file.name,
                                 type: file.type,
                                 data: e.target.result
-                            }, function (response) {
+                            }, 
+                            function (response) {
                                     $scope.pipPictureId = response.data.id;
                                     control.reset();
                                     if (successCallback) successCallback(response);

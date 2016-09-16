@@ -145,22 +145,7 @@
 
                 } else $scope.onChange();
             };
-// tofo move to pipDataAvatar
-            // function generateUrl() {
-            //     if ($scope.pipEntityType() && $scope.pipId() && $scope.pipPartyId()) {
-            //         return serverUrl + '/api/parties/' + $scope.pipPartyId() + '/'
-            //             + entityTypes[$scope.pipEntityType()] + '/' + $scope.pipId() + '/avatar';
-            //     } else {
-            //         if ($scope.pipPartyId() && !$scope.pipEntityType()) {
-            //             if ($attrs.pipEntityType || $attrs.pipId)
-            //                 return '';
-            //             return serverUrl + '/api/parties/' + $scope.pipPartyId()
-            //                 + '/avatar';
-            //         }
-            //     }
 
-            //     return '';
-            // }
             function getParams() {
                 return {
                         entityType:  $scope.pipEntityType(),
@@ -171,10 +156,6 @@
 
             function saveItemUrl() {
                 var url = $scope.control.url,
-                    // FILE_URL = generateUrl();
-                    // name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0];
-                // return FILE_URL + '?name=' + name + '&url=' + url
-
                     name = url.slice(url.lastIndexOf('/') + 1, url.length).split('?')[0],
                     filter = name + '&url=' + url;
 
