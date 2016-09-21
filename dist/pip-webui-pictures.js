@@ -1,29 +1,3 @@
-/**
- * @file Registration of pictures WebUI controls
- * @copyright Digital Living Software Corp. 2014-2015
- */
-
-/* global angular */
-
-(function () {
-    'use strict';
-
-    angular.module('pipPictures', [        
-        'pipAddImage',
-        'pipAvatar',
-        'pipAvatarEdit',
-        'pipPicture',
-        'pipPictureEdit',
-        'pipCollage',
-        'pipPictureListEdit',        
-        'pipCameraDialog',        
-        'pipPictureUrlDialog'
-    ]);
-    
-})();
-
-
-
 (function(module) {
 try {
   module = angular.module('pipPictures.Templates');
@@ -73,6 +47,72 @@ module.run(['$templateCache', function($templateCache) {
     '            </md-menu-item>\n' +
     '        </md-menu-content>\n' +
     '    </md-menu>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipPictures.Templates');
+} catch (e) {
+  module = angular.module('pipPictures.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('camera_dialog/camera_dialog.html',
+    '<!--\n' +
+    '@file Camera dialog content\n' +
+    '@copyright Digital Living Software Corp. 2014-2015\n' +
+    '-->\n' +
+    '\n' +
+    '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog layout-column" md-theme="{{theme}}"\n' +
+    '           ng-show="browser != \'android\'"\n' +
+    '        ng-class="{\'pip-android-dialog\': browser == \'android\' || !browser}">\n' +
+    '    <div class="pip-header" class="layout-row layout-align-start-center">\n' +
+    '        <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
+    '                    aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '            <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
+    '        </md-button>\n' +
+    '        <h3 class="m0 text-title">{{ ::\'TAKE_PICTURE\' | translate }}</h3>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <div class="pip-body">\n' +
+    '        <div class="camera-stream" ng-hide="webCamError || browser == \'android\'"></div>\n' +
+    '        <div class="camera-error"\n' +
+    '             ng-show="webCamError || browser == \'android\'"\n' +
+    '             class="layout-row layout-align-center-center">\n' +
+    '            <span>{{ ::\'WEB_CAM_ERROR\' | translate }}</span>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '\n' +
+    '    <div class="pip-footer">\n' +
+    '        <div class="w48">\n' +
+    '            <md-button ng-click="onResetPicture()"\n' +
+    '                       ng-hide="!$freeze || webCamError"\n' +
+    '                       class="md-icon-button"\n' +
+    '                       ng-disabled="transaction.busy()"\n' +
+    '                       aria-label="{{ ::\'REMOVE_PICTURE\' | translate }}">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:refresh"></md-icon>\n' +
+    '            </md-button>\n' +
+    '        </div>\n' +
+    '        <div class="flex"></div>\n' +
+    '        <div class="w48">\n' +
+    '            <md-button ng-click="onTakePictureClick()"\n' +
+    '                       ng-hide="webCamError"\n' +
+    '                       class="md-icon-button"\n' +
+    '                       aria-label="{{ ::\'TAKE_PICTURE\' | translate }}">\n' +
+    '                <md-icon class="text-grey icon-button" md-svg-icon="icons:{{$freeze ? \'check\' : \'camera\'}}"></md-icon>\n' +
+    '            </md-button>\n' +
+    '\n' +
+    '        </div>\n' +
+    '        <div class="flex"></div>\n' +
+    '        <div class="w48">\n' +
+    '            <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
+    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:cross"></md-icon>\n' +
+    '            </md-button>\n' +
+    '        </div>\n' +
+    '    </div>\n' +
+    '\n' +
+    '</md-dialog>');
 }]);
 })();
 
@@ -170,72 +210,6 @@ module.run(['$templateCache', function($templateCache) {
     '            {{ ::\'ADD\' | translate }}\n' +
     '        </md-button>\n' +
     '    </div>\n' +
-    '</md-dialog>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipPictures.Templates');
-} catch (e) {
-  module = angular.module('pipPictures.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('camera_dialog/camera_dialog.html',
-    '<!--\n' +
-    '@file Camera dialog content\n' +
-    '@copyright Digital Living Software Corp. 2014-2015\n' +
-    '-->\n' +
-    '\n' +
-    '<md-dialog class="pip-dialog pip-picture-dialog pip-camera-dialog layout-column" md-theme="{{theme}}"\n' +
-    '           ng-show="browser != \'android\'"\n' +
-    '        ng-class="{\'pip-android-dialog\': browser == \'android\' || !browser}">\n' +
-    '    <div class="pip-header" class="layout-row layout-align-start-center">\n' +
-    '        <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
-    '                    aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
-    '            <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
-    '        </md-button>\n' +
-    '        <h3 class="m0 text-title">{{ ::\'TAKE_PICTURE\' | translate }}</h3>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <div class="pip-body">\n' +
-    '        <div class="camera-stream" ng-hide="webCamError || browser == \'android\'"></div>\n' +
-    '        <div class="camera-error"\n' +
-    '             ng-show="webCamError || browser == \'android\'"\n' +
-    '             class="layout-row layout-align-center-center">\n' +
-    '            <span>{{ ::\'WEB_CAM_ERROR\' | translate }}</span>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '\n' +
-    '    <div class="pip-footer">\n' +
-    '        <div class="w48">\n' +
-    '            <md-button ng-click="onResetPicture()"\n' +
-    '                       ng-hide="!$freeze || webCamError"\n' +
-    '                       class="md-icon-button"\n' +
-    '                       ng-disabled="transaction.busy()"\n' +
-    '                       aria-label="{{ ::\'REMOVE_PICTURE\' | translate }}">\n' +
-    '                <md-icon class="text-grey" md-svg-icon="icons:refresh"></md-icon>\n' +
-    '            </md-button>\n' +
-    '        </div>\n' +
-    '        <div class="flex"></div>\n' +
-    '        <div class="w48">\n' +
-    '            <md-button ng-click="onTakePictureClick()"\n' +
-    '                       ng-hide="webCamError"\n' +
-    '                       class="md-icon-button"\n' +
-    '                       aria-label="{{ ::\'TAKE_PICTURE\' | translate }}">\n' +
-    '                <md-icon class="text-grey icon-button" md-svg-icon="icons:{{$freeze ? \'check\' : \'camera\'}}"></md-icon>\n' +
-    '            </md-button>\n' +
-    '\n' +
-    '        </div>\n' +
-    '        <div class="flex"></div>\n' +
-    '        <div class="w48">\n' +
-    '            <md-button  ng-click="onCancelClick()" class="md-icon-button"\n' +
-    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
-    '                <md-icon class="text-grey" md-svg-icon="icons:cross"></md-icon>\n' +
-    '            </md-button>\n' +
-    '        </div>\n' +
-    '    </div>\n' +
-    '\n' +
     '</md-dialog>');
 }]);
 })();
@@ -402,6 +376,32 @@ module.run(['$templateCache', function($templateCache) {
     '</md-dialog>');
 }]);
 })();
+
+/**
+ * @file Registration of pictures WebUI controls
+ * @copyright Digital Living Software Corp. 2014-2015
+ */
+
+/* global angular */
+
+(function () {
+    'use strict';
+
+    angular.module('pipPictures', [        
+        'pipAddImage',
+        'pipAvatar',
+        'pipAvatarEdit',
+        'pipPicture',
+        'pipPictureEdit',
+        'pipCollage',
+        'pipPictureListEdit',        
+        'pipCameraDialog',        
+        'pipPictureUrlDialog'
+    ]);
+    
+})();
+
+
 
 /**
  * @file Add image control
@@ -578,148 +578,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 
-/**
- * @file Camera dialog
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular, Webcam */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipCameraDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'TAKE_PICTURE': 'Take a picture',
-            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
-        });
-        pipTranslateProvider.translations('ru', {
-            'TAKE_PICTURE': 'Сделать фото',
-            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
-        });
-    }]);
-
-    thisModule.factory('pipCameraDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback) {
-                    $mdDialog.show({
-                        templateUrl: 'camera_dialog/camera_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipCameraController'
-                    }).then(function (result) {
-                        Webcam.reset();
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    }, function () {
-                        Webcam.reset();
-                    });
-                }
-            };
-        }]);
-
-    thisModule.controller('pipCameraController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
-            $scope.browser = pipUtils.getBrowser().os;
-            $scope.theme = $rootScope.$theme;
-
-            if ($scope.browser !== 'android') {
-                Webcam.init();
-
-                setTimeout(function () {
-                    Webcam.attach('.camera-stream');
-                }, 0);
-
-                Webcam.on('error', function (err) {
-                    $scope.webCamError = true;
-                    console.error(err);
-                });
-
-                Webcam.set({
-                    width: 400,
-                    height: 300,
-
-                    dest_width: 400,
-                    dest_height: 300,
-
-                    crop_width: 400,
-                    crop_height: 300,
-
-                    image_format: 'jpeg',
-                    jpeg_quality: 90
-                });
-
-                //Webcam.setSWFLocation('../../../dist/webcam.swf');
-                Webcam.setSWFLocation('webcam.swf');
-
-            } else {
-                document.addEventListener("deviceready",onDeviceReady,false);
-
-            }
-            // todo add logic in callbacks
-            function onDeviceReady() {
-                navigator.camera.getPicture(onSuccess, onFail,
-                    {
-                        sourceType: Camera.PictureSourceType.CAMERA,
-                        correctOrientation: true,
-                        quality: 75,
-                        targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL
-                    });
-            }
-
-
-            function onSuccess(imageData) {
-                var picture = imageData;
-                var picture = 'data:image/jpeg;base64,' + imageData;
-                $mdDialog.hide(picture);
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                $mdDialog.hide();
-            }
-
-            $scope.$freeze = false;
-
-            $scope.onTakePictureClick = onTakePictureClick;
-            $scope.onResetPicture = onResetPicture;
-            $scope.onCancelClick = onCancelClick;
-
-            return;
-
-            function onTakePictureClick() {
-                if (Webcam) {
-                    if ($scope.$freeze) {
-                        Webcam.snap(function (dataUri) {
-                            $scope.$freeze = false;
-                            $mdDialog.hide(dataUri);
-                        });
-                    } else {
-                        $scope.$freeze = true;
-                        Webcam.freeze();
-                    }
-                }
-            };
-
-            function onResetPicture() {
-                $scope.$freeze = false;
-                Webcam.unfreeze();
-            };
-
-            function onCancelClick() {
-                $mdDialog.cancel();
-            };
-        }]
-    );
-
-})();
 /**
  * @file Avatar control
  * @copyright Digital Living Software Corp. 2014-2015
@@ -1240,6 +1098,148 @@ module.run(['$templateCache', function($templateCache) {
 })();
 
 
+/**
+ * @file Camera dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular, Webcam */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipCameraDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'TAKE_PICTURE': 'Take a picture',
+            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
+        });
+        pipTranslateProvider.translations('ru', {
+            'TAKE_PICTURE': 'Сделать фото',
+            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
+        });
+    }]);
+
+    thisModule.factory('pipCameraDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback) {
+                    $mdDialog.show({
+                        templateUrl: 'camera_dialog/camera_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipCameraController'
+                    }).then(function (result) {
+                        Webcam.reset();
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    }, function () {
+                        Webcam.reset();
+                    });
+                }
+            };
+        }]);
+
+    thisModule.controller('pipCameraController',
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
+            $scope.browser = pipUtils.getBrowser().os;
+            $scope.theme = $rootScope.$theme;
+
+            if ($scope.browser !== 'android') {
+                Webcam.init();
+
+                setTimeout(function () {
+                    Webcam.attach('.camera-stream');
+                }, 0);
+
+                Webcam.on('error', function (err) {
+                    $scope.webCamError = true;
+                    console.error(err);
+                });
+
+                Webcam.set({
+                    width: 400,
+                    height: 300,
+
+                    dest_width: 400,
+                    dest_height: 300,
+
+                    crop_width: 400,
+                    crop_height: 300,
+
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+
+                //Webcam.setSWFLocation('../../../dist/webcam.swf');
+                Webcam.setSWFLocation('webcam.swf');
+
+            } else {
+                document.addEventListener("deviceready",onDeviceReady,false);
+
+            }
+            // todo add logic in callbacks
+            function onDeviceReady() {
+                navigator.camera.getPicture(onSuccess, onFail,
+                    {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        correctOrientation: true,
+                        quality: 75,
+                        targetWidth: 200,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    });
+            }
+
+
+            function onSuccess(imageData) {
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
+                $mdDialog.hide(picture);
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                $mdDialog.hide();
+            }
+
+            $scope.$freeze = false;
+
+            $scope.onTakePictureClick = onTakePictureClick;
+            $scope.onResetPicture = onResetPicture;
+            $scope.onCancelClick = onCancelClick;
+
+            return;
+
+            function onTakePictureClick() {
+                if (Webcam) {
+                    if ($scope.$freeze) {
+                        Webcam.snap(function (dataUri) {
+                            $scope.$freeze = false;
+                            $mdDialog.hide(dataUri);
+                        });
+                    } else {
+                        $scope.$freeze = true;
+                        Webcam.freeze();
+                    }
+                }
+            };
+
+            function onResetPicture() {
+                $scope.$freeze = false;
+                Webcam.unfreeze();
+            };
+
+            function onCancelClick() {
+                $mdDialog.cancel();
+            };
+        }]
+    );
+
+})();
 /**
  * @file Collage control
  * @copyright Digital Living Software Corp. 2014-2015
@@ -2141,434 +2141,6 @@ module.run(['$templateCache', function($templateCache) {
 
         }]
     );
-
-})();
-
-
-/**
- * @file Picture list edit control
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - Add animations to add/remove pictures
- * - ?? Replace placeholder with default image generated on server?
- */
- 
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipPictureListEdit", 
-        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipData', 'pipPicturePaste']);
-
-    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'PICTURE_LIST_EDIT_TEXT': 'Click here to add a picture',
-            'ERROR_TRANSACTION_IN_PROGRESS': 'Transaction is in progress. Please, wait until it is finished or abort',
-            'ERROR_IMAGE_PRELOADING': 'Image loading error. The picture can not be saved'
-        });
-        pipTranslateProvider.translations('ru', {
-            'PICTURE_LIST_EDIT_TEXT': 'Нажмите сюда чтобы добавить картинку',
-            'ERROR_TRANSACTION_IN_PROGRESS': 'Транзакция еще не завершена. Подождите окончания или прервите её',
-            'ERROR_IMAGE_PRELOADING': 'Ошибка при загрузки картинки. Картинка не сохранена.'
-        });
-    }]);
-
-    thisModule.directive('pipPictureListEdit', 
-        function() {
-            return {
-                restrict: 'EA',
-                scope: {
-                    pipPictureIds: '=',
-                    pipAddedPicture: '=',
-                    ngDisabled: '&',
-                    pipCreated: '&',
-                    pipChanged: '&'
-                },
-                templateUrl: 'picture_list_edit/picture_list_edit.html',
-                controller: 'pipPictureListEditController' 
-            };
-        }
-    );
-
-    thisModule.controller('pipPictureListEditController',
-        ['$scope', '$rootScope', '$element', '$attrs', '$parse', '$http', '$upload', '$timeout', 'pipUtils', 'pipDataPicture', 'pipPicturePaste', 'pipImageUtils', function($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipUtils,
-                 pipDataPicture, pipPicturePaste, pipImageUtils) {
-                
-            var
-                $control = $element.children('.pip-picture-drop'),
-                itemPin = 0;
-
-            $scope.text = $attrs.pipDefaultText || 'PICTURE_LIST_EDIT_TEXT';
-            $scope.icon = $attrs.pipDefaultIcon || 'picture-no-border';
-            $scope.pipRebind = pipUtils.toBoolean($attrs.pipRebind);
-            $scope.pictureStartState = pipUtils.toBoolean($scope.pipAddedPicture) ? 'copied' : 'original';
-
-            $scope.control = {
-                uploading: 0,
-                items: []
-            };
-
-            $scope.control.reset = reset;
-            $scope.control.save = save;
-            $scope.control.abort = abort;
-            $scope.filterItem = function(item) {
-                return item.state != 'deleted';
-            };
-            $scope.readItemLocally = readItemLocally;
-            $scope.onSelectClick = onSelectClick;
-            $scope.onDeleteClick = onDeleteClick;
-            $scope.onKeyDown = onKeyDown;
-            $scope.onImageError = onImageError;
-            $scope.onImageLoad = onImageLoad;
-            $scope.onChange = onChange;
-            $scope.onBlur = onBlur;
-            $scope.onFocus = onFocus;
-            
-            // Watch for changes
-            if ($scope.pipRebind) {
-                $scope.$watch(
-                    function () {
-                        // Todo: Optimize change tracking
-                        return $scope.pipPictureIds;
-                    },
-                    function (newValue) {
-                        $scope.control.reset();
-                    }
-                );
-            }
-
-            // Add class
-            $element.addClass('pip-picture-list-edit');
-
-            // Initialize control
-            $scope.control.reset();
-
-            // Execute callback
-            if ($scope.pipCreated) {
-                $scope.pipCreated({
-                    $event: { sender: $scope.control },
-                    $control: $scope.control
-                });
-            }
-
-            return;
-
-            function contentUrl(id) {
-                return pipDataPicture.getPictureContentUrl(id); 
-            }
-
-            function onImageError($event, item) {
-                item.error = true;
-            };
-            
-            function onFocus(a) {
-                pipPicturePaste.addPasteListener(function (item) {
-                    $scope.readItemLocally(item.url, item.file);
-                });
-            };
-
-            function onBlur () {
-                pipPicturePaste.removePasteListener();
-            };
-
-            function getItems() {
-                var
-                    pictureIds = $scope.pipPictureIds,
-                    items = [];
-
-                if (pictureIds == null || pictureIds.length == 0)
-                    return items;
-
-                for (var i = 0; i < pictureIds.length; i++) {
-                    items.push({
-                        pin: itemPin++,
-                        id: pictureIds[i],
-                        uploading: false,
-                        uploaded: false,
-                        progress: 0,
-                        file: null,
-                        url: contentUrl(pictureIds[i]),
-                        state: $scope.pictureStartState //'original'
-                    });
-                }
-
-                return items;
-            }
-
-            function setItems() {
-                // Clean the array
-                if ($scope.pipPictureIds && $scope.pipPictureIds.length > 0)
-                    $scope.pipPictureIds.splice(0, $scope.pipPictureIds.length);
-
-                for (var i = 0; i < $scope.control.items.length; i++) {
-                    var item = $scope.control.items[i];
-                    if (item.id)
-                        $scope.pipPictureIds.push(item.id);
-                }
-            }
-
-            function reset() {
-                $scope.control.uploading = 0;
-                $scope.control.items = getItems();
-
-            }
-
-            function addItem(item, callback) {
-                if (item.file !== null) {
-                    var file = item.file;
-
-                    var fileReader = new FileReader();
-                    fileReader.onload = function (e) {
-                        if (item.uploading) return;
-                        item.uploading = true;
-
-                        item.upload = pipDataPicture.createPicture(
-                            {
-                                name: item.file.name,
-                                type: item.file.type,
-                                data: e.target.result
-                            }, 
-                            function (response) {
-                                    item.id = response.data ? response.data.id : null;
-                                    item.uploaded = true;
-                                    item.uploading = false;
-                                    item.progress = 0;
-                                    item.upload = null;
-                                    item.file = null;
-                                    item.url = contentUrl(item.id);
-                                    item.state = 'original';
-                                    callback();
-                            },
-                            function () {
-                                    item.uploaded = false;
-                                    item.uploading = false;
-                                    item.progress = 0;
-                                    item.upload = null;
-                                    callback(error);
-                            },
-                            function (e) {
-                                // Math.min is to fix IE which reports 200% sometimes
-                                item.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
-                            }
-                        );
-                    };
-
-                    fileReader.readAsArrayBuffer(file);
-                } else {
-                    var name = item.url.slice(item.url.lastIndexOf('/') + 1, item.url.length).split('?')[0],
-                        filter = name + '&url=' + item.url;
-                    
-                    item.uploading = true;
-                 
-                     pipDataAvatar.createAvatarByUrl(
-                         pipDataPicture.getPicturePostUrl(filter),
-                         function (response) {
-                            item.id = response.data ? response.data.id : response.id || null;
-                            item.uploaded = true;
-                            item.uploading = false;
-                            item.progress = 0;
-                            item.upload = null;
-                            item.file = null;
-                            item.url = contentUrl(item.id);
-                            item.state = 'original';
-                            callback();
-                         },
-                         function (error) {
-                            item.uploaded = false;
-                            item.uploading = false;
-                            item.progress = 0;
-                            item.upload = null;
-                            callback();
-                         }
-                     );
-
-                }
-            }
-
-            function deleteItem(item, callback) {
-                var control = $scope.control;
-
-                // Avoid double transactions
-                if (item.upload) {
-                    item.upload.abort();
-                    item.upload = null;
-                }
-
-                if (item.state != 'deleted')
-                    return;
-
-                pipDataPicture.deletePicture(
-                    item.id, 
-                    function () {
-                        _.remove(control.items, {pin: item.pin});
-                        callback();
-                    }, 
-                    function (data) {
-                        // Todo: perform a better processing
-                        if (data == null) {
-                            _.remove(control.items, {pin: item.pin});
-                        } else {
-                            item.uploaded = false;
-                            item.uploading = false;
-                            item.progress = 0;
-                            item.upload = null;
-                        }
-                        callback(data);
-                    });
-            }
-
-            function save(successCallback, errorCallback) {
-                var control = $scope.control;
-
-                if (control.uploading) {
-                    if (errorCallback) errorCallback('ERROR_TRANSACTION_IN_PROGRESS');
-                    return;
-                }
-
-                control.error = null;
-                control.uploading = 0;
-
-                var onItemCallback = function(error) {
-                    // Storing only the first error
-                    if (error && !control.error) {
-                        control.error = error;
-                    }
-
-                    control.uploading--;
-
-                    // Finished uploading
-                    if (control.uploading == 0) {
-                        if (control.error) {
-                            if (errorCallback) errorCallback(control.error);
-                            else console.error(control.error);
-                        } else {
-                            setItems();
-                            if (successCallback) successCallback();
-                        }
-                    }
-                };
-
-                for (var i = 0; i < control.items.length; i++) {
-                    var item = control.items[i];
-                    if (item.state == 'added' && !item.error) {
-                        control.uploading++;
-                        addItem(item, onItemCallback);
-                    } else if (item.state == 'deleted') {
-                        control.uploading++;
-                        deleteItem(item, onItemCallback);
-                    }
-                }
-
-                // Nothing was uploaded
-                if (control.uploading == 0) {
-                    if (successCallback) successCallback();
-                }
-            }
-
-            function abort() {
-                var control = $scope.control;
-
-                for (var i = 0; i < control.items.length; i++) {
-                    var item = control.items[i];
-
-                    if (item.uploading) {
-                        if (item.upload) item.upload.abort();
-
-                        item.uploaded = false;
-                        item.uploading = false;
-                        item.progress = 0;
-                        item.upload = null;
-                    }
-                }
-
-                // Abort transaction
-                control.uploading = 0;
-            }
-
-            function readItemLocally(url, file) {
-                $scope.control.items.push({
-                    pin: itemPin++,
-                    id: null,
-                    uploading: false,
-                    uploaded: false,
-                    progress: 0,
-                    file: file,
-                    url: url,
-                    state: 'added'
-                });
-
-                $scope.onChange();
-            }
-
-            function onSelectClick($files) {
-                $control.focus();
-
-                if ($files == null || $files.length == 0)
-                    return;
-                for (var i = 0; i < $files.length; i++) {
-                    var file = $files[i];
-
-                    if (file.type.indexOf('image') > -1) {
-                        readItemLocally(file);
-                    }
-                }
-            }
-
-            function onDeleteClick(item) {
-                if (item.state == 'added' || item.state == 'copied') {
-                    _.remove($scope.control.items, {pin: item.pin});
-                } else {
-                    item.state = 'deleted';
-                }
-
-                $scope.onChange();
-            }
-
-            function onKeyDown($event, item) {
-                if (item) {
-                    if ($event.keyCode == 46 || $event.keyCode == 8) {
-                        if (item.state == 'added') {
-                            _.remove($scope.control.items, {pin: item.pin});
-                        } else {
-                            item.state = 'deleted';
-                        }
-
-                        $scope.onChange();
-                    }
-                } else {
-                    if ($event.keyCode == 13 || $event.keyCode == 32) {
-                        // !! Avoid clash with $apply()
-                        setTimeout(function() {
-                            $control.trigger('click');
-                        }, 0);
-                    }
-                }
-            }
-
-            function onImageLoad($event, item) {
-                item.error = false;
-                setTimeout(function () {
-                    var image = $($event.target);
-                    pipImageUtils.setImageMarginCSS({clientWidth: 80, clientHeight: 80}, image);
-                }, 250);
-
-                item.loaded = true;
-            }
-
-            // On change event
-            function onChange() {
-                if ($scope.pipChanged) {
-                    $scope.pipChanged({
-                        $event: { sender: $scope.control },
-                        $control: $scope.control
-                    });
-                }
-            }
-        }]
-        
-    ); 
 
 })();
 
@@ -3553,6 +3125,434 @@ module.run(['$templateCache', function($templateCache) {
 
         }]
     );
+
+})();
+
+
+/**
+ * @file Picture list edit control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - Add animations to add/remove pictures
+ * - ?? Replace placeholder with default image generated on server?
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipPictureListEdit", 
+        ['ui.event', 'angularFileUpload', 'pipCore', 'pipFocused', 'pipData', 'pipPicturePaste']);
+
+    thisModule.config(['pipTranslateProvider', function(pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'PICTURE_LIST_EDIT_TEXT': 'Click here to add a picture',
+            'ERROR_TRANSACTION_IN_PROGRESS': 'Transaction is in progress. Please, wait until it is finished or abort',
+            'ERROR_IMAGE_PRELOADING': 'Image loading error. The picture can not be saved'
+        });
+        pipTranslateProvider.translations('ru', {
+            'PICTURE_LIST_EDIT_TEXT': 'Нажмите сюда чтобы добавить картинку',
+            'ERROR_TRANSACTION_IN_PROGRESS': 'Транзакция еще не завершена. Подождите окончания или прервите её',
+            'ERROR_IMAGE_PRELOADING': 'Ошибка при загрузки картинки. Картинка не сохранена.'
+        });
+    }]);
+
+    thisModule.directive('pipPictureListEdit', 
+        function() {
+            return {
+                restrict: 'EA',
+                scope: {
+                    pipPictureIds: '=',
+                    pipAddedPicture: '=',
+                    ngDisabled: '&',
+                    pipCreated: '&',
+                    pipChanged: '&'
+                },
+                templateUrl: 'picture_list_edit/picture_list_edit.html',
+                controller: 'pipPictureListEditController' 
+            };
+        }
+    );
+
+    thisModule.controller('pipPictureListEditController',
+        ['$scope', '$rootScope', '$element', '$attrs', '$parse', '$http', '$upload', '$timeout', 'pipUtils', 'pipDataPicture', 'pipPicturePaste', 'pipImageUtils', function($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipUtils,
+                 pipDataPicture, pipPicturePaste, pipImageUtils) {
+                
+            var
+                $control = $element.children('.pip-picture-drop'),
+                itemPin = 0;
+
+            $scope.text = $attrs.pipDefaultText || 'PICTURE_LIST_EDIT_TEXT';
+            $scope.icon = $attrs.pipDefaultIcon || 'picture-no-border';
+            $scope.pipRebind = pipUtils.toBoolean($attrs.pipRebind);
+            $scope.pictureStartState = pipUtils.toBoolean($scope.pipAddedPicture) ? 'copied' : 'original';
+
+            $scope.control = {
+                uploading: 0,
+                items: []
+            };
+
+            $scope.control.reset = reset;
+            $scope.control.save = save;
+            $scope.control.abort = abort;
+            $scope.filterItem = function(item) {
+                return item.state != 'deleted';
+            };
+            $scope.readItemLocally = readItemLocally;
+            $scope.onSelectClick = onSelectClick;
+            $scope.onDeleteClick = onDeleteClick;
+            $scope.onKeyDown = onKeyDown;
+            $scope.onImageError = onImageError;
+            $scope.onImageLoad = onImageLoad;
+            $scope.onChange = onChange;
+            $scope.onBlur = onBlur;
+            $scope.onFocus = onFocus;
+            
+            // Watch for changes
+            if ($scope.pipRebind) {
+                $scope.$watch(
+                    function () {
+                        // Todo: Optimize change tracking
+                        return $scope.pipPictureIds;
+                    },
+                    function (newValue) {
+                        $scope.control.reset();
+                    }
+                );
+            }
+
+            // Add class
+            $element.addClass('pip-picture-list-edit');
+
+            // Initialize control
+            $scope.control.reset();
+
+            // Execute callback
+            if ($scope.pipCreated) {
+                $scope.pipCreated({
+                    $event: { sender: $scope.control },
+                    $control: $scope.control
+                });
+            }
+
+            return;
+
+            function contentUrl(id) {
+                return pipDataPicture.getPictureContentUrl(id); 
+            }
+
+            function onImageError($event, item) {
+                item.error = true;
+            };
+            
+            function onFocus(a) {
+                pipPicturePaste.addPasteListener(function (item) {
+                    $scope.readItemLocally(item.url, item.file);
+                });
+            };
+
+            function onBlur () {
+                pipPicturePaste.removePasteListener();
+            };
+
+            function getItems() {
+                var
+                    pictureIds = $scope.pipPictureIds,
+                    items = [];
+
+                if (pictureIds == null || pictureIds.length == 0)
+                    return items;
+
+                for (var i = 0; i < pictureIds.length; i++) {
+                    items.push({
+                        pin: itemPin++,
+                        id: pictureIds[i],
+                        uploading: false,
+                        uploaded: false,
+                        progress: 0,
+                        file: null,
+                        url: contentUrl(pictureIds[i]),
+                        state: $scope.pictureStartState //'original'
+                    });
+                }
+
+                return items;
+            }
+
+            function setItems() {
+                // Clean the array
+                if ($scope.pipPictureIds && $scope.pipPictureIds.length > 0)
+                    $scope.pipPictureIds.splice(0, $scope.pipPictureIds.length);
+
+                for (var i = 0; i < $scope.control.items.length; i++) {
+                    var item = $scope.control.items[i];
+                    if (item.id)
+                        $scope.pipPictureIds.push(item.id);
+                }
+            }
+
+            function reset() {
+                $scope.control.uploading = 0;
+                $scope.control.items = getItems();
+
+            }
+
+            function addItem(item, callback) {
+                if (item.file !== null) {
+                    var file = item.file;
+
+                    var fileReader = new FileReader();
+                    fileReader.onload = function (e) {
+                        if (item.uploading) return;
+                        item.uploading = true;
+
+                        item.upload = pipDataPicture.createPicture(
+                            {
+                                name: item.file.name,
+                                type: item.file.type,
+                                data: e.target.result
+                            }, 
+                            function (response) {
+                                    item.id = response.data ? response.data.id : null;
+                                    item.uploaded = true;
+                                    item.uploading = false;
+                                    item.progress = 0;
+                                    item.upload = null;
+                                    item.file = null;
+                                    item.url = contentUrl(item.id);
+                                    item.state = 'original';
+                                    callback();
+                            },
+                            function () {
+                                    item.uploaded = false;
+                                    item.uploading = false;
+                                    item.progress = 0;
+                                    item.upload = null;
+                                    callback(error);
+                            },
+                            function (e) {
+                                // Math.min is to fix IE which reports 200% sometimes
+                                item.progress = Math.min(100, parseInt(100.0 * e.loaded / e.total));
+                            }
+                        );
+                    };
+
+                    fileReader.readAsArrayBuffer(file);
+                } else {
+                    var name = item.url.slice(item.url.lastIndexOf('/') + 1, item.url.length).split('?')[0],
+                        filter = name + '&url=' + item.url;
+                    
+                    item.uploading = true;
+                 
+                     pipDataAvatar.createAvatarByUrl(
+                         pipDataPicture.getPicturePostUrl(filter),
+                         function (response) {
+                            item.id = response.data ? response.data.id : response.id || null;
+                            item.uploaded = true;
+                            item.uploading = false;
+                            item.progress = 0;
+                            item.upload = null;
+                            item.file = null;
+                            item.url = contentUrl(item.id);
+                            item.state = 'original';
+                            callback();
+                         },
+                         function (error) {
+                            item.uploaded = false;
+                            item.uploading = false;
+                            item.progress = 0;
+                            item.upload = null;
+                            callback();
+                         }
+                     );
+
+                }
+            }
+
+            function deleteItem(item, callback) {
+                var control = $scope.control;
+
+                // Avoid double transactions
+                if (item.upload) {
+                    item.upload.abort();
+                    item.upload = null;
+                }
+
+                if (item.state != 'deleted')
+                    return;
+
+                pipDataPicture.deletePicture(
+                    item.id, 
+                    function () {
+                        _.remove(control.items, {pin: item.pin});
+                        callback();
+                    }, 
+                    function (data) {
+                        // Todo: perform a better processing
+                        if (data == null) {
+                            _.remove(control.items, {pin: item.pin});
+                        } else {
+                            item.uploaded = false;
+                            item.uploading = false;
+                            item.progress = 0;
+                            item.upload = null;
+                        }
+                        callback(data);
+                    });
+            }
+
+            function save(successCallback, errorCallback) {
+                var control = $scope.control;
+
+                if (control.uploading) {
+                    if (errorCallback) errorCallback('ERROR_TRANSACTION_IN_PROGRESS');
+                    return;
+                }
+
+                control.error = null;
+                control.uploading = 0;
+
+                var onItemCallback = function(error) {
+                    // Storing only the first error
+                    if (error && !control.error) {
+                        control.error = error;
+                    }
+
+                    control.uploading--;
+
+                    // Finished uploading
+                    if (control.uploading == 0) {
+                        if (control.error) {
+                            if (errorCallback) errorCallback(control.error);
+                            else console.error(control.error);
+                        } else {
+                            setItems();
+                            if (successCallback) successCallback();
+                        }
+                    }
+                };
+
+                for (var i = 0; i < control.items.length; i++) {
+                    var item = control.items[i];
+                    if (item.state == 'added' && !item.error) {
+                        control.uploading++;
+                        addItem(item, onItemCallback);
+                    } else if (item.state == 'deleted') {
+                        control.uploading++;
+                        deleteItem(item, onItemCallback);
+                    }
+                }
+
+                // Nothing was uploaded
+                if (control.uploading == 0) {
+                    if (successCallback) successCallback();
+                }
+            }
+
+            function abort() {
+                var control = $scope.control;
+
+                for (var i = 0; i < control.items.length; i++) {
+                    var item = control.items[i];
+
+                    if (item.uploading) {
+                        if (item.upload) item.upload.abort();
+
+                        item.uploaded = false;
+                        item.uploading = false;
+                        item.progress = 0;
+                        item.upload = null;
+                    }
+                }
+
+                // Abort transaction
+                control.uploading = 0;
+            }
+
+            function readItemLocally(url, file) {
+                $scope.control.items.push({
+                    pin: itemPin++,
+                    id: null,
+                    uploading: false,
+                    uploaded: false,
+                    progress: 0,
+                    file: file,
+                    url: url,
+                    state: 'added'
+                });
+
+                $scope.onChange();
+            }
+
+            function onSelectClick($files) {
+                $control.focus();
+
+                if ($files == null || $files.length == 0)
+                    return;
+                for (var i = 0; i < $files.length; i++) {
+                    var file = $files[i];
+
+                    if (file.type.indexOf('image') > -1) {
+                        readItemLocally(file);
+                    }
+                }
+            }
+
+            function onDeleteClick(item) {
+                if (item.state == 'added' || item.state == 'copied') {
+                    _.remove($scope.control.items, {pin: item.pin});
+                } else {
+                    item.state = 'deleted';
+                }
+
+                $scope.onChange();
+            }
+
+            function onKeyDown($event, item) {
+                if (item) {
+                    if ($event.keyCode == 46 || $event.keyCode == 8) {
+                        if (item.state == 'added') {
+                            _.remove($scope.control.items, {pin: item.pin});
+                        } else {
+                            item.state = 'deleted';
+                        }
+
+                        $scope.onChange();
+                    }
+                } else {
+                    if ($event.keyCode == 13 || $event.keyCode == 32) {
+                        // !! Avoid clash with $apply()
+                        setTimeout(function() {
+                            $control.trigger('click');
+                        }, 0);
+                    }
+                }
+            }
+
+            function onImageLoad($event, item) {
+                item.error = false;
+                setTimeout(function () {
+                    var image = $($event.target);
+                    pipImageUtils.setImageMarginCSS({clientWidth: 80, clientHeight: 80}, image);
+                }, 250);
+
+                item.loaded = true;
+            }
+
+            // On change event
+            function onChange() {
+                if ($scope.pipChanged) {
+                    $scope.pipChanged({
+                        $event: { sender: $scope.control },
+                        $control: $scope.control
+                    });
+                }
+            }
+        }]
+        
+    ); 
 
 })();
 
