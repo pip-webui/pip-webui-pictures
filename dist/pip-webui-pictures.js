@@ -294,63 +294,6 @@ try {
   module = angular.module('pipPictures.Templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
-  $templateCache.put('picture_url_dialog/picture_url_dialog.html',
-    '<!--\n' +
-    '@file Picture URL dialog content\n' +
-    '@copyright Digital Living Software Corp. 2014-2016\n' +
-    '-->\n' +
-    '\n' +
-    '<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog layout-column"\n' +
-    '           md-theme="{{theme}}">\n' +
-    '\n' +
-    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">\n' +
-    '        <div class="pip-header bm16 layout-row layout-align-start-center">\n' +
-    '            <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"\n' +
-    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
-    '                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
-    '            </md-button>\n' +
-    '            <h3 class="text-title m0">\n' +
-    '                {{ ::\'PICTURE_FROM_WEBLINK\' | translate}}\n' +
-    '            </h3>\n' +
-    '        </div>\n' +
-    '\n' +
-    '        <div class="pip-content">\n' +
-    '            <md-input-container md-no-float class="w-stretch text-subhead1">\n' +
-    '                <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: \'LINK_PICTURE\' | translate}}"/>\n' +
-    '            </md-input-container>\n' +
-    '\n' +
-    '            <div class="w-stretch layout-row layout-align-center-center"\n' +
-    '                 ng-hide="invalid">\n' +
-    '                <img id="url_image"/>\n' +
-    '            </div>\n' +
-    '\n' +
-    '            <div class="pip-no-images layout-row layout-align-center-center" ng-show="invalid">\n' +
-    '                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>\n' +
-    '            </div>\n' +
-    '\n' +
-    '        </div>\n' +
-    '    </md-dialog-content>\n' +
-    '    <div class="pip-footer">\n' +
-    '        <md-button ng-click="onCancelClick()" aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
-    '            {{ ::\'CANCEL\' | translate }}\n' +
-    '        </md-button>\n' +
-    '\n' +
-    '        <md-button class="md-accent" ng-click="onAddClick()" ng-disabled="invalid"\n' +
-    '                   aria-label="{{ ::\'ADD\' | translate }}">\n' +
-    '            {{ ::\'ADD\' | translate }}\n' +
-    '        </md-button>\n' +
-    '    </div>\n' +
-    '</md-dialog>');
-}]);
-})();
-
-(function(module) {
-try {
-  module = angular.module('pipPictures.Templates');
-} catch (e) {
-  module = angular.module('pipPictures.Templates', []);
-}
-module.run(['$templateCache', function($templateCache) {
   $templateCache.put('picture_list_edit/picture_list_edit.html',
     '<div pip-focused>\n' +
     '	<div class="pip-picture-upload pointer pip-focusable"\n' +
@@ -400,6 +343,63 @@ module.run(['$templateCache', function($templateCache) {
     '	<div class="clearfix"></div>\n' +
     '</div>\n' +
     '');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('pipPictures.Templates');
+} catch (e) {
+  module = angular.module('pipPictures.Templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('picture_url_dialog/picture_url_dialog.html',
+    '<!--\n' +
+    '@file Picture URL dialog content\n' +
+    '@copyright Digital Living Software Corp. 2014-2016\n' +
+    '-->\n' +
+    '\n' +
+    '<md-dialog class="pip-dialog pip-picture-url-dialog pip-picture-dialog layout-column"\n' +
+    '           md-theme="{{theme}}">\n' +
+    '\n' +
+    '    <md-dialog-content class="pip-body lp0 rp0 tp0 pip-scroll">\n' +
+    '        <div class="pip-header bm16 layout-row layout-align-start-center">\n' +
+    '            <md-button  ng-click="onCancelClick()" class="md-icon-button lm0"\n' +
+    '                        aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:arrow-left"></md-icon>\n' +
+    '            </md-button>\n' +
+    '            <h3 class="text-title m0">\n' +
+    '                {{ ::\'PICTURE_FROM_WEBLINK\' | translate}}\n' +
+    '            </h3>\n' +
+    '        </div>\n' +
+    '\n' +
+    '        <div class="pip-content">\n' +
+    '            <md-input-container md-no-float class="w-stretch text-subhead1">\n' +
+    '                <input type="text" ng-model="url" ng-change="checkUrl()" placeholder="{{:: \'LINK_PICTURE\' | translate}}"/>\n' +
+    '            </md-input-container>\n' +
+    '\n' +
+    '            <div class="w-stretch layout-row layout-align-center-center"\n' +
+    '                 ng-hide="invalid">\n' +
+    '                <img id="url_image"/>\n' +
+    '            </div>\n' +
+    '\n' +
+    '            <div class="pip-no-images layout-row layout-align-center-center" ng-show="invalid">\n' +
+    '                <md-icon class="text-grey" md-svg-icon="icons:images"></md-icon>\n' +
+    '            </div>\n' +
+    '\n' +
+    '        </div>\n' +
+    '    </md-dialog-content>\n' +
+    '    <div class="pip-footer">\n' +
+    '        <md-button ng-click="onCancelClick()" aria-label="{{ ::\'CANCEL\' | translate }}">\n' +
+    '            {{ ::\'CANCEL\' | translate }}\n' +
+    '        </md-button>\n' +
+    '\n' +
+    '        <md-button class="md-accent" ng-click="onAddClick()" ng-disabled="invalid"\n' +
+    '                   aria-label="{{ ::\'ADD\' | translate }}">\n' +
+    '            {{ ::\'ADD\' | translate }}\n' +
+    '        </md-button>\n' +
+    '    </div>\n' +
+    '</md-dialog>');
 }]);
 })();
 
@@ -578,148 +578,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 
-/**
- * @file Camera dialog
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Add sample to sampler app
- */
-
-/* global angular, Webcam */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module('pipCameraDialog',
-        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
-
-    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
-        pipTranslateProvider.translations('en', {
-            'TAKE_PICTURE': 'Take a picture',
-            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
-        });
-        pipTranslateProvider.translations('ru', {
-            'TAKE_PICTURE': 'Сделать фото',
-            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
-        });
-    }]);
-
-    thisModule.factory('pipCameraDialog',
-        ['$mdDialog', function ($mdDialog) {
-            return {
-                show: function (successCallback) {
-                    $mdDialog.show({
-                        templateUrl: 'camera_dialog/camera_dialog.html',
-                        clickOutsideToClose: true,
-                        controller: 'pipCameraController'
-                    }).then(function (result) {
-                        Webcam.reset();
-                        if (successCallback) {
-                            successCallback(result);
-                        }
-                    }, function () {
-                        Webcam.reset();
-                    });
-                }
-            };
-        }]);
-
-    thisModule.controller('pipCameraController',
-        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
-            $scope.browser = pipUtils.getBrowser().os;
-            $scope.theme = $rootScope.$theme;
-
-            if ($scope.browser !== 'android') {
-                Webcam.init();
-
-                setTimeout(function () {
-                    Webcam.attach('.camera-stream');
-                }, 0);
-
-                Webcam.on('error', function (err) {
-                    $scope.webCamError = true;
-                    console.error(err);
-                });
-
-                Webcam.set({
-                    width: 400,
-                    height: 300,
-
-                    dest_width: 400,
-                    dest_height: 300,
-
-                    crop_width: 400,
-                    crop_height: 300,
-
-                    image_format: 'jpeg',
-                    jpeg_quality: 90
-                });
-
-                //Webcam.setSWFLocation('../../../dist/webcam.swf');
-                Webcam.setSWFLocation('webcam.swf');
-
-            } else {
-                document.addEventListener("deviceready",onDeviceReady,false);
-
-            }
-            // todo add logic in callbacks
-            function onDeviceReady() {
-                navigator.camera.getPicture(onSuccess, onFail,
-                    {
-                        sourceType: Camera.PictureSourceType.CAMERA,
-                        correctOrientation: true,
-                        quality: 75,
-                        targetWidth: 200,
-                        destinationType: Camera.DestinationType.DATA_URL
-                    });
-            }
-
-
-            function onSuccess(imageData) {
-                var picture = imageData;
-                var picture = 'data:image/jpeg;base64,' + imageData;
-                $mdDialog.hide(picture);
-            }
-
-            function onFail(message) {
-                alert('Failed because: ' + message);
-                $mdDialog.hide();
-            }
-
-            $scope.$freeze = false;
-
-            $scope.onTakePictureClick = onTakePictureClick;
-            $scope.onResetPicture = onResetPicture;
-            $scope.onCancelClick = onCancelClick;
-
-            return;
-
-            function onTakePictureClick() {
-                if (Webcam) {
-                    if ($scope.$freeze) {
-                        Webcam.snap(function (dataUri) {
-                            $scope.$freeze = false;
-                            $mdDialog.hide(dataUri);
-                        });
-                    } else {
-                        $scope.$freeze = true;
-                        Webcam.freeze();
-                    }
-                }
-            };
-
-            function onResetPicture() {
-                $scope.$freeze = false;
-                Webcam.unfreeze();
-            };
-
-            function onCancelClick() {
-                $mdDialog.cancel();
-            };
-        }]
-    );
-
-})();
 /**
  * @file Avatar control
  * @copyright Digital Living Software Corp. 2014-2015
@@ -1241,6 +1099,148 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
+ * @file Camera dialog
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Add sample to sampler app
+ */
+
+/* global angular, Webcam */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module('pipCameraDialog',
+        ['ngMaterial', 'pipCore', 'pipPictures.Templates']);
+
+    thisModule.config(['pipTranslateProvider', function (pipTranslateProvider) {
+        pipTranslateProvider.translations('en', {
+            'TAKE_PICTURE': 'Take a picture',
+            'WEB_CAM_ERROR': 'Webcam is missing or was not found'
+        });
+        pipTranslateProvider.translations('ru', {
+            'TAKE_PICTURE': 'Сделать фото',
+            'WEB_CAM_ERROR': 'Web-камера отсутствует или не найдена'
+        });
+    }]);
+
+    thisModule.factory('pipCameraDialog',
+        ['$mdDialog', function ($mdDialog) {
+            return {
+                show: function (successCallback) {
+                    $mdDialog.show({
+                        templateUrl: 'camera_dialog/camera_dialog.html',
+                        clickOutsideToClose: true,
+                        controller: 'pipCameraController'
+                    }).then(function (result) {
+                        Webcam.reset();
+                        if (successCallback) {
+                            successCallback(result);
+                        }
+                    }, function () {
+                        Webcam.reset();
+                    });
+                }
+            };
+        }]);
+
+    thisModule.controller('pipCameraController',
+        ['$scope', '$rootScope', '$timeout', '$mdMenu', '$mdDialog', 'pipUtils', function ($scope, $rootScope, $timeout, $mdMenu, $mdDialog, pipUtils) { // $cordovaCamera
+            $scope.browser = pipUtils.getBrowser().os;
+            $scope.theme = $rootScope.$theme;
+
+            if ($scope.browser !== 'android') {
+                Webcam.init();
+
+                setTimeout(function () {
+                    Webcam.attach('.camera-stream');
+                }, 0);
+
+                Webcam.on('error', function (err) {
+                    $scope.webCamError = true;
+                    console.error(err);
+                });
+
+                Webcam.set({
+                    width: 400,
+                    height: 300,
+
+                    dest_width: 400,
+                    dest_height: 300,
+
+                    crop_width: 400,
+                    crop_height: 300,
+
+                    image_format: 'jpeg',
+                    jpeg_quality: 90
+                });
+
+                //Webcam.setSWFLocation('../../../dist/webcam.swf');
+                Webcam.setSWFLocation('webcam.swf');
+
+            } else {
+                document.addEventListener("deviceready",onDeviceReady,false);
+
+            }
+            // todo add logic in callbacks
+            function onDeviceReady() {
+                navigator.camera.getPicture(onSuccess, onFail,
+                    {
+                        sourceType: Camera.PictureSourceType.CAMERA,
+                        correctOrientation: true,
+                        quality: 75,
+                        targetWidth: 200,
+                        destinationType: Camera.DestinationType.DATA_URL
+                    });
+            }
+
+
+            function onSuccess(imageData) {
+                var picture = imageData;
+                var picture = 'data:image/jpeg;base64,' + imageData;
+                $mdDialog.hide(picture);
+            }
+
+            function onFail(message) {
+                alert('Failed because: ' + message);
+                $mdDialog.hide();
+            }
+
+            $scope.$freeze = false;
+
+            $scope.onTakePictureClick = onTakePictureClick;
+            $scope.onResetPicture = onResetPicture;
+            $scope.onCancelClick = onCancelClick;
+
+            return;
+
+            function onTakePictureClick() {
+                if (Webcam) {
+                    if ($scope.$freeze) {
+                        Webcam.snap(function (dataUri) {
+                            $scope.$freeze = false;
+                            $mdDialog.hide(dataUri);
+                        });
+                    } else {
+                        $scope.$freeze = true;
+                        Webcam.freeze();
+                    }
+                }
+            };
+
+            function onResetPicture() {
+                $scope.$freeze = false;
+                Webcam.unfreeze();
+            };
+
+            function onCancelClick() {
+                $mdDialog.cancel();
+            };
+        }]
+    );
+
+})();
+/**
  * @file Collage control
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -1555,106 +1555,6 @@ module.run(['$templateCache', function($templateCache) {
 
 
 /**
- * @file Picture control
- * @copyright Digital Living Software Corp. 2014-2015
- * @todo
- * - Improve samples in sampler app
- * - Replace placeholder with default image generated on server
- * - Fix resizing problem
- */
- 
-/* global angular */
-
-(function () {
-    'use strict';
-
-    var thisModule = angular.module("pipPicture", ['pipCore', 'pipData']);
-
-    thisModule.directive('pipPicture', 
-        function() {
-            return {
-                restrict: 'EA',
-                scope: {
-                    src: '&pipSrc',
-                    pictureId: '=pipPictureId',
-                    defaultIcon: '=pipDefaultIcon'
-                },
-                template: '<img ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }"/>'
-                          + '<div><span></span></div>',
-                controller: 'pipPictureController' 
-            }
-        }
-    );
-
-    thisModule.controller('pipPictureController',
-        ['$scope', '$element', '$attrs', '$rootScope', 'pipUtils', 'pipImageUtils', 'pipDataPicture', function ($scope, $element, $attrs, $rootScope, pipUtils, pipImageUtils, pipDataPicture) {
-            var 
-                image = $element.children('img'),
-                defaultBlock = $element.children('div');
-
-            $scope.onImageError = onImageError;
-            $scope.onImageLoad = onImageLoad;
-
-            // Add class
-            $element.addClass('pip-picture');
-
-            bindControl();
-
-            // Also optimization to avoid watch if it is unnecessary
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch($scope.pictureId, function(newValue) {
-                    if ($scope.pictureId != newValue) bindControl();
-                });
-            }
-
-            if (pipUtils.toBoolean($attrs.pipRebind)) {
-                $scope.$watch($scope.src, function(newValue) {
-                    if ($scope.src != newValue)
-                      bindControl();
-                });
-            }
-
-            return;
-
-            // Clean up url to remove broken icon
-            function onImageError($event) {
-                $scope.$apply(function() {
-                    var image = $($event.target);
-
-                    pipImageUtils.setErrorImageCSS(image);
-                    defaultBlock.css('display', 'block');
-                });
-            };
-
-            // When image is loaded resize/reposition it
-            function onImageLoad($event) {
-                var image = $($event.target);
-                pipImageUtils.setImageMarginCSS($element, image);
-                defaultBlock.css('display', 'none');
-            };
-
-            function bindControl() {
-                if ($scope.pictureId) {
-                    var url = pipDatPicture.getPictureContentUrl($scope.pictureId); 
-                    // serverUrl = pipRest.serverUrl(),
-                    //     userId = ($rootScope.$user || {}).id,
-                    //     partyId = ($rootScope.$party || {}).id || userId,
-                    //     url = serverUrl + '/api/parties/' + partyId + '/files/' + $scope.pictureId + '/content';
-                        
-
-                    image.attr('src', url);
-                } else {
-                    if ($scope.src) image.attr('src', $scope.src());
-                    else image.attr('src', '');
-                }
-            };
-        }]        
-    ); 
-
-})();
-
-
-/**
  * @file Camera dialog
  * @copyright Digital Living Software Corp. 2014-2015
  * @todo
@@ -1829,6 +1729,106 @@ module.run(['$templateCache', function($templateCache) {
     );
 
 })();
+/**
+ * @file Picture control
+ * @copyright Digital Living Software Corp. 2014-2015
+ * @todo
+ * - Improve samples in sampler app
+ * - Replace placeholder with default image generated on server
+ * - Fix resizing problem
+ */
+ 
+/* global angular */
+
+(function () {
+    'use strict';
+
+    var thisModule = angular.module("pipPicture", ['pipCore', 'pipData']);
+
+    thisModule.directive('pipPicture', 
+        function() {
+            return {
+                restrict: 'EA',
+                scope: {
+                    src: '&pipSrc',
+                    pictureId: '=pipPictureId',
+                    defaultIcon: '=pipDefaultIcon'
+                },
+                template: '<img ui-event="{ error: \'onImageError($event)\', load: \'onImageLoad($event)\' }"/>'
+                          + '<div><span></span></div>',
+                controller: 'pipPictureController' 
+            }
+        }
+    );
+
+    thisModule.controller('pipPictureController',
+        ['$scope', '$element', '$attrs', '$rootScope', 'pipUtils', 'pipImageUtils', 'pipDataPicture', function ($scope, $element, $attrs, $rootScope, pipUtils, pipImageUtils, pipDataPicture) {
+            var 
+                image = $element.children('img'),
+                defaultBlock = $element.children('div');
+
+            $scope.onImageError = onImageError;
+            $scope.onImageLoad = onImageLoad;
+
+            // Add class
+            $element.addClass('pip-picture');
+
+            bindControl();
+
+            // Also optimization to avoid watch if it is unnecessary
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watch($scope.pictureId, function(newValue) {
+                    if ($scope.pictureId != newValue) bindControl();
+                });
+            }
+
+            if (pipUtils.toBoolean($attrs.pipRebind)) {
+                $scope.$watch($scope.src, function(newValue) {
+                    if ($scope.src != newValue)
+                      bindControl();
+                });
+            }
+
+            return;
+
+            // Clean up url to remove broken icon
+            function onImageError($event) {
+                $scope.$apply(function() {
+                    var image = $($event.target);
+
+                    pipImageUtils.setErrorImageCSS(image);
+                    defaultBlock.css('display', 'block');
+                });
+            };
+
+            // When image is loaded resize/reposition it
+            function onImageLoad($event) {
+                var image = $($event.target);
+                pipImageUtils.setImageMarginCSS($element, image);
+                defaultBlock.css('display', 'none');
+            };
+
+            function bindControl() {
+                if ($scope.pictureId) {
+                    var url = pipDatPicture.getPictureContentUrl($scope.pictureId); 
+                    // serverUrl = pipRest.serverUrl(),
+                    //     userId = ($rootScope.$user || {}).id,
+                    //     partyId = ($rootScope.$party || {}).id || userId,
+                    //     url = serverUrl + '/api/parties/' + partyId + '/files/' + $scope.pictureId + '/content';
+                        
+
+                    image.attr('src', url);
+                } else {
+                    if ($scope.src) image.attr('src', $scope.src());
+                    else image.attr('src', '');
+                }
+            };
+        }]        
+    ); 
+
+})();
+
+
 /**
  * @file Picture control
  * @copyright Digital Living Software Corp. 2014-2015
