@@ -131,8 +131,14 @@
                 $scope.control.url = '';
 
                 if (!afterDeleting) {
-                    var url = pipDataAvatar.getAvatarUrl($scope.pipPartyId(), '',
-                        $scope.pipId(), $scope.pipEntityType(), false, true);
+                    var url = pipDataAvatar.getAvatarUrl({
+                        partyId: $scope.pipPartyId(), 
+                        partyName: '',
+                        id: $scope.pipId(), 
+                        type: $scope.pipEntityType(), 
+                        noRedirect: false, 
+                        noDefault: true
+                    });
 
                     if (!url) return;
 
