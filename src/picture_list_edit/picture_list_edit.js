@@ -47,7 +47,7 @@
 
     thisModule.controller('pipPictureListEditController',
         function($scope, $rootScope, $element, $attrs, $parse, $http, $upload, $timeout, pipUtils,
-                 pipDataPicture, pipPicturePaste, pipImageUtils) {
+                 pipDataPicture, pipPicturePaste, pipImageUtils, pipDataAvatar) {
                 
             var
                 $control = $element.children('.pip-picture-drop'),

@@ -43,7 +43,7 @@
 
     thisModule.controller('pipPictureEditController',
         function ($scope, $element, $attrs, $http, $upload, $timeout, $rootScope, $parse, pipDataPicture, pipPicturePaste,
-                  pipImageUtils, pipUtils) {
+                  pipImageUtils, pipUtils, pipDataAvatar) {
             var
                 $control = $element.children('.pip-picture-upload'),
                 $input = $control.children('input[type=file]');
